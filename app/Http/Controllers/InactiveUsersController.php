@@ -302,7 +302,7 @@ class InactiveUsersController extends Controller
     
         // Call the API to fetch the users based on the user_id and level
         try {
-            $response = Http::post('https:///api/level', [
+            $response = Http::post('https://enlight.abcdapp.in/api/level', [
                 'user_id' => $userId,
                 'level' => $mappedLevel  // Use mapped level
             ]);
@@ -365,7 +365,7 @@ class InactiveUsersController extends Controller
         $refer_code = $user->refer_code;  // Assuming 'refer_code' is a column in the 'users' table
     
         // API endpoint to register the user
-        $apiUrl = 'https:///api/register';  // Replace with your actual registration API URL
+        $apiUrl = 'https://enlight.abcdapp.in/api/register';  // Replace with your actual registration API URL
     
         // Prepare the data to send to the API
         $apiData = [
