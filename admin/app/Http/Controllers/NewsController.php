@@ -17,6 +17,7 @@ class NewsController extends Controller
         $request->validate([
             'telegram_link' => 'required|string',
             'customer_support_number' => 'required|string',
+            'zoho_chat_link' => 'required|string',
             'minimum_withdrawals' => 'required|string',
             'whatsapp_status_income' => 'required|string',
             'download_today_image' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',

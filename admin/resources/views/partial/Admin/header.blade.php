@@ -65,7 +65,7 @@
 
           
                 <li class="dash-h-item">
-                    <a class="dash-head-link me-0" href="{{ url('/chats') }}">
+                    <a class="dash-head-link me-0" href="#">
                         <i class="ti ti-message-circle"></i>
                         <span
                             class="bg-danger dash-h-badge message-counter custom_messanger_counter">{{ $unseenCounter }}
@@ -102,7 +102,7 @@
                         </div>
                         <div class="noti-footer">
                             <div class="d-grid">
-                                <a href="{{ route('chats') }}"
+                                <a href="#"
                                     class="btn dash-head-link justify-content-center text-primary mx-0">View all</a>
                             </div>
                         </div>

@@ -15,6 +15,7 @@ class NewsController extends Controller
         return view('invite_friends.index', [
             'invitation_link' => $news->invitation_link,
             'telegram_link' => $news->telegram_link,
+            'zoho_chat_link' => $news->zoho_chat_link,
             'customer_support_number' => $news->customer_support_number,
             'download_today_image' => $news->download_today_image,
         ]);

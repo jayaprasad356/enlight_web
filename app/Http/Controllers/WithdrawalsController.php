@@ -100,14 +100,14 @@ class WithdrawalsController extends Controller
             $currentTime = now()->format('H:i'); // Get the current time in 24-hour format
 
             // Allowed days and time range
-            $allowedDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            $allowedDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'sunday'];
             $startTime = '10:00';
             $endTime = '18:00';
 
             if (!in_array($currentDay, $allowedDays) || $currentTime < $startTime || $currentTime > $endTime) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Withdrawals are only allowed from Monday to Saturday between 10:00 AM and 6:00 PM.',
+                    'message' => 'Withdrawals are only allowed between 10:00 AM and 6:00 PM.',
                 ], 400);
             }
     

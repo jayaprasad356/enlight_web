@@ -39,27 +39,27 @@
                 <li class="dash-item">
                     <a href="#" class="dash-link" id="levels-toggle">
                         <span class="dash-micon"><i class="ti ti-building"></i></span>
-                        <span class="dash-mtext">{{ __('Levels') }}</span>
+                        <span class="dash-mtext">{{ __('Customer Levels') }}</span>
                     </a>
                     <ul class="list-unstyled" id="levels-menu" style="display: none; padding-left: 60px; list-style-type: disc;">
                         <li>
                             <a href="{{ route('level_1.index') }}" class="dash-link">
-                                <span class="dash-mtext">{{ __('Level 1') }}</span>
+                                <span class="dash-mtext">{{ __('Customer Level 1') }}</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('level_2.index') }}" class="dash-link">
-                                <span class="dash-mtext">{{ __('Level 2') }}</span>
+                                <span class="dash-mtext">{{ __('Customer Level 2') }}</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('level_3.index') }}" class="dash-link">
-                                <span class="dash-mtext">{{ __('Level 3') }}</span>
+                                <span class="dash-mtext">{{ __('Customer Level 3') }}</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('level_4.index') }}" class="dash-link">
-                                <span class="dash-mtext">{{ __('Level 4') }}</span>
+                                <span class="dash-mtext">{{ __('Customer Level 4') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -68,7 +68,7 @@
                 <li class="dash-item">
                     <a href="{{ route('works.index') }}" class="dash-link">
                         <span class="dash-micon"><i class="ti ti-briefcase"></i></span> <!-- Briefcase icon for works -->
-                        <span class="dash-mtext">{{ __('Works') }}</span>
+                        <span class="dash-mtext">{{ __('Work') }}</span>
                     </a>
                 </li>
 
@@ -81,8 +81,8 @@
 
                 <li class="dash-item">
                     <a href="{{ route('my_products.index') }}" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-users"></i></span> 
-                        <span class="dash-mtext">{{ __('My Products') }}</span>
+                        <span class="dash-micon"><i class="ti ti-package"></i></span> 
+                        <span class="dash-mtext">{{ __('Products') }}</span>
                     </a>
                 </li>
 

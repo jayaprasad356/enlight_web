@@ -31,6 +31,11 @@
             </div>
 
             <div class="form-group">
+                <label for="zoho_chat_link">Zoho Chat Link</label>
+                <input type="text" class="form-control" id="zoho_chat_link" name="zoho_chat_link" value="{{ $news->zoho_chat_link }}" required>
+            </div>
+
+            <div class="form-group">
                 <label for="minimum_withdrawals">Minimum Withdrawals</label>
                 <input type="number" class="form-control" id="minimum_withdrawals" name="minimum_withdrawals" value="{{ $news->minimum_withdrawals }}" required>
             </div>
