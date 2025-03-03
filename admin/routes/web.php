@@ -20,6 +20,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SpeechTextController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UsersVerificationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AvatarsController;
@@ -306,6 +307,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('coins', CoinsController::class);
     Route::resource('withdrawals', WithdrawalsController::class);
     Route::resource('gifts', GiftsController::class);
+    Route::resource('products', ProductsController::class);
     Route::get('/works', [WorksController::class, 'index'])->name('works.index');
     Route::patch('/works/bulk-update-status', [WorksController::class, 'bulkUpdateStatus'])->name('works.bulkUpdateStatus');
     

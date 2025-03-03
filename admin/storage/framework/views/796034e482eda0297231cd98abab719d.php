@@ -45,6 +45,14 @@
                                 class="ti ti-settings"></i></span><span class="dash-mtext"><?php echo e(__('Settings')); ?></span></a>
                 </li>
           
+                <li class="dash-item">
+                <a href="<?php echo e(route('products.index')); ?>" class="dash-link">
+                    <span class="dash-micon">
+                        <i class="ti ti-package"></i> <!-- Icon for products -->
+                    </span>
+                    <span class="dash-mtext"><?php echo e(__('Products')); ?></span>
+                </a>
+                </li>
 
                 <li class="dash-item">
                 <a href="<?php echo e(route('transactions.index')); ?>" class="dash-link">

@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
 @section('page-title')
-    {{ __('Activate User') }}
+    {{ __('Activate Customers') }}
 @endsection
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Home') }}</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('inactive_users.activate') }}">{{ __('Activate User') }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('inactive_users.activate') }}">{{ __('Activate Customers') }}</a></li>
 @endsection
 
 @section('content')
@@ -30,11 +30,11 @@
                         <div class="mt-4" id="userDropdownContainer">
                             <select class="form-select" id="userDropdown" style="width: 50%;"> 
                                 @if(request()->query('level') == 2)
-                                    <option value="">{{ __('Choose Your Level 1 Users') }}</option>
+                                    <option value="">{{ __('Choose Your Level 1 Customers') }}</option>
                                 @elseif(request()->query('level') == 3)
-                                    <option value="">{{ __('Choose Your Level 2 Users') }}</option>
+                                    <option value="">{{ __('Choose Your Level 2 Customers') }}</option>
                                 @elseif(request()->query('level') == 4)
-                                    <option value="">{{ __('Choose Your Level 3 Users') }}</option>
+                                    <option value="">{{ __('Choose Your Level 3 Customers') }}</option>
                                 @endif
                             </select>
                         </div>
@@ -83,11 +83,11 @@ $(document).ready(function() {
                         userDropdown.append('<option value="' + user.id + '" data-name="' + user.name + '" data-mobile="' + user.mobile + '">' + user.id + ' - ' + user.name + ' - ' + user.mobile + '</option>');
                     });
                 } else {
-                    alert('No users found for the selected level.');
+                    alert('No Customers found for the selected level.');
                 }
                 },
                 error: function(xhr, status, error) {
-                    alert('No users found for the selected level.');
+                    alert('No Customers found for the selected level.');
                 }
             });
         }

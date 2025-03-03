@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
 @section('page-title')
-    {{ __('My Inactive Users List') }}
+    {{ __('My Inactive Customers List') }}
 @endsection
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Home') }}</a></li>
-    <li class="breadcrumb-item">{{ __('My Inactive Users List') }}</li>
+    <li class="breadcrumb-item">{{ __('My Inactive Customers List') }}</li>
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
                 </div>
                 <br><br>
                 <div class="text-end">
-                    <a href="{{ route('inactive_users.addusers') }}" class="btn btn-primary">{{ __('New User') }}</a>
+                    <a href="{{ route('inactive_users.addusers') }}" class="btn btn-primary">{{ __('New Customer') }}</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table" id="pc-dt-simple">

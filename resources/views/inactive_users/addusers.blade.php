@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('page-title')
-    {{ __('Register New User') }}
+    {{ __('Register New Customers') }}
 @endsection
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Home') }}</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('inactive_users.index') }}">{{ __('Inactive Users') }}</a></li>
-    <li class="breadcrumb-item">{{ __('Register New User') }}</li>
+    <li class="breadcrumb-item"><a href="{{ route('inactive_users.index') }}">{{ __('Inactive Customers') }}</a></li>
+    <li class="breadcrumb-item">{{ __('Register New Customers') }}</li>
 @endsection
 
 @section('content')
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="form-group text-end">
-                        <button type="submit" class="btn btn-primary">{{ __('Register User') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Register Customer') }}</button>
                     </div>
                 </form>
             </div>

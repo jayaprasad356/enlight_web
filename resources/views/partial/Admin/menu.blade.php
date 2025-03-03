@@ -75,7 +75,7 @@
                 <li class="dash-item">
                     <a href="{{ route('inactive_users.index') }}" class="dash-link">
                         <span class="dash-micon"><i class="ti ti-users"></i></span> <!-- User-slash icon for inactive users -->
-                        <span class="dash-mtext">{{ __('My Inactive Users') }}</span>
+                        <span class="dash-mtext">{{ __('My Inactive Customers') }}</span>
                     </a>
                 </li>
 

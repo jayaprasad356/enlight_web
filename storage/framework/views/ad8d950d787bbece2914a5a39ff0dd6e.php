@@ -1,13 +1,13 @@
 
 
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('My Inactive Users List')); ?>
+    <?php echo e(__('My Inactive Customers List')); ?>
 
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Home')); ?></a></li>
-    <li class="breadcrumb-item"><?php echo e(__('My Inactive Users List')); ?></li>
+    <li class="breadcrumb-item"><?php echo e(__('My Inactive Customers List')); ?></li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -20,7 +20,7 @@
                 </div>
                 <br><br>
                 <div class="text-end">
-                    <a href="<?php echo e(route('inactive_users.addusers')); ?>" class="btn btn-primary"><?php echo e(__('New User')); ?></a>
+                    <a href="<?php echo e(route('inactive_users.addusers')); ?>" class="btn btn-primary"><?php echo e(__('New Customer')); ?></a>
                 </div>
                 <div class="table-responsive">
                     <table class="table" id="pc-dt-simple">

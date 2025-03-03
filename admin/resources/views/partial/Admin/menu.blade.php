@@ -45,6 +45,14 @@
                                 class="ti ti-settings"></i></span><span class="dash-mtext">{{ __('Settings') }}</span></a>
                 </li>
           
+                <li class="dash-item">
+                <a href="{{ route('products.index') }}" class="dash-link">
+                    <span class="dash-micon">
+                        <i class="ti ti-package"></i> <!-- Icon for products -->
+                    </span>
+                    <span class="dash-mtext">{{ __('Products') }}</span>
+                </a>
+                </li>
 
                 <li class="dash-item">
                 <a href="{{ route('transactions.index') }}" class="dash-link">

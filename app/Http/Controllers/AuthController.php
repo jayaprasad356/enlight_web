@@ -13,6 +13,7 @@ use App\Models\SpeechText;
 use App\Models\Appsettings; 
 use App\Models\Ratings; 
 use App\Models\Gifts;
+use App\Models\Products;
 use App\Models\Transactions;
 use App\Models\DeletedUsers; 
 use App\Models\Withdrawals;  
@@ -288,4 +289,40 @@ public function updateBankDetails(Request $request)
         'data' => $user,
     ], 200);
  }
+
+ public function products_list(Request $request)
+{
+    // Retrieve all gifts
+    $products = Products::all();
+
+    if ($products->isEmpty()) {
+        return response()->json([
+            'success' => false,
+            'message' => 'No products found.',
+        ], 200);
+    }
+
+    // Prepare the data to be returned
+    $productsData = [];
+    foreach ($products as $item) {
+        $productsUrl = ($item->image) ? asset('admin/storage/app/public/' . $item->image) : '';
+
+        $productsData[] = [
+            'id' => $item->id,
+            'image' => $productsUrl,
+            'name' => $item->name,
+            'description' => $item->description,
+            'amount' => $item->amount,
+            'offer' => $item->offer,
+            'updated_at' => $item->updated_at->format('Y-m-d H:i:s'),
+            'created_at' => $item->created_at->format('Y-m-d H:i:s'),
+        ];
+    }
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Products listed successfully.',
+        'data' => $productsData,
+    ], 200);
+}
 }

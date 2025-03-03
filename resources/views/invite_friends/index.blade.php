@@ -21,14 +21,9 @@
             {{ __('Join Telegram Channel') }}
         </a>
 
-        <!-- Contact Customer Support (Opens WhatsApp) -->
-        <a href="https://wa.me/{{ $customer_support_number }}" target="_blank" class="btn btn-warning d-block w-50 mb-2">
-            {{ __('Contact Customer Support') }}
-        </a>
-
         <!-- Zoho Chat Support -->
         <a href="{{ $zoho_chat_link }}" target="_blank" class="btn btn-success d-block w-50 mb-2">
-            {{ __('Zoho Chat Support') }}
+            {{ __('Chat With Us') }}
         </a>
 
     </div>

@@ -41,88 +41,27 @@
 
 <h3>My Products</h3>
 <div class="row">
-    <?php
-        $products = [
-            [
-                'name' => 'Organic Turmeric Powder',
-                'description' => 'Pure and natural turmeric powder',
-                'original_price' => 299,
-                'discounted_price' => 168,
-                'image_url' => 'https://t4.ftcdn.net/jpg/04/72/24/73/360_F_472247342_JK2YdMdXnW4be8n0iAbxcqnc3X85EXKb.jpg'
-            ],
-            [
-                'name' => 'Organic Honey',
-                'description' => 'Raw and unfiltered honey',
-                'original_price' => 350,
-                'discounted_price' => 250,
-                'image_url' => 'https://i.etsystatic.com/23784133/r/il/c08811/3273966018/il_fullxfull.3273966018_mo0s.jpg'
-            ],
-            [
-                'name' => 'Organic Almonds',
-                'description' => 'Natural and healthy almonds',
-                'original_price' => 450,
-                'discounted_price' => 350,
-                'image_url' => 'https://www.greendna.in/cdn/shop/products/almond2_1200x1200.jpeg?v=1564303633'
-            ],
-            [
-                'name' => 'Organic Green Tea',
-                'description' => 'Refreshing and healthy green tea',
-                'original_price' => 250,
-                'discounted_price' => 200,
-                'image_url' => 'https://www.greendna.in/cdn/shop/products/greentea_1136x.jpg?v=1628922791'
-            ],
-            [
-                'name' => 'Organic Coconut Oil',
-                'description' => 'Pure and natural coconut oil',
-                'original_price' => 500,
-                'discounted_price' => 400,
-                
-                'image_url' => 'https://mamaearth.in/blog/wp-content/uploads/2022/08/coconut-oil-benefits-1200x900.jpg'
-            ],
-            [
-                'name' => 'Organic Chia Seeds',
-                'description' => 'High-quality chia seeds',
-                'original_price' => 350,
-                'discounted_price' => 300,
-                'image_url' => 'https://cpimg.tistatic.com/07726920/b/4/Organic-Chia-Seeds.jpg'
-            ],
-            [
-                'name' => 'Organic Quinoa',
-                'description' => 'Healthy and nutritious quinoa',
-                'original_price' => 500,
-                'discounted_price' => 450,
-                'image_url' => 'https://www.sattvicfoods.in/cdn/shop/files/OrganicQuinoaLoose.jpg?v=1714460338&width=1946'
-            ],
-            [
-                'name' => 'Organic Flax Seeds',
-                'description' => 'Rich in omega-3 fatty acids',
-                'original_price' => 220,
-                'discounted_price' => 180,
-                'image_url' => 'https://goodfood.ae/cdn/shop/files/FLAXSEEDS.jpg?v=1690432121&width=1946'
-            ]
-        ];
-    ?>
+  
     <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="col-md-3">
-            <div class="card">
-                <img src="<?php echo e($product['image_url']); ?>" class="card-img-top" alt="<?php echo e($product['name']); ?>">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo e($product['name']); ?></h5>
-                    <p class="card-text"><?php echo e($product['description']); ?></p>
-                    
-                    <p class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-                    <div class="price-container">
-                        <p class="discount">&#x2193; <?php echo e(round((($product['original_price'] - $product['discounted_price']) / $product['original_price']) * 100)); ?>% OFF</p>
-                        <p class="original-price">₹<?php echo e($product['original_price']); ?></p>
-                        <p class="final-price">₹<?php echo e($product['discounted_price']); ?></p>
-                    </div>
-                    <p class="free-delivery">🚚 Free Delivery</p>
-                    
-                    <a href="#" class="btn btn-primary">View Product</a>
+    <div class="col-md-3">
+        <div class="card">
+            <img src="<?php echo e(asset('admin/storage/app/public/' . $product->image)); ?>" class="card-img-top" alt="<?php echo e($product->name); ?>">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo e($product->name); ?></h5>
+                <p class="card-text"><?php echo e($product->description); ?></p>
+                <p class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+                <div class="price-container">
+                    <p class="discount">&#x2193; <?php echo e(round((($product->amount - $product->offer) / $product->amount) * 100)); ?>% OFF</p>
+                    <p class="original-price">₹<?php echo e($product->amount); ?></p>
+                    <p class="final-price">₹<?php echo e($product->offer); ?></p>
                 </div>
+                <p class="free-delivery">🚚 Free Delivery</p>
+                <a href="#" class="btn btn-primary">View Product</a>
             </div>
         </div>
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
 </div>
 <?php $__env->stopSection(); ?>
 

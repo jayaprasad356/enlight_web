@@ -1,14 +1,14 @@
 
 
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Register New User')); ?>
+    <?php echo e(__('Register New Customers')); ?>
 
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('breadcrumb'); ?>
     <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Home')); ?></a></li>
-    <li class="breadcrumb-item"><a href="<?php echo e(route('inactive_users.index')); ?>"><?php echo e(__('Inactive Users')); ?></a></li>
-    <li class="breadcrumb-item"><?php echo e(__('Register New User')); ?></li>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('inactive_users.index')); ?>"><?php echo e(__('Inactive Customers')); ?></a></li>
+    <li class="breadcrumb-item"><?php echo e(__('Register New Customers')); ?></li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -117,7 +117,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="form-group text-end">
-                        <button type="submit" class="btn btn-primary"><?php echo e(__('Register User')); ?></button>
+                        <button type="submit" class="btn btn-primary"><?php echo e(__('Register Customer')); ?></button>
                     </div>
                 </form>
             </div>

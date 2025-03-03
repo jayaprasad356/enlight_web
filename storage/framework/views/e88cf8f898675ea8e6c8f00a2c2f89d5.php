@@ -23,15 +23,9 @@
 
         </a>
 
-        <!-- Contact Customer Support (Opens WhatsApp) -->
-        <a href="https://wa.me/<?php echo e($customer_support_number); ?>" target="_blank" class="btn btn-warning d-block w-50 mb-2">
-            <?php echo e(__('Contact Customer Support')); ?>
-
-        </a>
-
         <!-- Zoho Chat Support -->
         <a href="<?php echo e($zoho_chat_link); ?>" target="_blank" class="btn btn-success d-block w-50 mb-2">
-            <?php echo e(__('Zoho Chat Support')); ?>
+            <?php echo e(__('Chat With Us')); ?>
 
         </a>
 

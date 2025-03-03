@@ -16,6 +16,16 @@
             </div>
         @endif
 
+        <!-- One Time Subscription Charge -->
+        <div class="col-12 mb-3">
+            <div class="alert alert-info text-center" role="alert">
+                <h5>{{ __('One Time Subscription Charge - ₹299') }}</h5>
+                <a href="javascript:void(0);" class="btn btn-primary" onclick="subscribe()">
+                    {{ __('Subscribe Now') }}
+                </a>
+            </div>
+        </div>
+
         <div class="col-xxl-12">
             <div class="row">
 
@@ -166,5 +176,10 @@ function addToBalance(type, amount) {
             alert("Something went wrong. Try again!");
         }
     });
+}
+
+function subscribe() {
+    // Add your subscription logic here
+    alert("Subscription logic goes here.");
 }
 </script>
