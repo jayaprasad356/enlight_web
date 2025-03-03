@@ -26,7 +26,7 @@
                         <thead>
                             <tr>
                                 <th>{{ __('ID') }}</th>
-                                <th>{{ __('User Name') }}</th>
+                                <th>{{ __('Customer Name') }}</th>
                                 <th>{{ __('Mobile') }}</th>
                                 <th>{{ __('DateTime') }}</th>
                                 <th>{{ __('Action') }}</th>
@@ -59,14 +59,14 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="userActivationModalLabel">{{ __('User Details') }}</h5>
+                                <h5 class="modal-title" id="userActivationModalLabel">{{ __('Customer Details') }}</h5>
                                 <!-- Button to close modal -->
                                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p><strong>{{ __('User ID:') }}</strong> <span id="modalUserId"></span> | <strong>{{ __('Name:') }}</strong> <span id="modalUserName"></span> | <strong>{{ __('Mobile:') }}</strong> <span id="modalUserMobile"></span></p>
+                                <p><strong>{{ __('Customer ID:') }}</strong> <span id="modalUserId"></span> | <strong>{{ __('Name:') }}</strong> <span id="modalUserName"></span> | <strong>{{ __('Mobile:') }}</strong> <span id="modalUserMobile"></span></p>
 
                                 <!-- Level-specific activation buttons -->
                                 <div class="mt-3">

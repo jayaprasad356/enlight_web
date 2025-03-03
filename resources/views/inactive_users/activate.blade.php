@@ -20,7 +20,7 @@
                 </div>
 
                 <!-- Display the user details -->
-                <p><strong>{{ __('User ID:') }}</strong> {{ $id }} | <strong>{{ __('Name:') }}</strong> {{ $userName }} | <strong>{{ __('Mobile:') }}</strong> {{ $userMobile }}</p>
+                <p><strong>{{ __('Customer ID:') }}</strong> {{ $id }} | <strong>{{ __('Name:') }}</strong> {{ $userName }} | <strong>{{ __('Mobile:') }}</strong> {{ $userMobile }}</p>
 
                 <!-- Display the level-specific activation button -->
                 <div class="mt-4">

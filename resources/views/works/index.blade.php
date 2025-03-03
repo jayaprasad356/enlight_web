@@ -42,7 +42,7 @@
                         <thead>
                             <tr>
                                 <th>{{ __('ID') }}</th>
-                                <th>{{ __('User Name') }}</th>
+                                <th>{{ __('Customer Name') }}</th>
                                 <th>{{ __('Mobile') }}</th>
                                 <th>{{ __('Status') }}</th>
                                 <th>{{ __('Image') }}</th>
