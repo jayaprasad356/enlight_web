@@ -28,6 +28,7 @@ use App\Http\Controllers\GiftsController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\IncomeTypeController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\PaymentScreenshotsControllers;
 use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\AttendanceEmployeeController;
 use App\Http\Controllers\LeaveController;
@@ -308,6 +309,9 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('withdrawals', WithdrawalsController::class);
     Route::resource('gifts', GiftsController::class);
     Route::resource('products', ProductsController::class);
+    Route::get('/payment_screenshots', [PaymentScreenshotsControllers::class, 'index'])->name('payment_screenshots.index');
+    Route::patch('/payment_screenshots/bulkUpdateStatus', [PaymentScreenshotsControllers::class, 'bulkUpdateStatus'])->name('payment_screenshots.bulkUpdateStatus');
+    
     Route::get('/works', [WorksController::class, 'index'])->name('works.index');
     Route::patch('/works/bulk-update-status', [WorksController::class, 'bulkUpdateStatus'])->name('works.bulkUpdateStatus');
     

@@ -81,6 +81,13 @@
                     <span class="dash-mtext">{{ __('Whatsapp Status') }}</span>
                 </a>
                 </li>
+
+                <li class="dash-item">
+                    <a href="{{ route('payment_screenshots.index') }}" class="dash-link">
+                    <span class="dash-micon"><i class="ti ti-photo"></i></span> 
+                        <span class="dash-mtext">{{ __('Payment Screenshots') }}</span>
+                    </a>
+                </li>
                 
             <!--dashboard-->
 

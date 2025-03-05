@@ -40,6 +40,13 @@
 </style>
 
 <h3>My Products</h3>
+<div class="recharge-balance" style="position: absolute; top: 10px; right: 10px; font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
+    <strong>{{ __('Available Balance: Rs') }} {{ $balance }}</strong>
+</div>
+<div class="recharge-balance" style="position: absolute; top: 40px; right: 10px; font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
+    <strong>{{ __('Claim: Rs') }} 1000</strong>
+</div>
+<br>
 <div class="row">
   
     @foreach ($products as $product)

@@ -22,13 +22,33 @@
         <div class="col-12 mb-3">
             <div class="alert alert-info text-center" role="alert">
                 <h5><?php echo e(__('One Time Subscription Charge - ₹299')); ?></h5>
-                <a href="javascript:void(0);" class="btn btn-primary" onclick="subscribe()">
-                    <?php echo e(__('Subscribe Now')); ?>
+                <a href="javascript:void(0);" class="btn btn-primary" onclick="showQRCode()">
+                <?php echo e(__('Subscribe Now')); ?>
 
                 </a>
             </div>
         </div>
 
+            <!-- QR Code Modal -->
+        <div id="qrCodeModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><?php echo e(__('Scan QR Code for Subscription')); ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <canvas id="qrCanvas"></canvas>
+                        <p class="mt-3"><?php echo e(__('Scan this QR code to complete your subscription')); ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+  
         <div class="col-xxl-12">
             <div class="row">
 
@@ -161,6 +181,12 @@
 
     </div>
 <?php $__env->stopSection(); ?>
+<!-- jQuery (Ensure it's loaded before Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+
 <script>
 function addToBalance(type, amount) {
     $.ajax({
@@ -190,5 +216,37 @@ function subscribe() {
     alert("Subscription logic goes here.");
 }
 </script>
+    <!-- Include QRious.js for QR code generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+    <script>
+        function showQRCode() {
+            $('#qrCodeModal').modal('show'); // Open the modal
+
+            // Set QR code data (replace with actual subscription link or payment URL)
+            let qrData = "upi://pay?pa=ashokkumar7hitter@okhdfcbank&pn=Ashok%20kumar%20Raja&am=299.00&cu=INR";
+
+            let qr = new QRious({
+                element: document.getElementById('qrCanvas'),
+                value: qrData,
+                size: 200
+            });
+        }
+
+        $(document).ready(function() {
+            // Close the modal when clicking "X"
+            $('.close').click(function() {
+                $('#qrCodeModal').modal('hide');
+            });
+
+            // Also close when clicking outside the modal
+            $(document).click(function(event) {
+                if ($(event.target).closest("#qrCodeModal .modal-content").length === 0) {
+                    $('#qrCodeModal').modal('hide');
+                }
+            });
+        });
+
+    </script>
 
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\enlight_web\resources\views/dashboard/dashboard.blade.php ENDPATH**/ ?>

@@ -27,7 +27,7 @@
                         <thead>
                             <tr>
                                 <th><?php echo e(__('ID')); ?></th>
-                                <th><?php echo e(__('User Name')); ?></th>
+                                <th><?php echo e(__('Customer Name')); ?></th>
                                 <th><?php echo e(__('Mobile')); ?></th>
                                 <th><?php echo e(__('DateTime')); ?></th>
                                 <th><?php echo e(__('Action')); ?></th>
@@ -61,14 +61,14 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="userActivationModalLabel"><?php echo e(__('User Details')); ?></h5>
+                                <h5 class="modal-title" id="userActivationModalLabel"><?php echo e(__('Customer Details')); ?></h5>
                                 <!-- Button to close modal -->
                                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p><strong><?php echo e(__('User ID:')); ?></strong> <span id="modalUserId"></span> | <strong><?php echo e(__('Name:')); ?></strong> <span id="modalUserName"></span> | <strong><?php echo e(__('Mobile:')); ?></strong> <span id="modalUserMobile"></span></p>
+                                <p><strong><?php echo e(__('Customer ID:')); ?></strong> <span id="modalUserId"></span> | <strong><?php echo e(__('Name:')); ?></strong> <span id="modalUserName"></span> | <strong><?php echo e(__('Mobile:')); ?></strong> <span id="modalUserMobile"></span></p>
 
                                 <!-- Level-specific activation buttons -->
                                 <div class="mt-3">

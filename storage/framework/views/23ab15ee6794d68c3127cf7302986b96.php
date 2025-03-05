@@ -40,6 +40,13 @@
 </style>
 
 <h3>My Products</h3>
+<div class="recharge-balance" style="position: absolute; top: 10px; right: 10px; font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
+    <strong><?php echo e(__('Available Balance: Rs')); ?> <?php echo e($balance); ?></strong>
+</div>
+<div class="recharge-balance" style="position: absolute; top: 40px; right: 10px; font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
+    <strong><?php echo e(__('Claim: Rs')); ?> 1000</strong>
+</div>
+<br>
 <div class="row">
   
     <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

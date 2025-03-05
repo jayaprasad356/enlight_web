@@ -87,6 +87,13 @@
                 </li>
 
                 <li class="dash-item">
+                    <a href="<?php echo e(route('payment_screenshots.index')); ?>" class="dash-link">
+                    <span class="dash-micon"><i class="ti ti-photo"></i></span> 
+                        <span class="dash-mtext"><?php echo e(__('Payment Screenshots')); ?></span>
+                    </a>
+                </li>
+
+                <li class="dash-item">
                     <a href="<?php echo e(route('invite_friends.index')); ?>" class="dash-link">
                         <span class="dash-micon"><i class="ti ti-user-plus"></i></span> <!-- User-plus icon for invite friends -->
                         <span class="dash-mtext"><?php echo e(__('Help & Support')); ?></span>
