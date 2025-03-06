@@ -88,9 +88,9 @@
                                         <td>{{ $work->users->mobile ?? '' }}</td>
                                         <td>
                                         @if($work->image)
-                                            <a href="{{ ('https://greenkaro.jiyoapp.in/storage/app/public/' . $work->image) }}" data-lightbox="image-{{ $work->id }}">
+                                            <a href="{{ ('https://enlightapp.in/storage/app/public/' . $work->image) }}" data-lightbox="image-{{ $work->id }}">
                                                 <img class="user-img img-thumbnail img-fluid" 
-                                                    src="{{('https://greenkaro.jiyoapp.in/storage/app/public/' . $work->image) }}" 
+                                                    src="{{('https://enlightapp.in/storage/app/public/' . $work->image) }}" 
                                                     alt="Image" 
                                                     style="max-width: 100px; max-height: 100px;">
                                             </a>

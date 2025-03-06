@@ -51,7 +51,7 @@ class BankDetailsController extends Controller
         ];
 
         // Call the API to update bank details
-        $response = Http::post('https://enlight.abcdapp.in/api/updateBankDetails', $bankDetails);
+        $response = Http::post('https://enlightapp.in/api/updateBankDetails', $bankDetails);
 
         // Convert API response
         $data = $response->json();

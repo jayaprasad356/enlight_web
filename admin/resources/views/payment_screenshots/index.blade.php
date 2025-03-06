@@ -81,9 +81,9 @@
                                     <td>{{ $payment_screenshot->users->mobile }}</td>
                                     <td>
                                         @if($payment_screenshot->screenshots)
-                                            <a href="{{ ('https://enlight.abcdapp.in/storage/app/public/' . $payment_screenshot->screenshots) }}" data-lightbox="image-{{ $payment_screenshot->id }}">
+                                            <a href="{{ ('https://enlightapp.in/storage/app/public/' . $payment_screenshot->screenshots) }}" data-lightbox="image-{{ $payment_screenshot->id }}">
                                                 <img class="user-img img-thumbnail img-fluid" 
-                                                    src="{{('https://enlight.abcdapp.in/storage/app/public/' . $payment_screenshot->screenshots) }}" 
+                                                    src="{{('https://enlightapp.in/storage/app/public/' . $payment_screenshot->screenshots) }}" 
                                                     alt="Image" 
                                                     style="max-width: 100px; max-height: 100px;">
                                             </a>
