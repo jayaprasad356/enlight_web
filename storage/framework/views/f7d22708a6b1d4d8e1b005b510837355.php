@@ -22,7 +22,7 @@
         <div class="col-12 mb-3">
             <div class="alert alert-info text-center" role="alert">
             <h5><?php echo e(__('One Time Subscription Charge - ₹299')); ?></h5>
-            <a href="javascript:void(0);" class="btn btn-primary" onclick="showQRCode()">
+            <a href="javascript:void(0);" class="btn btn-primary" onclick="showImage()">
                 <?php echo e(__('Subscribe Now')); ?>
 
             </a>
@@ -44,12 +44,14 @@
                         </button>
                     </div>
                     <div class="modal-body text-center">
-                        <canvas id="qrCanvas"></canvas>
-                        <p class="mt-3"><?php echo e(__('Scan this QR code to complete your subscription')); ?></p>
-                    </div>
-                </div>
+                <!-- Replace the canvas with an image element -->
+                <img id="qrImage" src="" alt="Payment Image" class="img-fluid" />
+                <p class="mt-3"><?php echo e(__('Scan this QR code to complete your subscription.')); ?></p>
             </div>
         </div>
+    </div>
+</div>
+                
 
     
   
@@ -224,33 +226,27 @@ function subscribe() {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 
     <script>
-        function showQRCode() {
-            $('#qrCodeModal').modal('show'); // Open the modal
+    function showImage() {
+        // Open the modal
+        $('#qrCodeModal').modal('show');
+        
+        // Set the image URL (replace with the actual URL of your image)
+        let imageUrl = "http://localhost/enlight_web/storage/qr_code/qr.jpeg";
+        document.getElementById('qrImage').src = imageUrl;
+    }
 
-            // Set QR code data (replace with actual subscription link or payment URL)
-            let qrData = "upi://pay?pa=ashokkumar7hitter@okhdfcbank&pn=Ashok%20kumar%20Raja&am=299.00&cu=INR";
-
-            let qr = new QRious({
-                element: document.getElementById('qrCanvas'),
-                value: qrData,
-                size: 200
-            });
-        }
-
-        $(document).ready(function() {
-            // Close the modal when clicking "X"
-            $('.close').click(function() {
-                $('#qrCodeModal').modal('hide');
-            });
-
-            // Also close when clicking outside the modal
-            $(document).click(function(event) {
-                if ($(event.target).closest("#qrCodeModal .modal-content").length === 0) {
-                    $('#qrCodeModal').modal('hide');
-                }
-            });
+    $(document).ready(function() {
+        // Close the modal when clicking the close button
+        $('.close').click(function() {
+            $('#qrCodeModal').modal('hide');
         });
 
-    </script>
-
+        // Also close when clicking outside the modal content
+        $(document).click(function(event) {
+            if ($(event.target).closest("#qrCodeModal .modal-content").length === 0) {
+                $('#qrCodeModal').modal('hide');
+            }
+        });
+    });
+</script>
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\enlight_web\resources\views/dashboard/dashboard.blade.php ENDPATH**/ ?>
