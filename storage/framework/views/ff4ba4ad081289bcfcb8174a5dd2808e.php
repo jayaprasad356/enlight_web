@@ -18,10 +18,13 @@
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
                         <table class="table" id="pc-dt-simple">
+                        <div class="alert" style="position: absolute; top: 10px; right: 10px; font-size: 16px; background-color:#6fd943; color:white; padding: 5px 10px; border-radius: 5px;">
+                                <strong><?php echo e(__('Maximum 27 Members You Can Add In Level 3')); ?></strong>
+                            </div>
                             <thead>
                                 <tr>
                                     <th><?php echo e(__('ID')); ?></th>
-                                    <th><?php echo e(__('User Name')); ?></th>
+                                    <th><?php echo e(__('Customer Name')); ?></th>
                                     <th><?php echo e(__('Mobile')); ?></th>
                                 </tr>
                             </thead>

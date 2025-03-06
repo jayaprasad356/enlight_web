@@ -21,15 +21,19 @@
         <!-- One Time Subscription Charge -->
         <div class="col-12 mb-3">
             <div class="alert alert-info text-center" role="alert">
-                <h5><?php echo e(__('One Time Subscription Charge - ₹299')); ?></h5>
-                <a href="javascript:void(0);" class="btn btn-primary" onclick="showQRCode()">
+            <h5><?php echo e(__('One Time Subscription Charge - ₹299')); ?></h5>
+            <a href="javascript:void(0);" class="btn btn-primary" onclick="showQRCode()">
                 <?php echo e(__('Subscribe Now')); ?>
 
-                </a>
+            </a>
+            <a href="<?php echo e(route('payment_screenshots.create')); ?>" class="btn btn-primary ml-2">
+                <?php echo e(__('Upload Payment Screenshot')); ?>
+
+            </a>
             </div>
         </div>
 
-            <!-- QR Code Modal -->
+        <!-- QR Code Modal -->
         <div id="qrCodeModal" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">

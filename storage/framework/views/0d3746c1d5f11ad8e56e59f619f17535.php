@@ -10,12 +10,6 @@
     <li class="breadcrumb-item"><?php echo e(__('Payment Screenshot')); ?></li>
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('action-button'); ?>
-    <a href="<?php echo e(route('payment_screenshots.create')); ?>" data-bs-toggle="tooltip" title="<?php echo e(__('Create New Payment Screenshot')); ?>" class="btn btn-sm btn-primary">
-        <i class="ti ti-plus"></i> <?php echo e(__('Add New Payment Screenshot')); ?>
-
-    </a>
-<?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
 <div class="row">
@@ -31,7 +25,6 @@
                             <tr>
                                 <th><?php echo e(__('ID')); ?></th>
                                 <th><?php echo e(__('Screenshot')); ?></th>
-                                <th width="300px"><?php echo e(__('Actions')); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,29 +36,7 @@
                                             <img class="customer-img img-thumbnail img-fluid" src="<?php echo e(asset('storage/app/public/' . $payment_screenshot->screenshots)); ?>" alt="Image" style="max-width: 100px; max-height: 100px;">
                                         </a>
                                     </td>
-                                    <td class="Action">
-                                        <span>
-                                            <!-- Edit Button -->
-                                            <div class="action-btn bg-info ms-2">
-                                                <a href="#" data-url="<?php echo e(route('payment_screenshots.edit', $payment_screenshot->id)); ?>" data-ajax-popup="true" data-title="<?php echo e(__('Edit Payment Screenshot')); ?>"
-                                                   class="btn btn-sm align-items-center" data-bs-toggle="tooltip" title="<?php echo e(__('Edit')); ?>">
-                                                    <i class="ti ti-pencil text-white"></i>
-                                                </a>
-                                            </div>
-                                            <!-- Delete Button -->
-                                            <div class="action-btn bg-danger ms-2">
-                                            <?php echo Form::open(['method' => 'DELETE', 'route' => ['payment_screenshots.destroy', $payment_screenshot->id], 'id' => 'delete-form-' . $payment_screenshot->id]); ?>
-
-                                                <a href="#" class="btn btn-sm align-items-center bs-pass-para" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>"
-                                                onclick="confirmDelete(event, '<?php echo e($payment_screenshot->id); ?>')">
-                                                    <i class="ti ti-trash text-white"></i>
-                                                </a>
-                                            <?php echo Form::close(); ?>
-
-
-                                            </div>
-                                        </span>
-                                    </td>
+                                    
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>

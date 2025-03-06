@@ -21,7 +21,7 @@
                 </div>
 
                 <!-- Display the user details -->
-                <p><strong><?php echo e(__('User ID:')); ?></strong> <?php echo e($id); ?> | <strong><?php echo e(__('Name:')); ?></strong> <?php echo e($userName); ?> | <strong><?php echo e(__('Mobile:')); ?></strong> <?php echo e($userMobile); ?></p>
+                <p><strong><?php echo e(__('Customer ID:')); ?></strong> <?php echo e($id); ?> | <strong><?php echo e(__('Name:')); ?></strong> <?php echo e($userName); ?> | <strong><?php echo e(__('Mobile:')); ?></strong> <?php echo e($userMobile); ?></p>
 
                 <!-- Display the level-specific activation button -->
                 <div class="mt-4">
@@ -130,27 +130,34 @@ $(document).ready(function() {
     }
 
     $.ajax({
-        url: "<?php echo e(route('inactive_users.activateusers')); ?>",
-        type: 'GET',
-        data: {
-            id: selectedUserId,
-            name: selectedUserName,
-            mobile: selectedUserMobile,
-            level: selectedLevel,
-            level_user_id: selectedLevelUserId 
-        },
-        success: function (response) {
-            if (response.success) {
-                alert('User activated successfully!');
-                window.location.href = "<?php echo e(route('inactive_users.index')); ?>";
-            } else {
-                alert('Failed to activate user. ' + response.message);
-            }
-        },
-        error: function () {
-            alert('Error activating user.');
+    url: "<?php echo e(route('inactive_users.activateusers')); ?>",
+    type: 'GET',
+    data: {
+        id: selectedUserId,
+        name: selectedUserName,
+        mobile: selectedUserMobile,
+        level: selectedLevel,
+        level_user_id: selectedLevelUserId 
+    },
+    success: function (response) {
+        if (response.success) {
+            alert('User activated successfully!');
+            window.location.href = "<?php echo e(route('inactive_users.index')); ?>";
+        } else {
+            alert('Failed to activate user. ' + response.message);
         }
-    });
+    },
+    error: function (xhr) {
+        var errorMessage = 'Error activating user.';
+        
+        if (xhr.responseJSON && xhr.responseJSON.message) {
+            errorMessage = xhr.responseJSON.message;
+        }
+        
+        alert(errorMessage);
+    }
+});
+
 });
 
 });

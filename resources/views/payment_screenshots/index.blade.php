@@ -9,11 +9,6 @@
     <li class="breadcrumb-item">{{ __('Payment Screenshot') }}</li>
 @endsection
 
-@section('action-button')
-    <a href="{{ route('payment_screenshots.create') }}" data-bs-toggle="tooltip" title="{{ __('Create New Payment Screenshot') }}" class="btn btn-sm btn-primary">
-        <i class="ti ti-plus"></i> {{ __('Add New Payment Screenshot') }}
-    </a>
-@endsection
 
 @section('content')
 <div class="row">
@@ -29,7 +24,6 @@
                             <tr>
                                 <th>{{ __('ID') }}</th>
                                 <th>{{ __('Screenshot') }}</th>
-                                <th width="300px">{{ __('Actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,27 +35,7 @@
                                             <img class="customer-img img-thumbnail img-fluid" src="{{ asset('storage/app/public/' . $payment_screenshot->screenshots) }}" alt="Image" style="max-width: 100px; max-height: 100px;">
                                         </a>
                                     </td>
-                                    <td class="Action">
-                                        <span>
-                                            <!-- Edit Button -->
-                                            <div class="action-btn bg-info ms-2">
-                                                <a href="#" data-url="{{ route('payment_screenshots.edit', $payment_screenshot->id) }}" data-ajax-popup="true" data-title="{{ __('Edit Payment Screenshot') }}"
-                                                   class="btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{ __('Edit') }}">
-                                                    <i class="ti ti-pencil text-white"></i>
-                                                </a>
-                                            </div>
-                                            <!-- Delete Button -->
-                                            <div class="action-btn bg-danger ms-2">
-                                            {!! Form::open(['method' => 'DELETE', 'route' => ['payment_screenshots.destroy', $payment_screenshot->id], 'id' => 'delete-form-' . $payment_screenshot->id]) !!}
-                                                <a href="#" class="btn btn-sm align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{ __('Delete') }}"
-                                                onclick="confirmDelete(event, '{{ $payment_screenshot->id }}')">
-                                                    <i class="ti ti-trash text-white"></i>
-                                                </a>
-                                            {!! Form::close() !!}
-
-                                            </div>
-                                        </span>
-                                    </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>

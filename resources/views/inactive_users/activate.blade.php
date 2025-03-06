@@ -129,27 +129,34 @@ $(document).ready(function() {
     }
 
     $.ajax({
-        url: "{{ route('inactive_users.activateusers') }}",
-        type: 'GET',
-        data: {
-            id: selectedUserId,
-            name: selectedUserName,
-            mobile: selectedUserMobile,
-            level: selectedLevel,
-            level_user_id: selectedLevelUserId 
-        },
-        success: function (response) {
-            if (response.success) {
-                alert('User activated successfully!');
-                window.location.href = "{{ route('inactive_users.index') }}";
-            } else {
-                alert('Failed to activate user. ' + response.message);
-            }
-        },
-        error: function () {
-            alert('Error activating user.');
+    url: "{{ route('inactive_users.activateusers') }}",
+    type: 'GET',
+    data: {
+        id: selectedUserId,
+        name: selectedUserName,
+        mobile: selectedUserMobile,
+        level: selectedLevel,
+        level_user_id: selectedLevelUserId 
+    },
+    success: function (response) {
+        if (response.success) {
+            alert('User activated successfully!');
+            window.location.href = "{{ route('inactive_users.index') }}";
+        } else {
+            alert('Failed to activate user. ' + response.message);
         }
-    });
+    },
+    error: function (xhr) {
+        var errorMessage = 'Error activating user.';
+        
+        if (xhr.responseJSON && xhr.responseJSON.message) {
+            errorMessage = xhr.responseJSON.message;
+        }
+        
+        alert(errorMessage);
+    }
+});
+
 });
 
 });

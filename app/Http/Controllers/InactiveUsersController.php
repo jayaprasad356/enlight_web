@@ -69,7 +69,7 @@ class InactiveUsersController extends Controller
         if ($sessionUser->recharge < 299) {
             return response()->json([
                 'success' => false,
-                'message' => 'Your recharge balance is too low to activate a user.'
+                'message' => 'Low Recharge Balance - Add Recharge & Activate'
             ], 400);
         }
     
@@ -271,13 +271,15 @@ class InactiveUsersController extends Controller
     
         } catch (\Exception $e) {
             DB::rollBack();
+    
+            Log::error('Failed to activate user: ' . $e->getMessage());
+    
             return response()->json([
                 'success' => false,
-                'message' => 'An error occurred: ' . $e->getMessage()
+                'message' => 'Failed to activate user. Please try again.'
             ], 500);
         }
     }
-    
     public function getLevelUsers(Request $request)
     {
         $userId = Session::get('user_id');  // Get the logged-in user's ID from session
@@ -302,7 +304,7 @@ class InactiveUsersController extends Controller
     
         // Call the API to fetch the users based on the user_id and level
         try {
-            $response = Http::post('https://enlight.abcdapp.in/api/level', [
+            $response = Http::post('http://localhost/enlight_web/api/level', [
                 'user_id' => $userId,
                 'level' => $mappedLevel  // Use mapped level
             ]);
