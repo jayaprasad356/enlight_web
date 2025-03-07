@@ -17,6 +17,7 @@ use App\Models\Users;
 use App\Models\UserCalls;
 use App\Models\Withdrawals;
 use App\Models\Payer;
+use App\Models\news;
 use App\Models\Plan;
 use App\Models\Ticket;
 use App\Models\Admin;
@@ -57,8 +58,9 @@ class HomeController extends Controller
         $level_income = $user->level_income ?? 0; // User balance
         $whatsapp_status_income = $user->whatsapp_status_income ?? 0;
         $refer_income = $user->refer_income ?? 0;
+        $news = news::latest()->first(); // Adjust this according to your database
     
-        return view('dashboard.dashboard', compact('monthly_salary', 'level_income', 'whatsapp_status_income','refer_income'));
+        return view('dashboard.dashboard', compact('monthly_salary', 'level_income', 'whatsapp_status_income','refer_income', 'news'));
     }
     public function addToBalance(Request $request)
     {

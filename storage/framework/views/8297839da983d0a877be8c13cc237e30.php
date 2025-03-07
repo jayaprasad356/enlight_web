@@ -3,6 +3,8 @@
 <?php $__env->startSection('page-title', __('Mobile Login')); ?>
 
 <?php $__env->startSection('content'); ?>
+    <!-- Full Page Top-Right Corner Button -->
+
     <div class="card-body">
         <div class="text-center mb-4">
             <img src="<?php echo e(asset('storage/uploads/logo/enlight.jpg')); ?>" alt="Logo" width="100">

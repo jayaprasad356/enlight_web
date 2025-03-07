@@ -40,8 +40,12 @@
                         </button>
                     </div>
                     <div class="modal-body text-center">
-                <!-- Replace the canvas with an image element -->
-                <img id="qrImage" src="" alt="Payment Image" class="img-fluid" />
+                    @if(isset($news) && $news->qr_image)
+                        <img id="qrImage" src="{{ asset('admin/storage/app/public/' . $news->qr_image) }}" alt="QR Code" class="img-fluid" />
+                    @else
+                        <p>{{ __('No QR code available') }}</p>
+                    @endif
+
                 <p class="mt-3">{{ __('Scan this QR code to complete your subscription.') }}</p>
             </div>
         </div>
@@ -222,9 +226,6 @@ function subscribe() {
         // Open the modal
         $('#qrCodeModal').modal('show');
         
-        // Set the image URL (replace with the actual URL of your image)
-        let imageUrl = "https://enlightapp.in/storage/qr_code/qr.jpeg";
-        document.getElementById('qrImage').src = imageUrl;
     }
 
     $(document).ready(function() {

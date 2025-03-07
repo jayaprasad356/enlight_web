@@ -55,6 +55,16 @@
                 <input type="file" class="form-control" id="download_today_image" name="download_today_image">
             </div>
 
+            <div class="form-group">
+                <label for="qr_image">Qr Image</label>
+                @if($news->qr_image)
+                    <div class="mb-3">
+                        <img src="{{ asset('storage/app/public/' . $news->qr_image) }}" alt="Current Image" class="img-thumbnail" style="max-width: 200px;">
+                    </div>
+                @endif
+                <input type="file" class="form-control" id="qr_image" name="qr_image">
+            </div>
+
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>

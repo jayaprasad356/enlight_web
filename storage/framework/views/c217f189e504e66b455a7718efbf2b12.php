@@ -44,7 +44,7 @@
                         <thead>
                             <tr>
                                 <th><?php echo e(__('ID')); ?></th>
-                                <th><?php echo e(__('User Name')); ?></th>
+                                <th><?php echo e(__('Customer Name')); ?></th>
                                 <th><?php echo e(__('Mobile')); ?></th>
                                 <th><?php echo e(__('Status')); ?></th>
                                 <th><?php echo e(__('Image')); ?></th>

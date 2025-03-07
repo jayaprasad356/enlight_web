@@ -3,6 +3,8 @@
 @section('page-title', __('Mobile Login'))
 
 @section('content')
+    <!-- Full Page Top-Right Corner Button -->
+
     <div class="card-body">
         <div class="text-center mb-4">
             <img src="{{ asset('storage/uploads/logo/enlight.jpg') }}" alt="Logo" width="100">

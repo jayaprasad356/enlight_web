@@ -3,12 +3,16 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
     public function edit()
     {
-        $news = News::findOrFail(1); // Assuming you're always editing the record with ID 1
+        $news = News::find(1); // Ensure it retrieves the record with ID 1
+        if (!$news) {
+            return redirect()->route('news.edit')->withErrors('News record not found.');
+        }
         return view('news.edit', compact('news'));
     }
 
@@ -20,19 +24,39 @@ class NewsController extends Controller
             'zoho_chat_link' => 'required|string',
             'minimum_withdrawals' => 'required|string',
             'whatsapp_status_income' => 'required|string',
-            'download_today_image' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'download_today_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'qr_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-    
-        $news = News::findOrFail(1);
-    
-        if ($request->hasFile('download_today_image')) {
-            $imagePath = $request->file('download_today_image')->store('news', 'public');
-            $news->download_today_image = $imagePath;
+
+        $news = News::find(1);
+        if (!$news) {
+            return redirect()->route('news.edit')->withErrors('News record not found.');
         }
-    
-        $news->update($request->except(['download_today_image']));
-    
+
+        // Handling image upload for 'download_today_image'
+        if ($request->hasFile('download_today_image')) {
+            if ($news->download_today_image) {
+                Storage::disk('public')->delete($news->download_today_image);
+            }
+            $news->download_today_image = $request->file('download_today_image')->store('news', 'public');
+        }
+
+        // Handling image upload for 'qr_image'
+        if ($request->hasFile('qr_image')) {
+            if ($news->qr_image) {
+                Storage::disk('public')->delete($news->qr_image);
+            }
+            $news->qr_image = $request->file('qr_image')->store('qr_image', 'public');
+        }
+
+        // Updating other fields
+        $news->telegram_link = $request->input('telegram_link');
+        $news->customer_support_number = $request->input('customer_support_number');
+        $news->zoho_chat_link = $request->input('zoho_chat_link');
+        $news->minimum_withdrawals = $request->input('minimum_withdrawals');
+        $news->whatsapp_status_income = $request->input('whatsapp_status_income');
+        $news->save();
+
         return redirect()->route('news.edit')->with('success', 'Settings updated successfully.');
     }
-    
 }

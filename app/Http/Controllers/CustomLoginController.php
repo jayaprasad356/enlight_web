@@ -39,7 +39,7 @@ class CustomLoginController extends Controller
             Session::put('user_id', $user->id);
             Session::put('user_name', $user->name);
 
-            return redirect()->route('dashboard')->with('success', 'Login successful');
+            return redirect()->route('my_products.index')->with('success', 'Login successful');
         }
     }
 

@@ -157,8 +157,25 @@
         <div class="custom-login-inner">
             <main class="custom-wrapper">
                 <div class="custom-row">
+                <style>
+                    @media (max-width: 768px) {
+                        .custom-btn {
+                            max-width: 180px; /* Reduce width for smaller screens */
+                            font-size: 10px; /* Smaller text for mobile */
+                            white-space: normal; /* Allow text wrapping */
+                        }
+                    }
+                </style>
+                <div style="position: absolute; top: 20px; left: 20px; background-color:#6fd943;">
+                    <a href="#" class="btn btn-outline-primary text-white custom-btn"><?php echo e(__('About Us')); ?></a>
+                </div>
+                <div style="position: absolute; top: 20px; right: 20px; background-color:white;">
+                    <a href="#" class="btn btn-outline-primary custom-btn"><?php echo e(__('Login Option Only For Membership Holders')); ?></a>
+                </div>
+
                     <div class="card">
                         <?php echo $__env->yieldContent('content'); ?>
+                       
                     </div>
                 </div>
             </main>

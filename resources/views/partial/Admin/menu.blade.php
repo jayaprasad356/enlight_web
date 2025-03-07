@@ -31,6 +31,12 @@
         <ul class="dash-navbar">
 
             <!-- dashboard-->
+            <li class="dash-item">
+                    <a href="{{ route('my_products.index') }}" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-package"></i></span> 
+                        <span class="dash-mtext">{{ __('Products') }}</span>
+                    </a>
+                </li>
                 <li class="dash-item">
                     <a href="{{ route('dashboard') }}" class="dash-link"><span class="dash-micon"><i
                                 class="ti ti-home"></i></span><span class="dash-mtext">{{ __('Dashboard') }}</span></a>
@@ -79,12 +85,6 @@
                     </a>
                 </li>
 
-                <li class="dash-item">
-                    <a href="{{ route('my_products.index') }}" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-package"></i></span> 
-                        <span class="dash-mtext">{{ __('Products') }}</span>
-                    </a>
-                </li>
 
                 <li class="dash-item">
                     <a href="{{ route('payment_screenshots.index') }}" class="dash-link">
@@ -109,7 +109,12 @@
                 </a>
                 </li>
 
-
+                <li class="dash-item">
+                    <a href="{{ route('extra_bonus.index') }}" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-users"></i></span> <!-- User-slash icon for inactive users -->
+                        <span class="dash-mtext">{{ __('Extra Bonus') }}</span>
+                    </a>
+                </li>
                 <li class="dash-item">
                 <a href="{{ route('transactions.index') }}" class="dash-link">
                     <span class="dash-micon">
