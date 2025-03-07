@@ -28,8 +28,7 @@ class WithdrawalsExport implements FromCollection, WithHeadings
                 'users.branch as branch_name',
                 'users.account_num as account_number',
                 'users.holder_name as account_holder_name',
-                'users.ifsc as ifsc_code',
-                'users.upi_id as upi_id'
+                'users.ifsc as ifsc_code'
             )
             ->join('users', 'withdrawals.user_id', '=', 'users.id');
     
@@ -42,34 +41,23 @@ class WithdrawalsExport implements FromCollection, WithHeadings
             $query->whereDate('withdrawals.datetime', $this->filters['filter_date']);
         }
     
-        $withdrawalsData = $query->get();
-    
-        return $withdrawalsData->map(function ($withdrawal) {
-            $statusDescription = match($withdrawal->status) {
-                0 => 'Pending',
-                1 => 'Paid',
-                2 => 'Cancelled',
-                default => 'Unknown',
-            };
-    
-            return [
-                'Beneficiary Name' => $withdrawal->user_name, // Unique user name again
-                'Beneficiary Account number' => $withdrawal->account_number,
-                'IFSC code' => $withdrawal->ifsc_code,
-                'Amount' => $withdrawal->amount,
-                'Description / Purpose' => 'salary', // Unique user name
-            ];
-        });
+        return $query->get();
     }
 
     public function headings(): array
     {
         return [
-            'Beneficiary Name (Mandatory)',
-            'Beneficiary Account number (Mandatory)',
-            'IFSC code (Mandatory)',
-            'Amount (Mandatory)', // Column for descriptive status
-            'Description / Purpose (Optional)',
+            'Withdrawal ID',
+            'User Name',
+            'User Mobile',
+            'Amount',
+            'Status',
+            'Date & Time',
+            'Bank Name',
+            'Branch Name',
+            'Account Number',
+            'Account Holder Name',
+            'IFSC Code',
         ];
     }
 }

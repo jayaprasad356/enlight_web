@@ -7,6 +7,7 @@ use App\Models\Withdrawals;
 use App\Models\Transactions;
 use Illuminate\Http\Request;
 use App\Exports\WithdrawalsExport; 
+use App\Exports\WithdrawalsUnpaidExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 
@@ -166,6 +167,13 @@ class WithdrawalsController extends Controller
     $filters = $request->only('status', 'filter_date');
 
     return Excel::download(new WithdrawalsExport($filters), 'withdrawals.xlsx');
+}
+public function unpaid_export(Request $request)
+{
+    // Get the status from the request if provided
+    $filters = $request->only('status', 'filter_date');
+
+    return Excel::download(new WithdrawalsUnpaidExport($filters), 'withdrawals.xlsx');
 }
 
   

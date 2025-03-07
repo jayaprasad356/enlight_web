@@ -16,9 +16,9 @@
             <div class="card-body">
                 <!-- Filter by Type Form -->
                 <form action="{{ route('withdrawals.index') }}" method="GET" class="mb-3">
-                    <div class="row align-items-end">
-                        <!-- Existing Status Filter -->
-                        <div class="col-md-3">
+                    <div class="d-flex flex-wrap align-items-end gap-3">
+                        <!-- Status Filter -->
+                        <div>
                             <label for="status">{{ __('Filter by Status') }}</label>
                             <select name="status" id="status" class="form-control status-filter" onchange="this.form.submit()">
                                 <option value="">{{ __('All') }}</option>
@@ -27,19 +27,25 @@
                                 <option value="2" {{ request()->get('status') == '2' ? 'selected' : '' }}>{{ __('Cancelled') }}</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
+
+                        <!-- Date Filter -->
+                        <div>
                             <label for="filter_date">{{ __('Filter by Date') }}</label>
                             <input type="date" name="filter_date" id="filter_date" class="form-control" value="{{ request()->get('filter_date') }}" onchange="this.form.submit()">
                         </div>
 
-                        <div class="col-md-3 offset-md-3 d-flex justify-content-end">
-                            <a href="{{ route('withdrawals.export', ['status' => request()->get('status', 0), 'filter_date' => request()->get('filter_date')]) }}" class="btn btn-primary">
+                        <!-- Buttons -->
+                        <div class="ms-auto d-flex gap-2">
+                          <a href="{{ route('withdrawals.export', ['status' => request()->get('status', ''), 'filter_date' => request()->get('filter_date', '')]) }}" class="btn btn-primary">
                                 {{ __('Export Withdrawals') }}
                             </a>
+                            <a href="{{ route('withdrawals.unpaid_export', ['status' => request()->get('status', 0), 'filter_date' => request()->get('filter_date')]) }}" class="btn btn-primary">
+                                {{ __('Export Unpaid Withdrawals') }}
+                            </a>
                         </div>
-
                     </div>
                 </form>
+
 
                 <form action="{{ route('withdrawals.bulkUpdateStatus') }}" method="POST">
                     @csrf
@@ -84,7 +90,6 @@
                                     <th>{{ __('Ifsc Code') }}</th>
                                     <th>{{ __('Account Number') }}</th>
                                     <th>{{ __('Holder Name') }}</th>
-                                    <th>{{ __('Upi ID') }}</th>
                                     <th>{{ __('Datetime') }}</th>
                                 </tr>
                             </thead>
@@ -121,7 +126,6 @@
                                         <td>{{ $withdrawal->users->ifsc ?? '' }}</td>
                                         <td>{{ $withdrawal->users->account_num ?? '' }}</td>
                                         <td>{{ $withdrawal->users->holder_name ?? '' }}</td>
-                                        <td>{{ $withdrawal->users->upi_id ?? '' }}</td>
                                         <td>{{ $withdrawal->datetime }}</td>
                                     </tr>
                                 @endforeach

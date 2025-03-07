@@ -72,6 +72,13 @@
                 </li>
 
                 <li class="dash-item">
+                    <a href="{{ route('extra_bonus.index') }}" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-trophy"></i></span> <!-- User-slash icon for inactive users -->
+                        <span class="dash-mtext">{{ __('Extra Bonus') }}</span>
+                    </a>
+                </li>
+
+                <li class="dash-item">
                     <a href="{{ route('works.index') }}" class="dash-link">
                         <span class="dash-micon"><i class="ti ti-briefcase"></i></span> <!-- Briefcase icon for works -->
                         <span class="dash-mtext">{{ __('Work') }}</span>
@@ -109,12 +116,6 @@
                 </a>
                 </li>
 
-                <li class="dash-item">
-                    <a href="{{ route('extra_bonus.index') }}" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-users"></i></span> <!-- User-slash icon for inactive users -->
-                        <span class="dash-mtext">{{ __('Extra Bonus') }}</span>
-                    </a>
-                </li>
                 <li class="dash-item">
                 <a href="{{ route('transactions.index') }}" class="dash-link">
                     <span class="dash-micon">

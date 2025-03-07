@@ -292,7 +292,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::put('news/update', [NewsController::class, 'update'])->name('news.update');
     Route::get('appsettings/edit', [AppsettingsController::class, 'edit'])->name('appsettings.edit');
     Route::put('appsettings/update', [AppsettingsController::class, 'update'])->name('appsettings.update');
-    Route::resource('users', UsersController::class);
+    Route::resource('users', UsersController::class)->except(['show']);
     Route::post('/users-verification/update-status', [UsersVerificationController::class, 'updateStatus'])->name('users-verification.updateStatus');
     Route::get('/users-verification', [UsersVerificationController::class, 'index'])->name('users-verification.index');
     Route::post('/coins/update-status', [CoinsController::class, 'updateStatus'])->name('coins.updateStatus');
@@ -305,7 +305,9 @@ Route::group(['middleware' => ['verified']], function () {
     Route::patch('/withdrawals/bulk-update', [WithdrawalsController::class, 'bulkUpdateStatus'])->name('withdrawals.bulkUpdateStatus');
     Route::patch('/withdrawals/bulk-cancel', [WithdrawalsController::class, 'bulkCancelStatus'])->name('withdrawals.bulkCancelStatus');
     Route::get('withdrawals/export', [WithdrawalsController::class, 'export'])->name('withdrawals.export');
+    Route::get('withdrawals/unpaid_export', [WithdrawalsController::class, 'unpaid_export'])->name('withdrawals.unpaid_export');
     Route::resource('coins', CoinsController::class);
+    Route::get('/users/export', [UsersController::class, 'export'])->name('users.export');
     Route::resource('withdrawals', WithdrawalsController::class);
     Route::resource('gifts', GiftsController::class);
     Route::resource('products', ProductsController::class);

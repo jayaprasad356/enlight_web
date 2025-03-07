@@ -15,18 +15,25 @@
         <div class="card">
             <div class="card-header">
             <form action="{{ route('users.index') }}" method="GET" class="mb-3">
-            <div class="row align-items-end">
-                <div class="col-md-3">
-                            <label for="filter_date">{{ __('Filter by Date') }}</label>
-                            <input type="date" name="filter_date" id="filter_date" class="form-control" value="{{ request()->get('filter_date') }}" onchange="this.form.submit()">
-                 </div>
-                 <!-- <div class="col-md-3 ms-auto">
-                            <label for="search">{{ __('Search All Users') }}</label>
-                            <input type="text" name="search" id="search" class="form-control"
-                             value="{{ request()->get('search') }}" placeholder="Enter Name, Mobile">
-                        </div>
-                 </div> -->
-        </form>
+                <div class="row align-items-end">
+                    <!-- Filter by Date -->
+                    <div class="col-md-3">
+                        <label for="filter_date">{{ __('Filter by Date') }}</label>
+                        <input type="date" name="filter_date" id="filter_date" class="form-control" 
+                            value="{{ request()->get('filter_date') }}" onchange="this.form.submit()">
+                    </div>
+
+                    <!-- Export Withdrawals Button - Aligned to the right -->
+                    <div class="col-md-3 ms-auto text-end">
+                        <a href="{{ route('users.export') }}" 
+                        class="btn btn-primary mt-4">
+                            {{ __('Export Users') }}
+                        </a>
+                    </div>
+                </div>
+            </form>
+
+
             </div>
             <div class="card-body table-border-style">
                 <div class="table-responsive">
