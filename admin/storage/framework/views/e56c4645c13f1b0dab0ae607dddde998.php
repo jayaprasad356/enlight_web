@@ -33,38 +33,13 @@
                     </div>
                 </form>
 
-                <form action="<?php echo e(route('payment_screenshots.bulkUpdateStatus')); ?>" method="POST">
-                    <?php echo csrf_field(); ?>
-                    <?php echo method_field('PATCH'); ?>
-
-                    <div class="mb-3 d-flex align-items-center">
-                        <!-- Select All Checkbox -->
-                        <div class="mr-3">
-                            <input type="checkbox" id="select-all">
-                            <label for="select-all"><?php echo e(__('Select All')); ?></label>
-                        </div>
-
-
-                        <!-- Paid Button -->
-                        <button type="submit" name="new_status" value="1" class="btn btn-success ml-3"
-                            onclick="return confirm('<?php echo e(__('Are you sure you want to mark selected as verified?')); ?>')">
-                            <?php echo e(__('Verified')); ?>
-
-                        </button>
-
-                        <!-- Cancel Button -->
-                        <button type="submit" name="new_status" value="2" class="btn btn-danger ml-2"
-                            onclick="return confirm('<?php echo e(__('Are you sure you want to cancel selected ID?')); ?>')">
-                            <?php echo e(__('Cancel')); ?>
-
-                        </button>
-                    </div>
+              
             <div class="card-body table-border-style">
                 <div class="table-responsive">
                     <table class="table" id="pc-dt-simple">
                         <thead>
                             <tr>
-                                <th><input type="checkbox" id="select-all"></th>
+                            <th><?php echo e(__('Actions')); ?></th>
                                 <th><?php echo e(__('ID')); ?></th>
                                 <th><?php echo e(__('User Name')); ?></th>
                                 <th><?php echo e(__('User Mobile')); ?></th>
@@ -76,9 +51,18 @@
                         <tbody>
                             <?php $__currentLoopData = $payment_screenshots; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $payment_screenshot): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                <td>
-                                            <input type="checkbox" name="payment_screenshots_ids[]" value="<?php echo e($payment_screenshot->id); ?>">
-                                        </td>
+                                <td class="Action">
+                                        <span>
+                                            <!-- Edit Button -->
+                                            <div class="action-btn bg-info ms-2">
+                                                <a href="#" data-url="<?php echo e(route('payment_screenshots.edit', $payment_screenshot->id)); ?>" 
+                                                data-ajax-popup="true" data-title="<?php echo e(__('Edit Payment Screenshot')); ?>"
+                                                class="btn btn-sm align-items-center" data-bs-toggle="tooltip" title="<?php echo e(__('Edit')); ?>">
+                                                    <i class="ti ti-pencil text-white"></i>
+                                                </a>
+                                            </div>
+                                        </span>
+                                    </td>
                                     <td><?php echo e(ucfirst($payment_screenshot->id)); ?></td>
                                     <td><?php echo e($payment_screenshot->users->name); ?></td>
                                     <td><?php echo e($payment_screenshot->users->mobile); ?></td>

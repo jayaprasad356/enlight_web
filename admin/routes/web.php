@@ -311,9 +311,9 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('withdrawals', WithdrawalsController::class);
     Route::resource('gifts', GiftsController::class);
     Route::resource('products', ProductsController::class);
-    Route::get('/payment_screenshots', [PaymentScreenshotsControllers::class, 'index'])->name('payment_screenshots.index');
-    Route::patch('/payment_screenshots/bulkUpdateStatus', [PaymentScreenshotsControllers::class, 'bulkUpdateStatus'])->name('payment_screenshots.bulkUpdateStatus');
-    
+    Route::resource('payment_screenshots', PaymentScreenshotsControllers::class);
+   
+   
     Route::get('/works', [WorksController::class, 'index'])->name('works.index');
     Route::patch('/works/bulk-update-status', [WorksController::class, 'bulkUpdateStatus'])->name('works.bulkUpdateStatus');
     

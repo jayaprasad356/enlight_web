@@ -111,6 +111,9 @@ class InactiveUsersController extends Controller
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+
+                $sessionUser->refer_income += 50;
+                $selectedUser->save();
                 
             }
     
@@ -216,7 +219,7 @@ class InactiveUsersController extends Controller
     
             // **Activate selected user**
             $selectedUser->status = 1;
-            $sessionUser->refer_income += 50;
+            $selectedUser->purchase_wallet += 299;
             $selectedUser->save();
             
     
@@ -233,7 +236,7 @@ class InactiveUsersController extends Controller
             // **Log Transactions**
             DB::table('transactions')->insert([
                 'user_id' => $selectedUser->id,
-                'type' => "level{$level}_activation",
+                'type' => "level_{$level}_activation",
                 'amount' => 299,
                 'datetime' => now(),
                 'created_at' => now(),

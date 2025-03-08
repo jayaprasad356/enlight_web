@@ -32,36 +32,13 @@
                     </div>
                 </form>
 
-                <form action="{{ route('payment_screenshots.bulkUpdateStatus') }}" method="POST">
-                    @csrf
-                    @method('PATCH')
-
-                    <div class="mb-3 d-flex align-items-center">
-                        <!-- Select All Checkbox -->
-                        <div class="mr-3">
-                            <input type="checkbox" id="select-all">
-                            <label for="select-all">{{ __('Select All') }}</label>
-                        </div>
-
-
-                        <!-- Paid Button -->
-                        <button type="submit" name="new_status" value="1" class="btn btn-success ml-3"
-                            onclick="return confirm('{{ __('Are you sure you want to mark selected as verified?') }}')">
-                            {{ __('Verified') }}
-                        </button>
-
-                        <!-- Cancel Button -->
-                        <button type="submit" name="new_status" value="2" class="btn btn-danger ml-2"
-                            onclick="return confirm('{{ __('Are you sure you want to cancel selected ID?') }}')">
-                            {{ __('Cancel') }}
-                        </button>
-                    </div>
+              
             <div class="card-body table-border-style">
                 <div class="table-responsive">
                     <table class="table" id="pc-dt-simple">
                         <thead>
                             <tr>
-                                <th><input type="checkbox" id="select-all"></th>
+                            <th>{{ __('Actions') }}</th>
                                 <th>{{ __('ID') }}</th>
                                 <th>{{ __('User Name') }}</th>
                                 <th>{{ __('User Mobile') }}</th>
@@ -73,14 +50,23 @@
                         <tbody>
                             @foreach ($payment_screenshots as $payment_screenshot)
                                 <tr>
-                                <td>
-                                            <input type="checkbox" name="payment_screenshots_ids[]" value="{{ $payment_screenshot->id }}">
-                                        </td>
+                                <td class="Action">
+                                        <span>
+                                            <!-- Edit Button -->
+                                            <div class="action-btn bg-info ms-2">
+                                                <a href="#" data-url="{{ route('payment_screenshots.edit', $payment_screenshot->id) }}" 
+                                                data-ajax-popup="true" data-title="{{ __('Edit Payment Screenshot') }}"
+                                                class="btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{ __('Edit') }}">
+                                                    <i class="ti ti-pencil text-white"></i>
+                                                </a>
+                                            </div>
+                                        </span>
+                                    </td>
                                     <td>{{ ucfirst($payment_screenshot->id) }}</td>
                                     <td>{{ $payment_screenshot->users->name }}</td>
                                     <td>{{ $payment_screenshot->users->mobile }}</td>
                                     <td>
-                                        @if($payment_screenshot->screenshots)
+                                    @if($payment_screenshot->screenshots)
                                             <a href="{{ ('https://enlightapp.in/storage/app/public/' . $payment_screenshot->screenshots) }}" data-lightbox="image-{{ $payment_screenshot->id }}">
                                                 <img class="user-img img-thumbnail img-fluid" 
                                                     src="{{('https://enlightapp.in/storage/app/public/' . $payment_screenshot->screenshots) }}" 

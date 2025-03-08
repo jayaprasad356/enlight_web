@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transactions;
 use App\Models\Users;
 use App\Models\Withdrawals;
+use App\Models\payment_screenshots;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -33,6 +34,8 @@ class HomeController extends Controller
         // Fetch unpaid withdrawals count from Withdrawals table (status = 0)
         $unpaid_withdrawals = Withdrawals::where('status', 0)->count();
 
+        $pending_recharge = payment_screenshots::where('status', 0)->count();
+
         return view('dashboard.dashboard', compact(
             'total_users', 
             'today_level_1',
@@ -40,7 +43,8 @@ class HomeController extends Controller
             'today_level_3',
             'today_level_4',
             'today_registration',
-            'unpaid_withdrawals'
+            'unpaid_withdrawals',
+            'pending_recharge'
         ));
     }
 }

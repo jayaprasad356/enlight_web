@@ -41,7 +41,7 @@
 
 <h3>My Products</h3>
 <div class="recharge-balance" style="position: absolute; top: 10px; right: 10px; font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
-    <strong><?php echo e(__('Available Balance: Rs')); ?> <?php echo e($balance); ?></strong>
+    <strong><?php echo e(__('Available Recharge Balance: Rs')); ?> <?php echo e($recharge); ?></strong>
 </div>
 <br>
 <div class="row">
@@ -60,7 +60,7 @@
                     <p class="final-price">₹<?php echo e($product->offer); ?></p>
                 </div>
                 <p class="free-delivery">🚚 Free Delivery</p>
-                <a href="#" class="btn btn-primary">View Product</a>
+                <a href="#" class="btn btn-primary purchase-btn">Purchase</a>
             </div>
         </div>
     </div>
@@ -68,5 +68,16 @@
 
 </div>
 <?php $__env->stopSection(); ?>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.purchase-btn').forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent any default behavior
+            alert("You are allowed to purchase products only on earning your monthly salary");
+        });
+    });
+});
+</script>
 
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\enlight_web\resources\views/my_products/index.blade.php ENDPATH**/ ?>

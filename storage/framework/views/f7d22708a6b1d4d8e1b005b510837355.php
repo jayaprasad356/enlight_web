@@ -21,7 +21,7 @@
         <!-- One Time Subscription Charge -->
         <div class="col-12 mb-3">
             <div class="alert alert-info text-center" role="alert">
-            <h5><?php echo e(__('One Time Subscription Charge - ₹299')); ?></h5>
+            <h5><?php echo e(__('One Time Membership Charges - ₹299')); ?></h5>
             <a href="javascript:void(0);" class="btn btn-primary" onclick="showImage()">
                 <?php echo e(__('Subscribe Now')); ?>
 

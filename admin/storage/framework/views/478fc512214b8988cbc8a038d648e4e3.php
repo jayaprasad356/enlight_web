@@ -48,12 +48,16 @@
                                 <th><?php echo e(__('Mobile')); ?></th>
                                 <th><?php echo e(__('Age')); ?></th>
                                 <th><?php echo e(__('Gender')); ?></th>
-                                <th><?php echo e(__('Balance')); ?></th>
+                                <th><?php echo e(__('Recharge')); ?></th>
                                 <th><?php echo e(__('Refer Code')); ?></th>
                                 <th><?php echo e(__('Level 1 refer')); ?></th>
                                 <th><?php echo e(__('Level 2 refer')); ?></th>
                                 <th><?php echo e(__('Level 3 refer')); ?></th>
                                 <th><?php echo e(__('Level 1 refer4')); ?></th>
+                                <th><?php echo e(__('Refer Bonus')); ?></th>
+                                <th><?php echo e(__('Level Income')); ?></th>
+                                <th><?php echo e(__('Level Income Wallet')); ?></th>
+                                <th><?php echo e(__('Purchase Wallet')); ?></th>
                                 <th><?php echo e(__('Registered DateTime')); ?></th>
                                 <th><?php echo e(__('Status')); ?></th>
                             </tr>
@@ -85,12 +89,16 @@
                                     <td><?php echo e($user->mobile); ?></td>
                                     <td><?php echo e($user->age); ?></td>
                                     <td><?php echo e(ucfirst($user->gender)); ?></td>
-                                    <td><?php echo e($user->balance); ?></td>
+                                    <td><?php echo e($user->recharge); ?></td>
                                     <td><?php echo e($user->refer_code); ?></td>
                                     <td><?php echo e($user->level_1_refer); ?></td>
                                     <td><?php echo e($user->level_2_refer); ?></td>
                                     <td><?php echo e($user->level_3_refer); ?></td>
                                     <td><?php echo e($user->level_4_refer); ?></td>
+                                    <td><?php echo e($user->refer_income); ?></td>
+                                    <td><?php echo e($user->level_income); ?></td>
+                                    <td><?php echo e($user->level_income_wallet); ?></td>
+                                    <td><?php echo e($user->purchase_wallet); ?></td>
                                     <td><?php echo e($user->registered_datetime); ?></td>
                                     <td>
                                         <!-- Display Status with values 0, 1, and 2 -->

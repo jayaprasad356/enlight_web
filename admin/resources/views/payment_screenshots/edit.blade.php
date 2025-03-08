@@ -1,17 +1,22 @@
-{{ Form::model($payment_screenshots, ['route' => ['payment_screenshots.update', $payment_screenshots->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) }}
+{{ Form::model($payment_screenshot, ['route' => ['payment_screenshots.update', $payment_screenshot->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) }}
 <div class="modal-body">
     <div class="row">
-        <!-- Avatar Image Upload -->
         <div class="form-group col-md-12">
             {{ Form::label('payment_screenshot', __('Payment Screenshot'), ['class' => 'form-label']) }}
-            <div class="mb-2">
-                <img src="{{ asset('storage/app/public/' . $payment_screenshots->screenshot) }}" class="img-thumbnail" width="100" alt="Gift Icon">
-            </div>
-            <input type="file" name="payment_screenshot" class="form-control">
+            <a href="{{ ('https://enlightapp.in/storage/app/public/' . $payment_screenshot->screenshots) }}" data-lightbox="image-{{ $payment_screenshot->id }}">
+                                                <img class="user-img img-thumbnail img-fluid" 
+                                                    src="{{('https://enlightapp.in/storage/app/public/' . $payment_screenshot->screenshots) }}" 
+                                                    alt="Image" 
+                                                    style="max-width: 100px; max-height: 100px;">
+                                            </a>
         </div>
         <div class="form-group col-md-12">
-            {{ Form::label('coins', __('Coins'), ['class' => 'form-label']) }}
-            {{ Form::number('coins', null, ['class' => 'form-control', 'required']) }}
+            {{ Form::label('recharge', __('Recharge'), ['class' => 'form-label']) }}
+            {{ Form::number('recharge', null, ['class' => 'form-control', 'required']) }}
+        </div>
+        <div class="form-group col-md-12">
+            {{ Form::label('status', __('Status'), ['class' => 'form-label']) }}
+            {{ Form::select('status', [0 => 'Pending', 1 => 'Verified', 2 => 'Cancelled'], null, ['class' => 'form-control', 'required']) }}
         </div>
     </div>
 </div>

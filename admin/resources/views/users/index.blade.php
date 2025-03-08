@@ -46,12 +46,16 @@
                                 <th>{{ __('Mobile') }}</th>
                                 <th>{{ __('Age') }}</th>
                                 <th>{{ __('Gender') }}</th>
-                                <th>{{ __('Balance') }}</th>
+                                <th>{{ __('Recharge') }}</th>
                                 <th>{{ __('Refer Code') }}</th>
                                 <th>{{ __('Level 1 refer') }}</th>
                                 <th>{{ __('Level 2 refer') }}</th>
                                 <th>{{ __('Level 3 refer') }}</th>
                                 <th>{{ __('Level 1 refer4') }}</th>
+                                <th>{{ __('Refer Bonus') }}</th>
+                                <th>{{ __('Level Income') }}</th>
+                                <th>{{ __('Level Income Wallet') }}</th>
+                                <th>{{ __('Purchase Wallet') }}</th>
                                 <th>{{ __('Registered DateTime') }}</th>
                                 <th>{{ __('Status') }}</th>
                             </tr>
@@ -83,12 +87,16 @@
                                     <td>{{ $user->mobile }}</td>
                                     <td>{{ $user->age }}</td>
                                     <td>{{ ucfirst($user->gender) }}</td>
-                                    <td>{{ $user->balance }}</td>
+                                    <td>{{ $user->recharge }}</td>
                                     <td>{{ $user->refer_code }}</td>
                                     <td>{{ $user->level_1_refer }}</td>
                                     <td>{{ $user->level_2_refer }}</td>
                                     <td>{{ $user->level_3_refer }}</td>
                                     <td>{{ $user->level_4_refer }}</td>
+                                    <td>{{ $user->refer_income }}</td>
+                                    <td>{{ $user->level_income }}</td>
+                                    <td>{{ $user->level_income_wallet }}</td>
+                                    <td>{{ $user->purchase_wallet }}</td>
                                     <td>{{ $user->registered_datetime }}</td>
                                     <td>
                                         <!-- Display Status with values 0, 1, and 2 -->
