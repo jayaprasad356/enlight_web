@@ -17,7 +17,7 @@ use App\Models\Users;
 use App\Models\UserCalls;
 use App\Models\Withdrawals;
 use App\Models\Payer;
-use App\Models\news;
+use App\Models\News;
 use App\Models\Plan;
 use App\Models\Ticket;
 use App\Models\Admin;
