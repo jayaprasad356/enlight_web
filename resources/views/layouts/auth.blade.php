@@ -166,7 +166,7 @@
                     }
                 </style>
                 <div style="position: absolute; top: 20px; left: 20px; background-color:#6fd943;">
-                    <a href="#" class="btn btn-outline-primary text-white custom-btn">{{ __('About Us') }}</a>
+                    <a href="{{ route('about.us') }}" class="btn btn-outline-primary text-white custom-btn">{{ __('About Us') }}</a>
                 </div>
                 <div style="position: absolute; top: 20px; right: 20px; background-color:white;">
                     <a href="#" class="btn btn-outline-primary custom-btn">{{ __('Login Option Only For Membership Holders') }}</a>

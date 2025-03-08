@@ -167,7 +167,7 @@
                     }
                 </style>
                 <div style="position: absolute; top: 20px; left: 20px; background-color:#6fd943;">
-                    <a href="#" class="btn btn-outline-primary text-white custom-btn"><?php echo e(__('About Us')); ?></a>
+                    <a href="<?php echo e(route('about.us')); ?>" class="btn btn-outline-primary text-white custom-btn"><?php echo e(__('About Us')); ?></a>
                 </div>
                 <div style="position: absolute; top: 20px; right: 20px; background-color:white;">
                     <a href="#" class="btn btn-outline-primary custom-btn"><?php echo e(__('Login Option Only For Membership Holders')); ?></a>

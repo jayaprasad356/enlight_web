@@ -41,6 +41,13 @@
                     <a href="{{ route('dashboard') }}" class="dash-link"><span class="dash-micon"><i
                                 class="ti ti-home"></i></span><span class="dash-mtext">{{ __('Dashboard') }}</span></a>
                 </li>
+
+                <li class="dash-item">
+                    <a href="{{ route('add_earnings.index') }}" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-package"></i></span> 
+                        <span class="dash-mtext">{{ __('Earning Opportunities') }}</span>
+                    </a>
+                </li>
         
                 <li class="dash-item">
                     <a href="#" class="dash-link" id="levels-toggle">

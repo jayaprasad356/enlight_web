@@ -24,6 +24,8 @@ use App\Http\Controllers\InactiveUsersController;
 use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ExtraBonusController;
+use App\Http\Controllers\EarningsController;
+
 
 
 // use App\Http\Controllers\PlanRequestController;
@@ -81,6 +83,13 @@ Route::get('/inactive-users/addusers', [InactiveUsersController::class, 'adduser
 Route::post('/inactive-users/register', [InactiveUsersController::class, 'register'])->name('inactive_users.register');
 Route::get('/inactive-users/activateusers', [InactiveUsersController::class, 'activateusers'])->name('inactive_users.activateusers');
 Route::get('/news/download/{id}', [NewsController::class, 'downloadImage'])->name('news.download');
+
+Route::get('/about-us', function () {
+    return view('about-us');
+})->name('about.us');
+
+Route::get('/add_earnings', [EarningsController::class, 'index'])->name('add_earnings.index');
+
 
 // Handle Image Upload (POST)
 Route::post('/works/upload', [WorksController::class, 'uploadImage'])->name('works.upload');

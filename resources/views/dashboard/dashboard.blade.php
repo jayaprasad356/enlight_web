@@ -19,7 +19,7 @@
         <!-- One Time Subscription Charge -->
         <div class="col-12 mb-3">
             <div class="alert alert-info text-center" role="alert">
-            <h5>{{ __('One Time Subscription Charge - ₹299') }}</h5>
+            <h5>{{ __('One Time Subscription Charges - ₹299') }}</h5>
             <a href="javascript:void(0);" class="btn btn-primary" onclick="showImage()">
                 {{ __('Subscribe Now') }}
             </a>
