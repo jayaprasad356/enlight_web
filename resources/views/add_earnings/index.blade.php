@@ -35,7 +35,7 @@
         <div class="card">
             <img src="{{ asset('storage/earnings/refer_earn.jpeg') }}" class="card-img-top" alt="Extra Bonuses">
             <div class="card-body">
-                <h5 class="earning-title">Refer and Earn Image</h5>
+                <h5 class="earning-title">Refer and Earn</h5>
                 <p class="earning-text">Unlock extra rewards for completing challenges.</p>
             </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="card">
             <img src="{{ asset('storage/earnings/extra_bonus.jpeg') }}" class="card-img-top" alt="Passive Earnings">
             <div class="card-body">
-                <h5 class="earning-title">Extra Bonus Image</h5>
+                <h5 class="earning-title">Extra Bonus</h5>
                 <p class="earning-text">Earn passive income through referrals and investments.</p>
             </div>
         </div>
@@ -55,7 +55,7 @@
         <div class="card">
             <img src="{{ asset('storage/earnings/product.jpeg') }}" class="card-img-top" alt="Work-Based Earnings">
             <div class="card-body">
-                <h5 class="earning-title">Product Commission Image</h5>
+                <h5 class="earning-title">Product Commission</h5>
                 <p class="earning-text">Complete tasks and earn bonuses instantly.</p>
             </div>
         </div>

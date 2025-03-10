@@ -58,9 +58,10 @@ class HomeController extends Controller
         $level_income = $user->level_income ?? 0; // User balance
         $whatsapp_status_income = $user->whatsapp_status_income ?? 0;
         $refer_income = $user->refer_income ?? 0;
+        $payment_wallet = $user->payment_wallet ?? 0;
         $news = news::latest()->first(); // Adjust this according to your database
     
-        return view('dashboard.dashboard', compact('monthly_salary', 'level_income', 'whatsapp_status_income','refer_income', 'news'));
+        return view('dashboard.dashboard', compact('monthly_salary', 'level_income', 'whatsapp_status_income','refer_income', 'news','payment_wallet'));
     }
     public function addToBalance(Request $request)
     {
@@ -103,6 +104,12 @@ class HomeController extends Controller
                 return response()->json(['success' => false, 'message' => 'Insufficient Whatsapp Status Income']);
             }
             $user->whatsapp_status_income -= $amount;
+        } 
+        elseif ($type === 'payment_wallet') {
+            if ($user->payment_wallet < $amount) {
+                return response()->json(['success' => false, 'message' => 'Insufficient Payment Wallet']);
+            }
+            $user->payment_wallet -= $amount;
         } else {
             return response()->json(['success' => false, 'message' => 'Invalid income type']);
         }

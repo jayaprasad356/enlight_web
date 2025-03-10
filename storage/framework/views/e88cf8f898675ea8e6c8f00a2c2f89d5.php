@@ -24,28 +24,30 @@
         </a>
 
         <!-- Zoho Chat Support -->
-        <a href="<?php echo e($zoho_chat_link); ?>" target="_blank" class="btn btn-success d-block w-50 mb-2">
+        <button onclick="loadZohoChat()" class="btn btn-success d-block w-50 mb-2">
             <?php echo e(__('Chat With Us')); ?>
 
-        </a>
+        </button>
 
     </div>
 </div>
 
 <script>
-    function copyInvitationLink() {
-        // Create a temporary input field to copy the invitation link
-        const tempInput = document.createElement('input');
-        document.body.appendChild(tempInput);
-        tempInput.value = "<?php echo e($invitation_link); ?>"; // Add the invitation link
-        tempInput.select();
-        document.execCommand('copy'); // Copy the text to clipboard
-        document.body.removeChild(tempInput);
+    function loadZohoChat() {
+        if (!document.getElementById('zsiqscript')) {
+            window.$zoho = window.$zoho || {};
+            $zoho.salesiq = $zoho.salesiq || {ready: function(){}};
 
-        // Optional: Notify the user that the link has been copied
-        alert("Invitation Link copied to clipboard!");
+            let script = document.createElement('script');
+            script.id = "zsiqscript";
+            script.src = "https://salesiq.zohopublic.in/widget?wc=siqb9948ef51cb6689eed89e1c5a558a1a4cc64b9992892718da9c37636c8a62250";
+            script.defer = true;
+            document.body.appendChild(script);
+        }
+        document.head.appendChild(style);
     }
 </script>
+
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\enlight_web\resources\views/invite_friends/index.blade.php ENDPATH**/ ?>
