@@ -40,10 +40,7 @@
                 <button class="btn btn-primary mt-2" type="submit">{{ __('Login') }}</button>
             </div>
 
-            <!-- Forgot Password Link -->
-            <!-- <div class="text-center mt-2">
-                <a href="{{ route('') }}">{{ __('Forgot Password?') }}</a>
-            </div>password.otp -->
+          
         </form>
     </div>
 </div>
