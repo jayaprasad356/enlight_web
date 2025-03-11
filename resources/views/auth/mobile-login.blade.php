@@ -27,60 +27,63 @@
                 <label class="form-label">{{ __('Password') }}</label>
                 <div class="input-group">
                     <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter password" required>
-                    <div class="input-group-append">
-                        <span class="input-group-text" onclick="togglePassword()" style="cursor: pointer; height: 40px;">
-                            <i id="eyeIcon" class="fas fa-eye"></i>
-                        </span>
-                    </div>
+                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#password">
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
                 @error('password')
                     <span class="text-danger"><small>{{ $message }}</small></span>
                 @enderror
             </div>
 
-
             <div class="d-grid">
                 <button class="btn btn-primary mt-2" type="submit">{{ __('Login') }}</button>
             </div>
+
+            <!-- Forgot Password Link -->
+            <!-- <div class="text-center mt-2">
+                <a href="{{ route('') }}">{{ __('Forgot Password?') }}</a>
+            </div>password.otp -->
         </form>
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // Auto Logout after inactivity
-    let timeout;
-    function resetTimer() {
-        clearTimeout(timeout);
-        timeout = setTimeout(logoutUser, 10 * 60 * 1000); // 10 minutes inactivity
-    }
+    $(document).ready(function() {
+        // Toggle password visibility
+        $(".toggle-password").click(function() {
+            var target = $(this).data("target");
+            var input = $(target);
+            var icon = $(this).find("i");
 
-    function logoutUser() {
-        window.location.href = "{{ route('logout') }}"; // Redirect to logout route
-    }
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+                icon.removeClass("fa-eye").addClass("fa-eye-slash");
+            } else {
+                input.attr("type", "password");
+                icon.removeClass("fa-eye-slash").addClass("fa-eye");
+            }
+        });
 
-    // Detect user activity
-    document.onmousemove = resetTimer;
-    document.onkeypress = resetTimer;
-    document.onclick = resetTimer;
-    document.onscroll = resetTimer;
-
-    resetTimer(); // Initialize timer when page loads
-
-    // Toggle password visibility
-    function togglePassword() {
-        var passwordField = document.getElementById("password");
-        var eyeIcon = document.getElementById("eyeIcon");
-
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            eyeIcon.classList.remove("fa-eye");
-            eyeIcon.classList.add("fa-eye-slash");
-        } else {
-            passwordField.type = "password";
-            eyeIcon.classList.remove("fa-eye-slash");
-            eyeIcon.classList.add("fa-eye");
+        // Auto Logout after inactivity
+        let timeout;
+        function resetTimer() {
+            clearTimeout(timeout);
+            timeout = setTimeout(logoutUser, 10 * 60 * 1000); // 10 minutes inactivity
         }
-    }
-</script>
 
+        function logoutUser() {
+            window.location.href = "{{ route('logout') }}"; // Redirect to logout route
+        }
+
+        // Detect user activity
+        document.onmousemove = resetTimer;
+        document.onkeypress = resetTimer;
+        document.onclick = resetTimer;
+        document.onscroll = resetTimer;
+
+        resetTimer(); // Initialize timer when page loads
+    });
+</script>
 @endsection

@@ -46,23 +46,19 @@
                         <label for="gender">{{ __('Gender') }}</label>
                         <select class="form-control" id="gender" name="gender" required>
                             <option value="">{{ __('Select Gender') }}</option>
-                            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>{{ __('male') }}</option>
+                            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>{{ __('Male') }}</option>
                             <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>{{ __('Female') }}</option>
                         </select>
                         @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
-  
-
                     <div class="form-group">
                         <label for="password">{{ __('Password') }}</label>
                         <div class="input-group">
                             <input type="password" class="form-control" id="password" name="password" required>
-                            <div class="input-group-append">
-                                <span class="input-group-text" onclick="togglePassword()" style="cursor: pointer; height: 40px;">
-                                    <i id="eyeIcon" class="fas fa-eye"></i>
-                                </span>
-                            </div>
+                            <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#password">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                         @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
@@ -83,22 +79,24 @@
 </div>
 @endsection
 
-<!-- Include FontAwesome (if not already included in your project) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- Include jQuery (if not already included in your project) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    function togglePassword() {
-        var passwordField = document.getElementById("password");
-        var eyeIcon = document.getElementById("eyeIcon");
+    $(document).ready(function() {
+        // Toggle password visibility
+        $(".toggle-password").click(function() {
+            var target = $(this).data("target");
+            var input = $(target);
+            var icon = $(this).find("i");
 
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            eyeIcon.classList.remove("fa-eye");
-            eyeIcon.classList.add("fa-eye-slash");
-        } else {
-            passwordField.type = "password";
-            eyeIcon.classList.remove("fa-eye-slash");
-            eyeIcon.classList.add("fa-eye");
-        }
-    }
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+                icon.removeClass("fa-eye").addClass("fa-eye-slash");
+            } else {
+                input.attr("type", "password");
+                icon.removeClass("fa-eye-slash").addClass("fa-eye");
+            }
+        });
+    });
 </script>

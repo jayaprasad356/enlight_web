@@ -24,11 +24,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" required>
-                <div class="input-group-append">
-                    <span class="input-group-text" onclick="togglePassword('new_password', 'eyeIcon1')" style="cursor: pointer; height: 40px;">
-                        <i id="eyeIcon1" class="fas fa-eye"></i>
-                    </span>
-                </div>
+                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#new_password">
+                    <i class="fas fa-eye"></i>
+                </button>
             </div>
             <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -54,11 +52,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" required>
-                <div class="input-group-append">
-                    <span class="input-group-text" onclick="togglePassword('confirm_password', 'eyeIcon2')" style="cursor: pointer; height: 40px;">
-                        <i id="eyeIcon2" class="fas fa-eye"></i>
-                    </span>
-                </div>
+                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#confirm_password">
+                    <i class="fas fa-eye"></i>
+                </button>
             </div>
             <?php $__errorArgs = ['password_confirmation'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -78,22 +74,23 @@ unset($__errorArgs, $__bag); ?>
     </form>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // Function to toggle password visibility
-    function togglePassword(inputId, eyeIconId) {
-        var passwordField = document.getElementById(inputId);
-        var eyeIcon = document.getElementById(eyeIconId);
+    $(document).ready(function() {
+        $(".toggle-password").click(function() {
+            var target = $(this).data("target");
+            var input = $(target);
+            var icon = $(this).find("i");
 
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            eyeIcon.classList.remove("fa-eye");
-            eyeIcon.classList.add("fa-eye-slash");
-        } else {
-            passwordField.type = "password";
-            eyeIcon.classList.remove("fa-eye-slash");
-            eyeIcon.classList.add("fa-eye");
-        }
-    }
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+                icon.removeClass("fa-eye").addClass("fa-eye-slash");
+            } else {
+                input.attr("type", "password");
+                icon.removeClass("fa-eye-slash").addClass("fa-eye");
+            }
+        });
+    });
 </script>
 <?php $__env->stopSection(); ?>
 

@@ -2,6 +2,7 @@
 
 return [
 
+    'authkey' => env('AUTHKEY_API_KEY'),
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

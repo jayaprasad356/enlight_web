@@ -86,6 +86,50 @@ public function profile()
     return view('profile', compact('user'));
 }
 
+public function updateProfile(Request $request)
+{
+    $user = Users::find(Session::get('user_id'));
+
+    if (!$user) {
+        return redirect()->route('mobile.login')->withErrors(['error' => 'User not found.']);
+    }
+
+    // Validate input
+    $request->validate([
+        'name' => 'sometimes|required|string|max:255',
+        'mobile' => 'sometimes|required|string|max:15|unique:users,mobile,' . $user->id,
+        'age' => 'sometimes|required|integer|min:1|max:120',
+        'pincode' => 'sometimes|required|string|max:10',
+        'gender' => 'sometimes|required|in:male,female',
+        'password' => 'nullable|min:6',
+    ]);
+
+    // Update only the fields that are provided
+    if ($request->has('name')) {
+        $user->name = $request->name;
+    }
+    if ($request->has('mobile')) {
+        $user->mobile = $request->mobile;
+    }
+    if ($request->has('age')) {
+        $user->age = $request->age;
+    }
+    if ($request->has('pincode')) {
+        $user->pincode = $request->pincode;
+    }
+    if ($request->has('gender')) {
+        $user->gender = $request->gender;
+    }
+    if ($request->has('password')) {
+        $user->password = $request->password;
+    }
+
+    $user->save();
+
+    return back()->with('success', 'Profile updated successfully.');
+}
+
+
     public function logout()
     {
         Session::flush(); // Clear all session data

@@ -26,6 +26,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ExtraBonusController;
 use App\Http\Controllers\EarningsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OTPResetsController;
 
 
 
@@ -54,11 +55,17 @@ Route::get('/logout', [CustomLoginController::class, 'logout'])->name('logout');
 Route::get('/force-change-password', [CustomLoginController::class, 'showChangePasswordForm'])->name('force.change.password');
 Route::post('/force-change-password', [CustomLoginController::class, 'changePassword'])->name('force.change.password.post');
 
+Route::get('/password/otp', [OTPResetsController::class, 'showMobileForm'])->name('password.otp');
+Route::post('/send-otp', [OTPResetsController::class, 'sendOTP'])->name('send.otp');
+Route::post('/verify-otp', [OTPResetsController::class, 'verifyOTP'])->name('verify.otp');
+Route::get('/password/reset', [OTPResetsController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/update', [OTPResetsController::class, 'updatePassword'])->name('password.update');
 
-// Dashboard
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::get('/profile', [CustomLoginController::class, 'profile'])->name('profile');
+Route::put('/profile/update', [CustomLoginController::class, 'updateProfile'])->name('profile.update');
+
 Route::get('/level1List', [UsersController::class, 'level1List'])->name('level_1.index');
 Route::get('/level2List', [UsersController::class, 'level2List'])->name('level_2.index');
 Route::get('/level3List', [UsersController::class, 'level3List'])->name('level_3.index');

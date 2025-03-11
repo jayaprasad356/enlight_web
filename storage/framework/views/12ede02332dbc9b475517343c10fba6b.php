@@ -69,25 +69,32 @@ p {
                             
                             
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <?php echo e(Auth::user()->name); ?> <span class="caret"></span>
-                                </a>
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        <?php echo e(Auth::user()->name); ?> <span class="caret"></span>
+    </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <!-- Profile Link -->
+                                    <a class="dropdown-item" href="<?php echo e(route('profile')); ?>">
+                                        <?php echo e(__('Profile')); ?>
+
+                                    </a>
+
+                                    <!-- Logout Link -->
                                     <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                         onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                         <?php echo e(__('Logout')); ?>
 
                                     </a>
 
-                                    <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST"
-                                        style="display: none;">
+                                    <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
                                         <?php echo csrf_field(); ?>
                                     </form>
                                 </div>
                             </li>
+
                         <?php endif; ?>
                     </ul>
                 </div>

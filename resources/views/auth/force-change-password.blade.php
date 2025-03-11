@@ -17,11 +17,9 @@
             <label class="form-label">{{ __('New Password') }}</label>
             <div class="input-group">
                 <input type="password" id="new_password" name="password" class="form-control @error('password') is-invalid @enderror" required>
-                <div class="input-group-append">
-                    <span class="input-group-text" onclick="togglePassword('new_password', 'eyeIcon1')" style="cursor: pointer; height: 40px;">
-                        <i id="eyeIcon1" class="fas fa-eye"></i>
-                    </span>
-                </div>
+                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#new_password">
+                    <i class="fas fa-eye"></i>
+                </button>
             </div>
             @error('password')
                 <span class="text-danger"><small>{{ $message }}</small></span>
@@ -33,11 +31,9 @@
             <label class="form-label">{{ __('Confirm Password') }}</label>
             <div class="input-group">
                 <input type="password" id="confirm_password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" required>
-                <div class="input-group-append">
-                    <span class="input-group-text" onclick="togglePassword('confirm_password', 'eyeIcon2')" style="cursor: pointer; height: 40px;">
-                        <i id="eyeIcon2" class="fas fa-eye"></i>
-                    </span>
-                </div>
+                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#confirm_password">
+                    <i class="fas fa-eye"></i>
+                </button>
             </div>
             @error('password_confirmation')
                 <span class="text-danger"><small>{{ $message }}</small></span>
@@ -50,21 +46,22 @@
     </form>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // Function to toggle password visibility
-    function togglePassword(inputId, eyeIconId) {
-        var passwordField = document.getElementById(inputId);
-        var eyeIcon = document.getElementById(eyeIconId);
+    $(document).ready(function() {
+        $(".toggle-password").click(function() {
+            var target = $(this).data("target");
+            var input = $(target);
+            var icon = $(this).find("i");
 
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            eyeIcon.classList.remove("fa-eye");
-            eyeIcon.classList.add("fa-eye-slash");
-        } else {
-            passwordField.type = "password";
-            eyeIcon.classList.remove("fa-eye-slash");
-            eyeIcon.classList.add("fa-eye");
-        }
-    }
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+                icon.removeClass("fa-eye").addClass("fa-eye-slash");
+            } else {
+                input.attr("type", "password");
+                icon.removeClass("fa-eye-slash").addClass("fa-eye");
+            }
+        });
+    });
 </script>
 @endsection
