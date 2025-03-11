@@ -136,6 +136,11 @@
                         </div>
 
                         <div class="form-group col-md-6">
+                            {{ Form::label('Purchase Wallet', __('Purchase Wallet'), ['class' => 'form-label']) }}
+                            {{ Form::number('purchase_Wallet', null, ['class' => 'form-control']) }}
+                        </div>
+
+                        <div class="form-group col-md-6">
                             {{ Form::label('Refer Code', __('Refer Code'), ['class' => 'form-label']) }}
                             {{ Form::text('refer_code', null, ['class' => 'form-control']) }}
                         </div>

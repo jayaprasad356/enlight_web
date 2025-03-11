@@ -46,6 +46,7 @@
                                 <th>{{ __('Mobile') }}</th>
                                 <th>{{ __('Age') }}</th>
                                 <th>{{ __('Gender') }}</th>
+                                <th>{{ __('Balance') }}</th>
                                 <th>{{ __('Recharge') }}</th>
                                 <th>{{ __('Refer Code') }}</th>
                                 <th>{{ __('Level 1 refer') }}</th>
@@ -87,6 +88,7 @@
                                     <td>{{ $user->mobile }}</td>
                                     <td>{{ $user->age }}</td>
                                     <td>{{ ucfirst($user->gender) }}</td>
+                                    <td>{{ $user->balance }}</td>
                                     <td>{{ $user->recharge }}</td>
                                     <td>{{ $user->refer_code }}</td>
                                     <td>{{ $user->level_1_refer }}</td>

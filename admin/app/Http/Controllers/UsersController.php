@@ -63,6 +63,7 @@ class UsersController extends Controller
         $user->level_4_refer = $request->level_4_refer;
         $user->balance = $request->balance; 
         $user->recharge = $request->recharge; 
+        $user->purchase_wallet = $request->purchase_wallet; 
         $user->updated_at = now();
         $user->save();
 
