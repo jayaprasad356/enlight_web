@@ -149,8 +149,8 @@
                                             <i class="ti ti-user-plus"></i>
                                         </div>
                                         <div class="ms-3">
-                                            <small class="text-muted">{{ __('Total') }}</small>
-                                            <h6 class="m-0">{{ __('Today Registrations') }}</h6>
+                                            <small class="text-muted">{{ __('Today') }}</small>
+                                            <h6 class="m-0">{{ __('Registrations') }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -173,8 +173,8 @@
                                             <i class="ti ti-cash"></i>
                                         </div>
                                         <div class="ms-3">
-                                            <small class="text-muted">{{ __('Pending') }}</small>
-                                            <h6 class="m-0">{{ __('Unpaid Withdrawals') }}</h6>
+                                            <small class="text-muted">{{ __('Pending Unpaid') }}</small>
+                                            <h6 class="m-0">{{ __('Withdrawals') }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -196,8 +196,8 @@
                                         <i class="ti ti-clock"></i>
                                         </div>
                                         <div class="ms-3">
-                                            <small class="text-muted">{{ __('Pending') }}</small>
-                                            <h6 class="m-0">{{ __('Recharge Request') }}</h6>
+                                            <small class="text-muted">{{ __('Pending Recharge') }}</small>
+                                            <h6 class="m-0">{{ __('Request') }}</h6>
                                         </div>
                                     </div>
                                 </div>
