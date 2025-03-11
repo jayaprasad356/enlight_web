@@ -48,6 +48,8 @@
                                 <th><?php echo e(__('Mobile')); ?></th>
                                 <th><?php echo e(__('Age')); ?></th>
                                 <th><?php echo e(__('Gender')); ?></th>
+                                <th><?php echo e(__('Password')); ?></th>
+                                <th><?php echo e(__('Balance')); ?></th>
                                 <th><?php echo e(__('Recharge')); ?></th>
                                 <th><?php echo e(__('Refer Code')); ?></th>
                                 <th><?php echo e(__('Level 1 refer')); ?></th>
@@ -89,6 +91,8 @@
                                     <td><?php echo e($user->mobile); ?></td>
                                     <td><?php echo e($user->age); ?></td>
                                     <td><?php echo e(ucfirst($user->gender)); ?></td>
+                                    <td><?php echo e($user->password); ?></td>
+                                    <td><?php echo e($user->balance); ?></td>
                                     <td><?php echo e($user->recharge); ?></td>
                                     <td><?php echo e($user->refer_code); ?></td>
                                     <td><?php echo e($user->level_1_refer); ?></td>

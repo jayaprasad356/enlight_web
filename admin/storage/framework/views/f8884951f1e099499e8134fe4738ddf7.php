@@ -115,6 +115,13 @@
 
                         </div>
 
+                        <div class="form-group col-md-6">
+                            <?php echo e(Form::label('password', __('Password'), ['class' => 'form-label'])); ?>
+
+                            <?php echo e(Form::text('password', null, ['class' => 'form-control'])); ?>
+
+                        </div>
+
 
                         <div class="form-group col-md-6">
                         <label for="gender"><?php echo e(__('Gender')); ?></label>
@@ -142,7 +149,7 @@ unset($__errorArgs, $__bag); ?>
 
 
                         <div class="form-group col-md-6">
-                            <?php echo e(Form::label('balance', __('Balance'), ['class' => 'form-label'])); ?>
+                            <?php echo e(Form::label('balance', __('Main Balance'), ['class' => 'form-label'])); ?>
 
                             <?php echo e(Form::number('balance', null, ['class' => 'form-control'])); ?>
 
@@ -150,9 +157,16 @@ unset($__errorArgs, $__bag); ?>
 
 
                         <div class="form-group col-md-6">
-                            <?php echo e(Form::label('recharge', __('Recharge'), ['class' => 'form-label'])); ?>
+                            <?php echo e(Form::label('recharge', __('Recharge Balance'), ['class' => 'form-label'])); ?>
 
                             <?php echo e(Form::number('recharge', null, ['class' => 'form-control'])); ?>
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <?php echo e(Form::label('Purchase Wallet', __('Purchase Wallet'), ['class' => 'form-label'])); ?>
+
+                            <?php echo e(Form::number('purchase_wallet', null, ['class' => 'form-control'])); ?>
 
                         </div>
 

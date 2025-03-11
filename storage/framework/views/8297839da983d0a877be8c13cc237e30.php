@@ -68,10 +68,7 @@ unset($__errorArgs, $__bag); ?>
                 <button class="btn btn-primary mt-2" type="submit"><?php echo e(__('Login')); ?></button>
             </div>
 
-            <!-- Forgot Password Link -->
-            <div class="text-center mt-2">
-                <a href="<?php echo e(route('password.otp')); ?>"><?php echo e(__('Forgot Password?')); ?></a>
-            </div>
+          
         </form>
     </div>
 </div>

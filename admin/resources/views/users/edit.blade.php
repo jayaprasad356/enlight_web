@@ -142,7 +142,7 @@
 
                         <div class="form-group col-md-6">
                             {{ Form::label('Purchase Wallet', __('Purchase Wallet'), ['class' => 'form-label']) }}
-                            {{ Form::number('purchase_Wallet', null, ['class' => 'form-control']) }}
+                            {{ Form::number('purchase_wallet', null, ['class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group col-md-6">
