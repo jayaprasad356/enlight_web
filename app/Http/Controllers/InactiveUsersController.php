@@ -96,10 +96,10 @@ class InactiveUsersController extends Controller
                 $referralCount = Users::where('level_1_refer', $sessionUser->refer_code)
                     ->where('status', 1)
                     ->count();
-                if ($referralCount >= 3) {
+                if ($referralCount >= 10) {
                     return response()->json([
                         'success' => false,
-                        'message' => 'Only 3 members are allowed in Level 1.'
+                        'message' => 'Only 10 members are allowed in Level 1.'
                     ], 400);
                 }
 
@@ -133,10 +133,10 @@ class InactiveUsersController extends Controller
                 $referralCount = Users::where('level_1_refer', $selectedLevelUser->refer_code)
                     ->where('status', 1)
                     ->count();
-                if ($referralCount >= 3) {
+                if ($referralCount >= 30) {
                     return response()->json([
                         'success' => false,
-                        'message' => 'Only 3 members are allowed in Level 2.'
+                        'message' => 'Only 30 members are allowed in Level 2.'
                     ], 400);
                 }
     
@@ -166,10 +166,10 @@ class InactiveUsersController extends Controller
                 $referralCount = Users::where('level_1_refer', $selectedLevelUser->refer_code)
                     ->where('status', 1)
                     ->count();
-                if ($referralCount >= 3) {
+                if ($referralCount >= 90) {
                     return response()->json([
                         'success' => false,
-                        'message' => 'Only 3 members are allowed in Level 3.'
+                        'message' => 'Only 90 members are allowed in Level 3.'
                     ], 400);
                 }
     
@@ -199,10 +199,10 @@ class InactiveUsersController extends Controller
                 $referralCount = Users::where('level_1_refer', $selectedLevelUser->refer_code)
                     ->where('status', 1)
                     ->count();
-                if ($referralCount >= 3) {
+                if ($referralCount >= 270) {
                     return response()->json([
                         'success' => false,
-                        'message' => 'Only 3 members are allowed in Level 4.'
+                        'message' => 'Only 270 members are allowed in Level 4.'
                     ], 400);
                 }
     

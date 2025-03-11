@@ -188,7 +188,7 @@
                                             <i class="ti ti-credit-card"></i>
                                         </div>
                                         <div class="ms-2">
-                                            <small class="text-muted">{{ __('Payment Commission ') }}</small>
+                                            <small class="text-muted">{{ __('Product Commission ') }}</small>
                                             <h6 class="m-0">{{ __('Income') }}</h6>
                                         </div>
                                     </div>

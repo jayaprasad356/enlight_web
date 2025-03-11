@@ -196,7 +196,7 @@
                                             <i class="ti ti-credit-card"></i>
                                         </div>
                                         <div class="ms-2">
-                                            <small class="text-muted"><?php echo e(__('Payment Commission ')); ?></small>
+                                            <small class="text-muted"><?php echo e(__('Product Commission ')); ?></small>
                                             <h6 class="m-0"><?php echo e(__('Income')); ?></h6>
                                         </div>
                                     </div>

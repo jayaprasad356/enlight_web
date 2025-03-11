@@ -19,10 +19,10 @@ class ProductsController extends Controller
          $user = Users::find($user_id);
      
          // If user is found, get their balance, else default to 0
-         $balance = $user ? $user->balance : 0;
+         $purchase_wallet = $user ? $user->purchase_wallet : 0;
         // Fetch products from the database
         $products = Products::all();
 
-        return view('my_products.index', compact('products', 'balance'));
+        return view('my_products.index', compact('products', 'purchase_wallet'));
     }
 }

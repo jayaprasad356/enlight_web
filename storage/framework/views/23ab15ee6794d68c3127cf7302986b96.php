@@ -41,7 +41,7 @@
 
 <h3>My Products</h3>
 <div class="recharge-balance" style="position: absolute; top: 10px; right: 10px; font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
-    <strong><?php echo e(__('Available Balance: Rs')); ?> <?php echo e($balance); ?></strong>
+    <strong><?php echo e(__('Available Balance: Rs')); ?> <?php echo e($purchase_wallet); ?></strong>
 </div>
 <br>
 <div class="row">

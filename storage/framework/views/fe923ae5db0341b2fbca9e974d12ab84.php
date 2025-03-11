@@ -43,6 +43,11 @@
     </a>
 
     <div class="dropdown-menu dash-h-dropdown">
+    <a class="dropdown-item" href="<?php echo e(route('profile')); ?>">
+    <i class="ti ti-user"></i>   <?php echo e(__('Profile')); ?>
+
+                                    </a>
+
         <a href="<?php echo e(route('logout')); ?>" class="dropdown-item"
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="ti ti-power"></i>

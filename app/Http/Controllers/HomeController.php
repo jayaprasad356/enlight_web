@@ -104,12 +104,6 @@ class HomeController extends Controller
                 return response()->json(['success' => false, 'message' => 'Insufficient Whatsapp Status Income']);
             }
             $user->whatsapp_status_income -= $amount;
-        } 
-        elseif ($type === 'payment_wallet') {
-            if ($user->payment_wallet < $amount) {
-                return response()->json(['success' => false, 'message' => 'Insufficient Payment Wallet']);
-            }
-            $user->payment_wallet -= $amount;
         } else {
             return response()->json(['success' => false, 'message' => 'Invalid income type']);
         }

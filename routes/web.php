@@ -25,6 +25,7 @@ use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ExtraBonusController;
 use App\Http\Controllers\EarningsController;
+use App\Http\Controllers\ProfileController;
 
 
 
@@ -46,15 +47,18 @@ Route::get('/', function () {
     return Auth::check() ? redirect()->route('dashboard') : redirect()->route('mobile.login');
 });
 
-// Authentication routes
 Route::get('mobile-login', [CustomLoginController::class, 'showLoginForm'])->name('mobile.login');
 Route::post('mobile-login', [CustomLoginController::class, 'login']);
 Route::post('logout', [CustomLoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [CustomLoginController::class, 'logout'])->name('logout');
+Route::get('/force-change-password', [CustomLoginController::class, 'showChangePasswordForm'])->name('force.change.password');
+Route::post('/force-change-password', [CustomLoginController::class, 'changePassword'])->name('force.change.password.post');
+
 
 // Dashboard
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard')->middleware('auth');
 
-// Resources
+Route::get('/profile', [CustomLoginController::class, 'profile'])->name('profile');
 Route::get('/level1List', [UsersController::class, 'level1List'])->name('level_1.index');
 Route::get('/level2List', [UsersController::class, 'level2List'])->name('level_2.index');
 Route::get('/level3List', [UsersController::class, 'level3List'])->name('level_3.index');
