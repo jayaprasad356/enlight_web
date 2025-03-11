@@ -107,6 +107,11 @@
                             {{ Form::number('age', null, ['class' => 'form-control']) }}
                         </div>
 
+                        <div class="form-group col-md-6">
+                            {{ Form::label('password', __('Password'), ['class' => 'form-label']) }}
+                            {{ Form::text('password', null, ['class' => 'form-control']) }}
+                        </div>
+
 
                         <div class="form-group col-md-6">
                         <label for="gender">{{ __('Gender') }}</label>
