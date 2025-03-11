@@ -14,10 +14,27 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <div class="recharge-balance" style="position: absolute; top: 10px; right: 10px; font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
-                    <strong>{{ __('Membership Activation Balance: Rs') }} {{ $recharge }}</strong>
+                <!-- Row to align buttons on the left and balance on the right -->
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+                    <!-- Buttons (Left Aligned) -->
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="button" class="btn btn-info recharge-now-btn" onclick="showImage()">
+                            {{ __('Recharge Now') }}
+                        </button>
+
+                        <button type="button" class="btn btn-warning upload-screenshot-btn" 
+                            onclick="window.location.href='{{ route('payment_screenshots.create') }}'">
+                            {{ __('Upload Screenshot') }}
+                        </button>
+                    </div>
+
+                    <!-- Balance (Right Aligned) -->
+                    <div class="recharge-balance p-2" style="font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
+                        <strong>{{ __('Membership Activation Balance: Rs') }} {{ $recharge }}</strong>
+                    </div>
                 </div>
-                <br><br>
+
+                <br>
                 <div class="text-end">
                     <a href="{{ route('inactive_users.addusers') }}" class="btn btn-primary">{{ __('New Customer') }}</a>
                 </div>
@@ -84,7 +101,29 @@
         </div>
     </div>
 </div>
+
+<div id="qrCodeModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ __('Scan QR Code for Subscription') }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                    @if(isset($news) && $news->qr_image)
+                        <img id="qrImage" src="{{ asset('admin/storage/app/public/' . $news->qr_image) }}" alt="QR Code" class="img-fluid" />
+                    @else
+                        <p>{{ __('No QR code available') }}</p>
+                    @endif
+
+                <p class="mt-3">{{ __('Scan this QR code to complete your subscription.') }}</p>
+            </div>
+        </div>
 @endsection
+
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Ensure jQuery is loaded -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap JS -->
@@ -154,4 +193,28 @@
     });
 });
 
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+<script>
+function showImage() {
+    // Open the modal
+    $('#qrCodeModal').modal('show');
+    
+}
+
+$(document).ready(function() {
+    // Close the modal when clicking the close button
+    $('.close').click(function() {
+        $('#qrCodeModal').modal('hide');
+    });
+
+    // Also close when clicking outside the modal content
+    $(document).click(function(event) {
+        if ($(event.target).closest("#qrCodeModal .modal-content").length === 0) {
+            $('#qrCodeModal').modal('hide');
+        }
+    });
+});
 </script>

@@ -23,7 +23,7 @@
             <div class="alert alert-info text-center" role="alert">
             <h5><?php echo e(__('One Time Membership Charges - ₹299')); ?></h5>
             <a href="javascript:void(0);" class="btn btn-primary" onclick="showImage()">
-                <?php echo e(__('Subscribe Now')); ?>
+                <?php echo e(__('Recharge Now')); ?>
 
             </a>
             <a href="<?php echo e(route('payment_screenshots.create')); ?>" class="btn btn-primary ml-2">

@@ -100,7 +100,7 @@ class WithdrawalsController extends Controller
             $currentTime = now()->format('H:i'); // Get the current time in 24-hour format
 
             // Allowed days and time range
-            $allowedDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'sunday'];
+            $allowedDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             $startTime = '10:00';
             $endTime = '18:00';
 

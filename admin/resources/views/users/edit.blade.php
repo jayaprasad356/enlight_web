@@ -125,13 +125,13 @@
 
 
                         <div class="form-group col-md-6">
-                            {{ Form::label('balance', __('Balance'), ['class' => 'form-label']) }}
+                            {{ Form::label('balance', __('Main Balance'), ['class' => 'form-label']) }}
                             {{ Form::number('balance', null, ['class' => 'form-control']) }}
                         </div>
 
 
                         <div class="form-group col-md-6">
-                            {{ Form::label('recharge', __('Recharge'), ['class' => 'form-label']) }}
+                            {{ Form::label('recharge', __('Recharge Balance'), ['class' => 'form-label']) }}
                             {{ Form::number('recharge', null, ['class' => 'form-control']) }}
                         </div>
 

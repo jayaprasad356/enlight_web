@@ -10,22 +10,28 @@ class PaymentScreenshotsControllers extends Controller
 {
     // List all avatars
     public function index(Request $request)
-    {
-        $search = $request->get('search'); // Get the search term from the request
-        
-        // If there's a search term, filter by gender or gift icon name
-        if ($search) {
-            $payment_screenshots = payment_screenshots::where('coins', 'like', '%' . $search . '%')
-                             ->orWhere('gift_icon', 'like', '%' . $search . '%')
-                             ->orderBy('created_at', 'desc') // Order by latest created
-                             ->get();
-        } else {
-            // Otherwise, fetch all avatars and order by latest created
-            $payment_screenshots = payment_screenshots::orderBy('created_at', 'desc')->get();
-        }
+{
+    $search = $request->get('search'); // Get the search term from the request
+    $userId = session('user_id'); // Get the currently logged-in user ID
 
-        return view('payment_screenshots.index', compact('payment_screenshots'));
+    // Ensure we only fetch screenshots for the logged-in user
+    if ($search) {
+        $payment_screenshots = payment_screenshots::where('user_id', $userId)
+            ->where(function ($query) use ($search) {
+                $query->where('coins', 'like', '%' . $search . '%')
+                      ->orWhere('gift_icon', 'like', '%' . $search . '%');
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+    } else {
+        $payment_screenshots = payment_screenshots::where('user_id', $userId)
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
+
+    return view('payment_screenshots.index', compact('payment_screenshots'));
+}
+
 
     // Show the create form
     public function create()

@@ -49,7 +49,7 @@
         </div>
 
         <div class="text-start mt-3">
-            <p class="text-muted fw-bold fs-8">{{ __('Withdrawal Request Timing Between 10am to 6pm') }}</p>
+            <p class="text-muted fw-bold fs-8">{{ __('Withdrawal Request Timings 10am to 6pm Monday to Saturday') }}</p>
         </div>
     </div>
 </div>

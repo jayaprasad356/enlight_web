@@ -21,7 +21,7 @@
             <div class="alert alert-info text-center" role="alert">
             <h5>{{ __('One Time Membership Charges - ₹299') }}</h5>
             <a href="javascript:void(0);" class="btn btn-primary" onclick="showImage()">
-                {{ __('Subscribe Now') }}
+                {{ __('Recharge Now') }}
             </a>
             <a href="{{ route('payment_screenshots.create') }}" class="btn btn-primary ml-2">
                 {{ __('Upload Payment Screenshot') }}

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Http;
 use App\Models\Users;
+use App\Models\News;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
@@ -13,22 +15,31 @@ class InactiveUsersController extends Controller
 {
     public function index()
     {
+        $news = News::latest()->first(); // Fetch latest news
+        
         // Get user_id from session
         $user_id = Session::get('user_id');
     
-        // Fetch the user and their balance from the database
+        // Fetch the user from the database
         $user = Users::find($user_id);
     
-        // If user is found, get their balance, else default to 0
-        $recharge = $user ? $user->recharge : 0;
+        // If user is not found, logout and redirect to login
+        if (!$user) {
+            Auth::logout();
+            Session::flush(); // Clear session data
+            return redirect()->route('mobile.login')->with('error', 'Session expired. Please log in again.');
+        }
     
-        // Fetch inactive users with status 0 and level_1_refer the session user's refer_code
+        // Get user balance
+        $recharge = $user->recharge ?? 0;
+    
+        // Fetch inactive users with status 0 and matching refer_code
         $users = Users::where('status', 0)
                       ->where('level_1_refer', $user->refer_code)
                       ->get();
     
-        // Return the view with users and the balance value
-        return view('inactive_users.index', compact('users', 'recharge'));
+        // Return the view with users and balance
+        return view('inactive_users.index', compact('users', 'recharge', 'news'));
     }
 
     public function activate(Request $request)
@@ -147,7 +158,7 @@ class InactiveUsersController extends Controller
                 $addLevelIncome = true;
     
                 // Update refer_income for the level user
-                $selectedLevelUser->refer_income += 50;
+                $selectedLevelUser->refer_income += 20;
                 $selectedLevelUser->save();
             }
     
@@ -180,7 +191,7 @@ class InactiveUsersController extends Controller
                 $addLevelIncome = true;
     
                 // Update refer_income for the level user
-                $selectedLevelUser->refer_income += 50;
+                $selectedLevelUser->refer_income += 10;
                 $selectedLevelUser->save();
             }
     
@@ -213,7 +224,7 @@ class InactiveUsersController extends Controller
                 $addLevelIncome = true;
     
                 // Update refer_income for the level user
-                $selectedLevelUser->refer_income += 50;
+                $selectedLevelUser->refer_income += 5;
                 $selectedLevelUser->save();
             }
     
@@ -233,7 +244,17 @@ class InactiveUsersController extends Controller
     
             $sessionUser->save();
     
-            // **Log Transactions**
+           // Define the refer income based on the level
+            $referIncomeMapping = [
+                1 => 50,
+                2 => 20,
+                3 => 10,
+                4 => 5
+            ];
+
+            $referIncomeAmount = $referIncomeMapping[$level] ?? 0; // Default to 0 if level is not in the mapping
+
+            // Log Transactions
             DB::table('transactions')->insert([
                 'user_id' => $selectedUser->id,
                 'type' => "level_{$level}_activation",
@@ -242,12 +263,13 @@ class InactiveUsersController extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-    
-            if ($selectedLevelUser) {
+
+            // Add refer income transaction if applicable
+            if ($selectedLevelUser && $referIncomeAmount > 0) {
                 DB::table('transactions')->insert([
                     'user_id' => $selectedLevelUser->id,
                     'type' => 'refer_income',
-                    'amount' => 50,
+                    'amount' => $referIncomeAmount,
                     'datetime' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -307,7 +329,7 @@ class InactiveUsersController extends Controller
     
         // Call the API to fetch the users based on the user_id and level
         try {
-            $response = Http::post('https://enlightapp.in/api/level', [
+            $response = Http::post('http://localhost/enlight_web/api/level', [
                 'user_id' => $userId,
                 'level' => $mappedLevel  // Use mapped level
             ]);
