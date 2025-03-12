@@ -15,14 +15,19 @@
         <div class="card">
             <div class="card-body">
                 <!-- Display Available Recharge Balance -->
-                <div class="recharge-balance" style="position: absolute; top: 10px; right: 10px; font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
-                    <strong>{{ __('Available Recharge : Rs') }} {{ $recharge }}</strong>
-                </div>
-                <br>
-                <br>
+                <div class="d-flex flex-wrap align-items-center justify-content-between flex-md-row flex-column">
+                    <!-- Recharge Balance (Always on the right) -->
+                    <div class="recharge-balance p-2" style="font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
+                        <strong>{{ __('Available Recharge : Rs') }} {{ $recharge }}</strong>
+                    </div>
 
-                <!-- Display the user details -->
-                <p><strong>{{ __('Customer ID:') }}</strong> {{ $id }} | <strong>{{ __('Name:') }}</strong> {{ $userName }} | <strong>{{ __('Mobile:') }}</strong> {{ $userMobile }}</p>
+                    <!-- Customer Details -->
+                    <p class="customer-details mt-2 mt-md-0" style="margin-left: 10px;">
+                        <strong>{{ __('Customer ID:') }}</strong> {{ $id }} | 
+                        <strong>{{ __('Name:') }}</strong> {{ $userName }} | 
+                        <strong>{{ __('Mobile:') }}</strong> {{ $userMobile }}
+                    </p>
+                </div>
 
                 <!-- Display the level-specific activation button -->
                 <div class="mt-4">
