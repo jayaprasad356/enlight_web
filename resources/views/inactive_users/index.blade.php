@@ -35,9 +35,6 @@
                 </div>
 
                 <br>
-                <div class="text-end">
-                    <a href="{{ route('inactive_users.addusers') }}" class="btn btn-primary">{{ __('New Customer') }}</a>
-                </div>
                 <div class="table-responsive">
                     <table class="table" id="pc-dt-simple">
                         <thead>

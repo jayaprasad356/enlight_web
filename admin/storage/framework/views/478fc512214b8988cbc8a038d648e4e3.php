@@ -57,8 +57,6 @@
                                 <th><?php echo e(__('Level 3 refer')); ?></th>
                                 <th><?php echo e(__('Level 1 refer4')); ?></th>
                                 <th><?php echo e(__('Refer Bonus')); ?></th>
-                                <th><?php echo e(__('Level Income')); ?></th>
-                                <th><?php echo e(__('Level Income Wallet')); ?></th>
                                 <th><?php echo e(__('Purchase Wallet')); ?></th>
                                 <th><?php echo e(__('Registered DateTime')); ?></th>
                                 <th><?php echo e(__('Status')); ?></th>
@@ -100,8 +98,6 @@
                                     <td><?php echo e($user->level_3_refer); ?></td>
                                     <td><?php echo e($user->level_4_refer); ?></td>
                                     <td><?php echo e($user->refer_income); ?></td>
-                                    <td><?php echo e($user->level_income); ?></td>
-                                    <td><?php echo e($user->level_income_wallet); ?></td>
                                     <td><?php echo e($user->purchase_wallet); ?></td>
                                     <td><?php echo e($user->registered_datetime); ?></td>
                                     <td>

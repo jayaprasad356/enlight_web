@@ -345,73 +345,7 @@ class InactiveUsersController extends Controller
             'data' => $data['data'] // Assuming the 'data' key contains the user list
         ]);
     }
-    
-    public function addusers()
-{
-    $user_id = Session::get('user_id');  // Get the logged-in user's ID from session
-    $user = Users::find($user_id);  // Fetch the user from the database
 
-    if (!$user) {
-        return redirect()->route('inactive_users.index')->with('error', 'User not found.');
-    }
-
-    $refer_code = $user->refer_code;  // Get the refer_code of the logged-in user
-
-    return view('inactive_users.addusers', compact('refer_code'));
-}
-
-    public function register(Request $request)
-    {
-        // Validate the incoming request data
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'mobile' => 'required|string|max:15',
-            'password' => 'required|string|min:8',
-            'pincode' => 'required|string|min:6|max:6',
-            'age' => 'required|integer|min:18', // Assuming age should be an integer and at least 18
-            'gender' => 'required|string|max:255',
-        ]);
-    
-        // Get the logged-in user's information from session
-        $user_id = Session::get('user_id');
-        
-        // Fetch the user's refer_code from the database using the user_id from session
-        $user = Users::find($user_id);  // Assuming you have a User model and the user exists in the database
-    
-        if (!$user) {
-            return redirect()->route('inactive_users.addusers')->with('error', 'User not found.');
-        }
-    
-        $refer_code = $user->refer_code;  // Assuming 'refer_code' is a column in the 'users' table
-    
-        // API endpoint to register the user
-        $apiUrl = 'https://enlightapp.in/api/register';  // Replace with your actual registration API URL
-    
-        // Prepare the data to send to the API
-        $apiData = [
-            'name' => $validated['name'],
-            'mobile' => $validated['mobile'],
-            'password' => $validated['password'],  // Encrypt the password
-            'pincode' => $validated['pincode'],
-            'age' => $validated['age'],
-            'gender' => $validated['gender'],
-            'level_1_refer' => $refer_code, // Automatically use the logged-in user's refer_code from session
-        ];
-    
-        // Make the API request (you can also use other libraries like Guzzle if needed)
-        $response = Http::post($apiUrl, $apiData);
-    
-        // Check if the registration was successful
-        $responseData = $response->json(); // Decode the JSON response
-
-        if ($response->successful() && isset($responseData['success']) && $responseData['success'] === true) {
-            return redirect()->route('inactive_users.index')->with('success', $responseData['message'] ?? 'User registered successfully.');
-        } else {
-            return redirect()->route('inactive_users.addusers')->with('error', $responseData['message'] ?? 'Registration failed. Please try again.');
-        }
-        
-    }
-    
 
 
 }

@@ -26,6 +26,12 @@
             <a href="{{ route('payment_screenshots.create') }}" class="btn btn-primary ml-2">
                 {{ __('Upload Payment Screenshot') }}
             </a>
+            <a href="javascript:void(0);" class="btn btn-primary ml-2" onclick="copyShareLink()">
+                {{ __('Share Link') }}
+            </a>
+
+
+
             </div>
         </div>
 
@@ -80,36 +86,6 @@
                             </div>
                             <div class="text-center mt-3">
                             <a href="javascript:void(0);" class="btn btn-success" onclick="addToBalance('monthly_salary', {{ $monthly_salary }})">
-                                    {{ __('Add to Withdrawals') }}
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Balance Box -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-auto mb-3 mb-sm-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="theme-avtar bg-info">
-                                            <i class="ti ti-credit-card"></i>
-                                        </div>
-                                        <div class="ms-2">
-                                            <small class="text-muted">{{ __('Level') }}</small>
-                                            <h6 class="m-0">{{ __('Income') }}</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto text-end">
-                                    <h4 class="m-0 text-info">{{ number_format($level_income, 2) }}</h4>
-                                </div>
-                            </div>
-                            <div class="text-center mt-3">
-                            <a href="javascript:void(0);" class="btn btn-info" onclick="addToBalance('level_income', {{ $level_income }})">
                                     {{ __('Add to Withdrawals') }}
                                 </a>
 
@@ -270,4 +246,16 @@ function subscribe() {
             }
         });
     });
+</script>
+<script>
+function copyShareLink() {
+    var link = "{{ route('addusers') }}"; // Get the share link
+    var tempInput = document.createElement("input"); // Create a temporary input
+    document.body.appendChild(tempInput);
+    tempInput.value = link;
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    alert("Share link copied to clipboard!");
+}
 </script>

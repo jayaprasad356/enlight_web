@@ -30,6 +30,13 @@
                 <?php echo e(__('Upload Payment Screenshot')); ?>
 
             </a>
+            <a href="javascript:void(0);" class="btn btn-primary ml-2" onclick="copyShareLink()">
+                <?php echo e(__('Share Link')); ?>
+
+            </a>
+
+
+
             </div>
         </div>
 
@@ -84,37 +91,6 @@
                             </div>
                             <div class="text-center mt-3">
                             <a href="javascript:void(0);" class="btn btn-success" onclick="addToBalance('monthly_salary', <?php echo e($monthly_salary); ?>)">
-                                    <?php echo e(__('Add to Withdrawals')); ?>
-
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Balance Box -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-auto mb-3 mb-sm-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="theme-avtar bg-info">
-                                            <i class="ti ti-credit-card"></i>
-                                        </div>
-                                        <div class="ms-2">
-                                            <small class="text-muted"><?php echo e(__('Level')); ?></small>
-                                            <h6 class="m-0"><?php echo e(__('Income')); ?></h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto text-end">
-                                    <h4 class="m-0 text-info"><?php echo e(number_format($level_income, 2)); ?></h4>
-                                </div>
-                            </div>
-                            <div class="text-center mt-3">
-                            <a href="javascript:void(0);" class="btn btn-info" onclick="addToBalance('level_income', <?php echo e($level_income); ?>)">
                                     <?php echo e(__('Add to Withdrawals')); ?>
 
                                 </a>
@@ -280,4 +256,17 @@ function subscribe() {
         });
     });
 </script>
+<script>
+function copyShareLink() {
+    var link = "<?php echo e(route('addusers')); ?>"; // Get the share link
+    var tempInput = document.createElement("input"); // Create a temporary input
+    document.body.appendChild(tempInput);
+    tempInput.value = link;
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    alert("Share link copied to clipboard!");
+}
+</script>
+
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\enlight_web\resources\views/dashboard/dashboard.blade.php ENDPATH**/ ?>

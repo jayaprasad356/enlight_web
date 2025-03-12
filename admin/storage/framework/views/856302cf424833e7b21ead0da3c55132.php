@@ -151,8 +151,8 @@
                                             <i class="ti ti-user-plus"></i>
                                         </div>
                                         <div class="ms-3">
-                                            <small class="text-muted"><?php echo e(__('Total')); ?></small>
-                                            <h6 class="m-0"><?php echo e(__('Today Registrations')); ?></h6>
+                                            <small class="text-muted"><?php echo e(__('Today')); ?></small>
+                                            <h6 class="m-0"><?php echo e(__('Registrations')); ?></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -175,8 +175,8 @@
                                             <i class="ti ti-cash"></i>
                                         </div>
                                         <div class="ms-3">
-                                            <small class="text-muted"><?php echo e(__('Pending')); ?></small>
-                                            <h6 class="m-0"><?php echo e(__('Unpaid Withdrawals')); ?></h6>
+                                            <small class="text-muted"><?php echo e(__('Pending Unpaid')); ?></small>
+                                            <h6 class="m-0"><?php echo e(__('Withdrawals')); ?></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -198,8 +198,8 @@
                                         <i class="ti ti-clock"></i>
                                         </div>
                                         <div class="ms-3">
-                                            <small class="text-muted"><?php echo e(__('Pending')); ?></small>
-                                            <h6 class="m-0"><?php echo e(__('Recharge Request')); ?></h6>
+                                            <small class="text-muted"><?php echo e(__('Pending Recharge')); ?></small>
+                                            <h6 class="m-0"><?php echo e(__('Request')); ?></h6>
                                         </div>
                                     </div>
                                 </div>

@@ -18,7 +18,7 @@
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
                         <table class="table" id="pc-dt-simple">
-                           
+                         
                             <thead>
                                 <tr>
                                     <th><?php echo e(__('ID')); ?></th>

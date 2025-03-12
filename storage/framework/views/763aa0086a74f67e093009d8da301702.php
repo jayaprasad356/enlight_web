@@ -1,22 +1,18 @@
 
 
-<?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Register New Customers')); ?>
-
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('breadcrumb'); ?>
-    <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Home')); ?></a></li>
-    <li class="breadcrumb-item"><a href="<?php echo e(route('inactive_users.index')); ?>"><?php echo e(__('Inactive Customers')); ?></a></li>
-    <li class="breadcrumb-item"><?php echo e(__('Register New Customers')); ?></li>
-<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-title', __('Mobile Login')); ?>
 
 <?php $__env->startSection('content'); ?>
-<div class="row">
-    <div class="col-xl-12">
-        <div class="card">
-            <div class="card-body">
+<div class="card-body">
+    <div class="text-center mb-4">
+        <img src="<?php echo e(asset('storage/uploads/logo/enlight.jpg')); ?>" alt="Logo" width="100">
+    </div>
 
+    <div>
+        <center><h2 class="mb-3 f-w-600"><?php echo e(__('Customer Register')); ?></h2></center> 
+    </div>
+
+    <div class="custom-login-form">
                 <form action="<?php echo e(route('inactive_users.register')); ?>" method="POST">
                     <?php echo csrf_field(); ?>
                     <div class="form-group">
@@ -124,9 +120,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-</div>
+      
 <?php $__env->stopSection(); ?>
 
 <!-- Include jQuery (if not already included in your project) -->
@@ -151,4 +145,4 @@ unset($__errorArgs, $__bag); ?>
     });
 </script>
 
-<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\enlight_web\resources\views/inactive_users/addusers.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.auth', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\enlight_web\resources\views/inactive_users/addusers.blade.php ENDPATH**/ ?>

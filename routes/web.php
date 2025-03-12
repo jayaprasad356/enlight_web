@@ -50,6 +50,10 @@ Route::get('/', function () {
 
 Route::get('mobile-login', [CustomLoginController::class, 'showLoginForm'])->name('mobile.login');
 Route::post('mobile-login', [CustomLoginController::class, 'login']);
+Route::get('/addusers', function () {
+    return view('auth.addusers');
+})->name('addusers');
+Route::post('/addusers', [CustomLoginController::class, 'register'])->name('addusers');
 Route::post('logout', [CustomLoginController::class, 'logout'])->name('logout');
 Route::get('/logout', [CustomLoginController::class, 'logout'])->name('logout');
 Route::get('/force-change-password', [CustomLoginController::class, 'showChangePasswordForm'])->name('force.change.password');
