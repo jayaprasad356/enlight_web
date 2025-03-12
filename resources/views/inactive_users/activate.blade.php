@@ -25,8 +25,8 @@
                     <!-- Customer Details (Left Side on Desktop, Below Recharge on Mobile) -->
                     <p class="customer-details order-2 order-md-1 mt-2 mt-md-0 text-md-start text-start text-break"
                         style="font-size: 13px; white-space: normal; word-wrap: break-word;">
-                        <strong>{{ __('Customer ID:') }}</strong> {{ $id }} <br> 
-                        <strong>{{ __('Name:') }}</strong> {{ $userName }} <br> 
+                        <strong>{{ __('Customer ID:') }}</strong> {{ $id }} 
+                        <strong>{{ __('Name:') }}</strong> {{ $userName }} 
                         <strong>{{ __('Mobile:') }}</strong> {{ $userMobile }}
                     </p>
                 </div>
