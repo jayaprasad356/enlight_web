@@ -16,18 +16,20 @@
             <div class="card-body">
                 <!-- Display Available Recharge Balance -->
                 <div class="d-flex flex-wrap align-items-center justify-content-between flex-md-row flex-column">
-                    <!-- Recharge Balance (Left Side) -->
-                    <div class="recharge-balance p-2" style="font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
-                        <strong>{{ __('Available Recharge : Rs') }} {{ $recharge }}</strong>
+                        <!-- Recharge Balance (Right Side on Desktop, Top on Mobile) -->
+                        <div class="recharge-balance p-2 order-1 order-md-2 mt-2 mt-md-0"
+                            style="font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px; white-space: nowrap;">
+                            <strong>{{ __('Membership Activation Balance : Rs') }} {{ $recharge }}</strong>
+                        </div>
+
+                        <!-- Customer Details (Left Side on Desktop, Below Recharge on Mobile) -->
+                        <p class="customer-details order-2 order-md-1 mt-2 mt-md-0 text-md-start text-start" style="white-space: nowrap;">
+                            <strong>{{ __('Customer ID:') }}</strong> {{ $id }} | 
+                            <strong>{{ __('Name:') }}</strong> {{ $userName }} | 
+                            <strong>{{ __('Mobile:') }}</strong> {{ $userMobile }}
+                        </p>
                     </div>
 
-                    <!-- Customer Details (Right Side) -->
-                    <p class="customer-details mt-2 mt-md-0 text-md-end text-start" style="white-space: nowrap;">
-                        <strong>{{ __('Customer ID:') }}</strong> {{ $id }} | 
-                        <strong>{{ __('Name:') }}</strong> {{ $userName }} | 
-                        <strong>{{ __('Mobile:') }}</strong> {{ $userMobile }}
-                    </p>
-                </div>
 
 
                 <!-- Display the level-specific activation button -->
