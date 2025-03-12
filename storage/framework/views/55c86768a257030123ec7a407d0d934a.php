@@ -50,7 +50,9 @@
         </div>
 
         <div class="text-start mt-3">
-            <p class="text-muted fw-bold fs-8"><?php echo e(__('Withdrawal Request Timing Between 10am to 6pm')); ?></p>
+            <p class="text-muted fw-bold fs-8"><?php echo e(__(' * Withdrawal Request Timings 10am to 6pm Monday to Saturday')); ?></p>
+            <p class="text-muted fw-bold fs-8"><?php echo e(__(' * Withdrawal Will Be Enabled After Completing 3 Refers In Level 1')); ?></p>
+            <p class="text-muted fw-bold fs-8"><?php echo e(__(' * Withdrawal Will Be Paid Within 24hrs From The Time Of Withdrawal Initiated')); ?></p>
         </div>
     </div>
 </div>

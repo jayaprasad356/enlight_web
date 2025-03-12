@@ -95,6 +95,17 @@ class WithdrawalsController extends Controller
             ], 404); // User not found
         }
 
+        $refer_code = $user->refer_code;
+
+        // **Count users where level_1_refer matches the logged-in user's refer_code**
+        $referralCount = Users::where('level_1_refer', $refer_code)->count();
+    
+        if ($referralCount < 3) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Withdrawal will be enabled after completing 3 refers in Level 1.',
+            ], 400);
+        }
           // Check current day and time
             $currentDay = now()->format('l'); // Get the current day (e.g., Monday, Tuesday)
             $currentTime = now()->format('H:i'); // Get the current time in 24-hour format
@@ -130,7 +141,17 @@ class WithdrawalsController extends Controller
             ], 400); // Pending withdrawal exists
         }
     
-     
+        $lastWithdrawal = Withdrawals::where('user_id', $user_id)
+        ->where('status', 0) // Pending status
+        ->orderBy('datetime', 'desc')
+        ->first();
+
+        if ($lastWithdrawal && now()->diffInHours($lastWithdrawal->datetime) < 24) {
+            return response()->json([
+            'success' => false,
+            'message' => 'You can only request another withdrawal after 24 hours from your last withdrawal.',
+            ], 400);
+        }
     // Retrieve withdrawal settings from the "news" table instead of "settings"
         $news = DB::table('news')->where('id', 1)->first(); 
 
@@ -190,7 +211,7 @@ class WithdrawalsController extends Controller
     
             return response()->json([
                 'success' => true,
-                'message' => 'Withdrawal request successfully submitted.',
+                'message' => 'Withdrawal request successfully submitted. It will be processed within 24 hours.',
             ]);
     
         } catch (\Exception $e) {

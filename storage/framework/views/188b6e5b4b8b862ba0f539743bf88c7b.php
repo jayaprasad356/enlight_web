@@ -43,6 +43,13 @@
                 </li>
 
                 <li class="dash-item">
+                    <a href="<?php echo e(route('inactive_users.index')); ?>" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-users"></i></span> <!-- User-slash icon for inactive users -->
+                        <span class="dash-mtext"><?php echo e(__('My Inactive Customers')); ?></span>
+                    </a>
+                </li>
+
+                <li class="dash-item">
                     <a href="<?php echo e(route('add_earnings.index')); ?>" class="dash-link">
                         <span class="dash-micon"><i class="ti ti-package"></i></span> 
                         <span class="dash-mtext"><?php echo e(__('Earning Opportunities')); ?></span>
@@ -91,14 +98,6 @@
                         <span class="dash-mtext"><?php echo e(__('Work')); ?></span>
                     </a>
                 </li>
-
-                <li class="dash-item">
-                    <a href="<?php echo e(route('inactive_users.index')); ?>" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-users"></i></span> <!-- User-slash icon for inactive users -->
-                        <span class="dash-mtext"><?php echo e(__('My Inactive Customers')); ?></span>
-                    </a>
-                </li>
-
 
                 <li class="dash-item">
                     <a href="<?php echo e(route('payment_screenshots.index')); ?>" class="dash-link">

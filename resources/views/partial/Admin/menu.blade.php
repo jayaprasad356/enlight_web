@@ -43,6 +43,13 @@
                 </li>
 
                 <li class="dash-item">
+                    <a href="{{ route('inactive_users.index') }}" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-users"></i></span> <!-- User-slash icon for inactive users -->
+                        <span class="dash-mtext">{{ __('My Inactive Customers') }}</span>
+                    </a>
+                </li>
+
+                <li class="dash-item">
                     <a href="{{ route('add_earnings.index') }}" class="dash-link">
                         <span class="dash-micon"><i class="ti ti-package"></i></span> 
                         <span class="dash-mtext">{{ __('Earning Opportunities') }}</span>
@@ -91,14 +98,6 @@
                         <span class="dash-mtext">{{ __('Work') }}</span>
                     </a>
                 </li>
-
-                <li class="dash-item">
-                    <a href="{{ route('inactive_users.index') }}" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-users"></i></span> <!-- User-slash icon for inactive users -->
-                        <span class="dash-mtext">{{ __('My Inactive Customers') }}</span>
-                    </a>
-                </li>
-
 
                 <li class="dash-item">
                     <a href="{{ route('payment_screenshots.index') }}" class="dash-link">
