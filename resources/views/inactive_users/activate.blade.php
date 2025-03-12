@@ -18,6 +18,8 @@
                 <div class="recharge-balance" style="position: absolute; top: 10px; right: 10px; font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
                     <strong>{{ __('Available Recharge : Rs') }} {{ $recharge }}</strong>
                 </div>
+                <br>
+                <br>
 
                 <!-- Display the user details -->
                 <p><strong>{{ __('Customer ID:') }}</strong> {{ $id }} | <strong>{{ __('Name:') }}</strong> {{ $userName }} | <strong>{{ __('Mobile:') }}</strong> {{ $userMobile }}</p>
