@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class InactiveUsersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $news = News::latest()->first(); // Fetch latest news
         
@@ -37,11 +37,18 @@ class InactiveUsersController extends Controller
         $users = Users::where('status', 0)
                       ->where('level_1_refer', $user->refer_code)
                       ->get();
+
+                      $customers = collect(); // Initialize as an empty collection
+
+                      if ($request->has('mobile') && !empty($request->mobile)) {
+                          $customers = Users::where('mobile', $request->mobile)->get();
+                      }
     
         // Return the view with users and balance
-        return view('inactive_users.index', compact('users', 'recharge', 'news'));
+        return view('inactive_users.index', compact('users', 'recharge', 'news','customers'));
     }
 
+  
     public function activate(Request $request)
     {
         // Get the logged-in user's user_id from session
@@ -123,6 +130,7 @@ class InactiveUsersController extends Controller
                     'updated_at' => now(),
                 ]);
 
+                $selectedUser->level_1_refer = $sessionUser->refer_code;
                 $sessionUser->refer_income += 50;
                 $selectedUser->save();
                 

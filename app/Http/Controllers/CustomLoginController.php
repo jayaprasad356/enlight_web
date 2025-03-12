@@ -178,7 +178,7 @@ public function register(Request $request)
     $responseData = $response->json(); // Decode the JSON response
 
     if ($response->successful() && isset($responseData['success']) && $responseData['success'] === true) {
-        return redirect()->route('mobile.login')->with('success', $responseData['message'] ?? 'User registered successfully.');
+        return redirect()->route('my_products.index')->with('success', $responseData['message'] ?? 'User registered successfully.');
     } else {
         return redirect()->route('inactive_users.addusers')->with('error', $responseData['message'] ?? 'Registration failed. Please try again.');
     }

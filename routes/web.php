@@ -77,6 +77,7 @@ Route::get('/level4List', [UsersController::class, 'level4List'])->name('level_4
 Route::get('/news', [NewsController::class, 'invite_friends'])->name('invite_friends.index');
 Route::get('/inactive-users', [InactiveUsersController::class, 'index'])->name('inactive_users.index');
 Route::post('/inactive-users/activate/{id}', [InactiveUsersController::class, 'activate'])->name('inactive_users.activate');
+Route::get('/inactive-users/activates', [InactiveUsersController::class, 'activates'])->name('inactive_users.activates');
 Route::get('/inactive-users/activate', [InactiveUsersController::class, 'activate'])->name('inactive_users.activate');
 Route::get('/inactive-users/activate-level', [InactiveUsersController::class, 'showActivationPage'])->name('inactive_users.showActivationPage');
 Route::get('/transactions', [TransactionsController::class, 'index'])->name('transactions.index');
@@ -84,6 +85,9 @@ Route::get('/works', [WorksController::class, 'index'])->name('works.index');
 Route::get('/withdrawals', [WithdrawalsController::class, 'index'])->name('withdrawals.index');
 Route::resource('withdrawals', WithdrawalsController::class);
 Route::resource('my_products', ProductsController::class);
+Route::post('/inactive_users/enable', [InactiveUsersController::class, 'enableUser'])->name('inactive_users.enable');
+Route::post('/update-refer', [UserController::class, 'updateRefer'])->name('inactive_users.update_refer');
+
 Route::get('/extra_bonus', [ExtraBonusController::class, 'index'])->name('extra_bonus.index');
 Route::post('/bonus/claim/{level}', [ExtraBonusController::class, 'claim'])->name('bonus.claim');
 Route::resource('payment_screenshots', PaymentScreenshotsControllers::class);

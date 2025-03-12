@@ -99,6 +99,69 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4>{{ __('Customers List') }}</h4>
+                <form method="GET" action="{{ route('inactive_users.index') }}" class="d-flex justify-content-end mb-3">
+                        <input type="text" id="customerSearch" name="mobile" value="{{ request('mobile') }}" 
+                            placeholder="Search by mobile number" class="form-control me-2" style="width: 200px;">
+                        <button type="submit" class="btn btn-primary">{{ __('Search') }}</button>
+                    </form>
+                    <br>
+                <div class="table-responsive">
+                <table class="table" id="customers-table">
+                    <thead>
+                        <tr>
+                            <th>{{ __('ID') }}</th>
+                            <th>{{ __('Customer Name') }}</th>
+                            <th>{{ __('Mobile') }}</th>
+                            <th>{{ __('DateTime') }}</th>
+                            <th>{{ __('Action') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if($customers->isEmpty())
+                            <tr>
+                                <td colspan="5" class="text-center">No customers found.</td>
+                            </tr>
+                        @else
+                            @foreach($customers as $customer)
+                                <tr>
+                                    <td>{{ $customer['id'] }}</td>
+                                    <td>{{ $customer['name'] ?? 'N/A' }}</td>
+                                    <td>{{ $customer['mobile'] ?? 'N/A' }}</td>
+                                    <td>{{ $customer['registered_datetime'] ?? 'N/A' }}</td>
+                                    <td>
+                                        @if(isset($customer['status']) && $customer['status'] == 0)
+                                            <!-- Show "Click To Activate" button only if status is 0 -->
+                                            <button type="button" class="btn btn-success btn-sm activate-user-btn" 
+                                                data-id="{{ $customer['id'] }}" 
+                                                data-name="{{ $customer['name'] ?? 'N/A' }}" 
+                                                data-mobile="{{ $customer['mobile'] ?? 'N/A' }}">
+                                                {{ __('Click To enable') }}
+                                            </button>
+                                        @else
+                                            <span class="badge bg-secondary">{{ __('Already Activated') }}</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <div id="qrCodeModal" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -126,69 +189,57 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap JS -->
 
 <script>
-    $(document).ready(function () {
+  $(document).ready(function () {
     // When "Activate User" button is clicked
     $(".activate-user-btn").on("click", function () {
         let userId = $(this).data("id");
         let userName = $(this).data("name");
         let userMobile = $(this).data("mobile");
+        let buttonText = $(this).text().trim();
 
         // Update modal content with the selected user's info
         $("#modalUserId").text(userId);
         $("#modalUserName").text(userName);
         $("#modalUserMobile").text(userMobile);
 
-        // Set the data attributes for level-specific buttons
-        $("#level1Btn").data("userId", userId).data("userName", userName).data("userMobile", userMobile).data("level", 1);
-        $("#level2Btn").data("userId", userId).data("userName", userName).data("userMobile", userMobile).data("level", 2);
-        $("#level3Btn").data("userId", userId).data("userName", userName).data("userMobile", userMobile).data("level", 3);
-        $("#level4Btn").data("userId", userId).data("userName", userName).data("userMobile", userMobile).data("level", 4);
+        // Set data attributes for level-specific buttons
+        $("#level1Btn, #level2Btn, #level3Btn, #level4Btn").each(function (index, btn) {
+            $(btn).data("userId", userId)
+                .data("userName", userName)
+                .data("userMobile", userMobile)
+                .data("level", index + 1);
+        });
+
+        // Enable all level buttons if "Click To Activate" is clicked
+        if (buttonText === "Click To Activate") {
+            $("#level1Btn, #level2Btn, #level3Btn, #level4Btn").prop("disabled", false);
+        }
+        // Disable Level 2, 3, and 4 if "Click To Enable" is clicked
+        else if (buttonText === "Click To enable") {
+            $("#level2Btn, #level3Btn, #level4Btn").prop("disabled", true);
+            $("#level1Btn").prop("disabled", false);
+        }
 
         // Open the modal
         $("#userActivationModal").modal("show");
     });
 
-    // Handle level-specific activation buttons (1 to 4)
-    $("#level1Btn").on("click", function () {
+    // Handle level-specific activation buttons
+    $("#level1Btn, #level2Btn, #level3Btn, #level4Btn").on("click", function () {
         let userId = $(this).data("userId");
         let userName = $(this).data("userName");
         let userMobile = $(this).data("userMobile");
         let level = $(this).data("level");
 
-        // Redirect to the activation route with the user details and level
-        window.location.href = "{{ route('inactive_users.activate') }}" + "?id=" + userId + "&name=" + userName + "&mobile=" + userMobile + "&level=" + level;
-    });
-
-    $("#level2Btn").on("click", function () {
-        let userId = $(this).data("userId");
-        let userName = $(this).data("userName");
-        let userMobile = $(this).data("userMobile");
-        let level = $(this).data("level");
-
-        // Redirect to the activation route with the user details and level
-        window.location.href = "{{ route('inactive_users.activate') }}" + "?id=" + userId + "&name=" + userName + "&mobile=" + userMobile + "&level=" + level;
-    });
-
-    $("#level3Btn").on("click", function () {
-        let userId = $(this).data("userId");
-        let userName = $(this).data("userName");
-        let userMobile = $(this).data("userMobile");
-        let level = $(this).data("level");
-
-        // Redirect to the activation route with the user details and level
-        window.location.href = "{{ route('inactive_users.activate') }}" + "?id=" + userId + "&name=" + userName + "&mobile=" + userMobile + "&level=" + level;
-    });
-
-    $("#level4Btn").on("click", function () {
-        let userId = $(this).data("userId");
-        let userName = $(this).data("userName");
-        let userMobile = $(this).data("userMobile");
-        let level = $(this).data("level");
-
-        // Redirect to the activation route with the user details and level
-        window.location.href = "{{ route('inactive_users.activate') }}" + "?id=" + userId + "&name=" + userName + "&mobile=" + userMobile + "&level=" + level;
+        // Redirect to activation route
+        window.location.href = "{{ route('inactive_users.activate') }}" +
+            "?id=" + userId +
+            "&name=" + userName +
+            "&mobile=" + userMobile +
+            "&level=" + level;
     });
 });
+
 
 </script>
 
@@ -212,6 +263,16 @@ $(document).ready(function() {
         if ($(event.target).closest("#qrCodeModal .modal-content").length === 0) {
             $('#qrCodeModal').modal('hide');
         }
+    });
+});
+</script>
+<script>
+$(document).ready(function () {
+    $("#customerSearch").on("keyup", function () {
+        let value = $(this).val().toLowerCase();
+        $("#customers-table tbody tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
     });
 });
 </script>
