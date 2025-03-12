@@ -158,7 +158,7 @@ public function register(Request $request)
     $refer_code = $user->refer_code;  // Assuming 'refer_code' is a column in the 'users' table
 
     // API endpoint to register the user
-    $apiUrl = 'http://localhost/enlight_web/api/register';  // Replace with your actual registration API URL
+    $apiUrl = 'https://enlightapp.in/api/register';  // Replace with your actual registration API URL
 
     // Prepare the data to send to the API
     $apiData = [
