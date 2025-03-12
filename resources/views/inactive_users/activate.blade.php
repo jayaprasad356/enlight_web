@@ -16,18 +16,19 @@
             <div class="card-body">
                 <!-- Display Available Recharge Balance -->
                 <div class="d-flex flex-wrap align-items-center justify-content-between flex-md-row flex-column">
-                    <!-- Recharge Balance (Always on the right) -->
+                    <!-- Recharge Balance (Left Side) -->
                     <div class="recharge-balance p-2" style="font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
                         <strong>{{ __('Available Recharge : Rs') }} {{ $recharge }}</strong>
                     </div>
 
-                    <!-- Customer Details -->
-                    <p class="customer-details mt-2 mt-md-0" style="margin-left: 10px;">
+                    <!-- Customer Details (Right Side) -->
+                    <p class="customer-details mt-2 mt-md-0 text-md-end text-start" style="white-space: nowrap;">
                         <strong>{{ __('Customer ID:') }}</strong> {{ $id }} | 
                         <strong>{{ __('Name:') }}</strong> {{ $userName }} | 
                         <strong>{{ __('Mobile:') }}</strong> {{ $userMobile }}
                     </p>
                 </div>
+
 
                 <!-- Display the level-specific activation button -->
                 <div class="mt-4">
