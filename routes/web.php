@@ -100,8 +100,6 @@ Route::get('/withdrawals/show', [WithdrawalsController::class, 'show'])->name('w
 Route::resource('withdrawals', WithdrawalsController::class)->except(['show']);
 Route::post('/withdrawals/submit', [WithdrawalsController::class, 'submitWithdrawal'])->name('withdrawals.submit');
 Route::get('/inactive-users/get-level-users', [InactiveUsersController::class, 'getLevelUsers'])->name('inactive_users.getLevelUsers');
-Route::get('/inactive-users/addusers', [InactiveUsersController::class, 'addusers'])->name('inactive_users.addusers');
-Route::post('/inactive-users/register', [InactiveUsersController::class, 'register'])->name('inactive_users.register');
 Route::get('/inactive-users/activateusers', [InactiveUsersController::class, 'activateusers'])->name('inactive_users.activateusers');
 Route::get('/news/download/{id}', [NewsController::class, 'downloadImage'])->name('news.download');
 

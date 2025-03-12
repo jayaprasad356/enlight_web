@@ -132,10 +132,16 @@ public function updateProfile(Request $request)
     return back()->with('success', 'Profile updated successfully.');
 }
 
+public function showRegistrationForm($refer_code = null)
+{
+    return view('auth.addusers', compact('refer_code'));
+}
+
+
 
 public function register(Request $request)
 {
-    // Validate the incoming request data
+// Validate the incoming request data
     $validated = $request->validate([
         'name' => 'required|string|max:255',
         'mobile' => 'required|string|max:15',
@@ -143,19 +149,8 @@ public function register(Request $request)
         'pincode' => 'required|string|min:6|max:6',
         'age' => 'required|integer|min:18', // Assuming age should be an integer and at least 18
         'gender' => 'required|string|max:255',
+        'level_1_refer' => 'required|string|max:255',
     ]);
-
-    // Get the logged-in user's information from session
-    $user_id = Session::get('user_id');
-    
-    // Fetch the user's refer_code from the database using the user_id from session
-    $user = Users::find($user_id);  // Assuming you have a User model and the user exists in the database
-
-    if (!$user) {
-        return redirect()->route('inactive_users.addusers')->with('error', 'User not found.');
-    }
-
-    $refer_code = $user->refer_code;  // Assuming 'refer_code' is a column in the 'users' table
 
     // API endpoint to register the user
     $apiUrl = 'https://enlightapp.in/api/register';  // Replace with your actual registration API URL
@@ -168,7 +163,7 @@ public function register(Request $request)
         'pincode' => $validated['pincode'],
         'age' => $validated['age'],
         'gender' => $validated['gender'],
-        'level_1_refer' => $refer_code, // Automatically use the logged-in user's refer_code from session
+        'level_1_refer' => $validated['level_1_refer'], // Automatically use the logged-in user's refer_code from session
     ];
 
     // Make the API request (you can also use other libraries like Guzzle if needed)
@@ -178,9 +173,9 @@ public function register(Request $request)
     $responseData = $response->json(); // Decode the JSON response
 
     if ($response->successful() && isset($responseData['success']) && $responseData['success'] === true) {
-        return redirect()->route('my_products.index')->with('success', $responseData['message'] ?? 'User registered successfully.');
+        return redirect()->route('mobile.login')->with('success', $responseData['message'] ?? 'User registered successfully.');
     } else {
-        return redirect()->route('inactive_users.addusers')->with('error', $responseData['message'] ?? 'Registration failed. Please try again.');
+        return back()->with('error', 'Registration failed. Please try again.');
     }
     
 }
