@@ -17,21 +17,22 @@
             <div class="card-body">
                 <!-- Display Available Recharge Balance -->
                 <div class="d-flex flex-wrap align-items-center justify-content-between flex-md-row flex-column">
-    <!-- Recharge Balance (Right Side on Desktop, Top on Mobile) -->
-    <div class="recharge-balance p-2 order-1 order-md-2 mt-2 mt-md-0"
-        style="font-size: 14px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px; white-space: nowrap;">
-        <strong><?php echo e(__('Membership Activation Balance : Rs')); ?> <?php echo e($recharge); ?></strong>
-    </div>
+                    <!-- Recharge Balance (Right Side on Desktop, Top on Mobile) -->
+                    <div class="recharge-balance p-2 order-1 order-md-2 mt-2 mt-md-0 text-break"
+                        style="font-size: 14px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px; word-wrap: break-word; text-align: center;">
+                        <strong><?php echo e(__('Membership Activation Balance : Rs')); ?> <?php echo e($recharge); ?></strong>
+                    </div>
 
-    <!-- Customer Details (Left Side on Desktop, Below Recharge on Mobile) -->
-    <p class="customer-details order-2 order-md-1 mt-2 mt-md-0 text-md-start text-start" 
-       style="font-size: 13px; white-space: nowrap;">
-        <strong><?php echo e(__('Customer ID:')); ?></strong> <?php echo e($id); ?> | 
-        <strong><?php echo e(__('Name:')); ?></strong> <?php echo e($userName); ?> | 
-        <strong><?php echo e(__('Mobile:')); ?></strong> <?php echo e($userMobile); ?>
+                    <!-- Customer Details (Left Side on Desktop, Below Recharge on Mobile) -->
+                    <p class="customer-details order-2 order-md-1 mt-2 mt-md-0 text-md-start text-start text-break"
+                        style="font-size: 13px; white-space: normal; word-wrap: break-word;">
+                        <strong><?php echo e(__('Customer ID:')); ?></strong> <?php echo e($id); ?> <br> 
+                        <strong><?php echo e(__('Name:')); ?></strong> <?php echo e($userName); ?> <br> 
+                        <strong><?php echo e(__('Mobile:')); ?></strong> <?php echo e($userMobile); ?>
 
-    </p>
-</div>
+                    </p>
+                </div>
+
 
 
                 <!-- Display the level-specific activation button -->
