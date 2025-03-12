@@ -26,6 +26,11 @@
                     
                     <table class="table table-hover mt-4">
                         <tbody>
+                        <tr>
+                                <th><i class="fas fa-qrcode text-primary"></i> <?php echo e(__('Refer Code')); ?></th>
+                                <td><?php echo e($user->refer_code); ?></td>
+                            </tr>
+
                             <tr>
                                 <th><i class="fas fa-user text-primary"></i> <?php echo e(__('Name')); ?></th>
                                 <td><?php echo e($user->name); ?></td>

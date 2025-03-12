@@ -30,6 +30,9 @@
 
                     <!-- Balance (Right Aligned) -->
                     <div class="recharge-balance p-2" style="font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
+                        <strong>{{ __('My Refer Code :') }} {{ $refer_code }}</strong>
+                    </div>
+                    <div class="recharge-balance p-2" style="font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
                         <strong>{{ __('Membership Activation Balance: Rs') }} {{ $recharge }}</strong>
                     </div>
                 </div>

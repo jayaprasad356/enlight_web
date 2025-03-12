@@ -249,13 +249,21 @@ function subscribe() {
 </script>
 <script>
 function copyShareLink() {
-    var link = "{{ route('addusers') }}"; // Get the share link
-    var tempInput = document.createElement("input"); // Create a temporary input
+    var referCode = "{{ session('refer_code') }}"; // Correct way to retrieve session variable
+
+    if (!referCode || referCode === 'null') {
+        alert("Referral code not available.");
+        return;
+    }
+
+    var link = "{{ route('addusers') }}" + "?refer_code=" + referCode; // Append referral code to URL
+    var tempInput = document.createElement("input");
     document.body.appendChild(tempInput);
     tempInput.value = link;
     tempInput.select();
     document.execCommand("copy");
     document.body.removeChild(tempInput);
-    alert("Share link copied to clipboard!");
+    alert("Share link copied to clipboard: ");
 }
+
 </script>

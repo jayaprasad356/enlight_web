@@ -32,6 +32,7 @@ class InactiveUsersController extends Controller
     
         // Get user balance
         $recharge = $user->recharge ?? 0;
+        $refer_code = $user->refer_code ?? 0;
     
         // Fetch inactive users with status 0 and matching refer_code
         $users = Users::where('status', 0)
@@ -45,7 +46,7 @@ class InactiveUsersController extends Controller
                       }
     
         // Return the view with users and balance
-        return view('inactive_users.index', compact('users', 'recharge', 'news','customers'));
+        return view('inactive_users.index', compact('users', 'recharge', 'news','customers','refer_code'));
     }
 
   

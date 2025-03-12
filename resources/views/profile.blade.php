@@ -25,6 +25,11 @@
                     
                     <table class="table table-hover mt-4">
                         <tbody>
+                        <tr>
+                                <th><i class="fas fa-qrcode text-primary"></i> {{ __('Refer Code') }}</th>
+                                <td>{{ $user->refer_code }}</td>
+                            </tr>
+
                             <tr>
                                 <th><i class="fas fa-user text-primary"></i> {{ __('Name') }}</th>
                                 <td>{{ $user->name }}</td>

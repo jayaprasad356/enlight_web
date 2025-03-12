@@ -33,6 +33,9 @@
 
                     <!-- Balance (Right Aligned) -->
                     <div class="recharge-balance p-2" style="font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
+                        <strong><?php echo e(__('My Refer Code :')); ?> <?php echo e($refer_code); ?></strong>
+                    </div>
+                    <div class="recharge-balance p-2" style="font-size: 16px; background-color: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
                         <strong><?php echo e(__('Membership Activation Balance: Rs')); ?> <?php echo e($recharge); ?></strong>
                     </div>
                 </div>

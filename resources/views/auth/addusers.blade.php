@@ -1,6 +1,7 @@
 @php
-    $refer_code = session('refer_code', ''); // Get refer_code from session or empty string if not set
+    $refer_code = request('refer_code', session('refer_code', '')); // Get refer_code from URL or session
 @endphp
+
 
 @extends('layouts.auth')
 
@@ -66,7 +67,7 @@
 
             <div class="form-group">
                 <label for="level_1_refer">{{ __('Level 1 Refer') }}</label>
-                <input type="text" class="form-control" id="level_1_refer" name="level_1_refer" value="{{ $refer_code }}" disabled>
+                <input type="text" class="form-control" id="level_1_refer" name="level_1_refer" value="{{ old('level_1_refer', $refer_code) }}">
                 @error('level_1_refer') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 

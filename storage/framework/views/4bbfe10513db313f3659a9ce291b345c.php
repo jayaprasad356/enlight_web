@@ -1,6 +1,7 @@
 <?php
-    $refer_code = session('refer_code', ''); // Get refer_code from session or empty string if not set
+    $refer_code = request('refer_code', session('refer_code', '')); // Get refer_code from URL or session
 ?>
+
 
 
 
@@ -108,7 +109,7 @@ unset($__errorArgs, $__bag); ?>
 
             <div class="form-group">
                 <label for="level_1_refer"><?php echo e(__('Level 1 Refer')); ?></label>
-                <input type="text" class="form-control" id="level_1_refer" name="level_1_refer" value="<?php echo e($refer_code); ?>" disabled>
+                <input type="text" class="form-control" id="level_1_refer" name="level_1_refer" value="<?php echo e(old('level_1_refer', $refer_code)); ?>">
                 <?php $__errorArgs = ['level_1_refer'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
