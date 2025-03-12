@@ -53,7 +53,7 @@
                                 <th>{{ __('Level 1 refer') }}</th>
                                 <th>{{ __('Level 2 refer') }}</th>
                                 <th>{{ __('Level 3 refer') }}</th>
-                                <th>{{ __('Level 1 refer4') }}</th>
+                                <th>{{ __('Level 4 refer') }}</th>
                                 <th>{{ __('Refer Bonus') }}</th>
                                 <th>{{ __('Purchase Wallet') }}</th>
                                 <th>{{ __('Registered DateTime') }}</th>
