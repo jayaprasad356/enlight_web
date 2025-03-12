@@ -155,10 +155,7 @@ class InactiveUsersController extends Controller
                 $selectedUser->level_2_refer = $sessionUser->refer_code;
                 $selectedUser->save();
     
-                $addLevelIncome = true;
-    
-                // Update refer_income for the level user
-                $selectedLevelUser->refer_income += 20;
+                $selectedLevelUser->refer_income += 50;
                 $selectedLevelUser->save();
             }
     
@@ -188,10 +185,7 @@ class InactiveUsersController extends Controller
                 $selectedUser->level_3_refer = $sessionUser->refer_code;
                 $selectedUser->save();
     
-                $addLevelIncome = true;
-    
-                // Update refer_income for the level user
-                $selectedLevelUser->refer_income += 10;
+                $selectedLevelUser->refer_income += 50;
                 $selectedLevelUser->save();
             }
     
@@ -221,10 +215,9 @@ class InactiveUsersController extends Controller
                 $selectedUser->level_4_refer = $sessionUser->refer_code;
                 $selectedUser->save();
     
-                $addLevelIncome = true;
     
                 // Update refer_income for the level user
-                $selectedLevelUser->refer_income += 5;
+                $selectedLevelUser->refer_income += 50;
                 $selectedLevelUser->save();
             }
     
@@ -236,24 +229,8 @@ class InactiveUsersController extends Controller
     
             // **Deduct balance from session user**
             $sessionUser->recharge -= 299;
-    
-            // **Only add level income for Levels 2 & above activations**
-            if ($addLevelIncome) {
-                $sessionUser->level_income += 20;
-            }
-    
             $sessionUser->save();
     
-           // Define the refer income based on the level
-            $referIncomeMapping = [
-                1 => 50,
-                2 => 20,
-                3 => 10,
-                4 => 5
-            ];
-
-            $referIncomeAmount = $referIncomeMapping[$level] ?? 0; // Default to 0 if level is not in the mapping
-
             // Log Transactions
             DB::table('transactions')->insert([
                 'user_id' => $selectedUser->id,
@@ -265,26 +242,42 @@ class InactiveUsersController extends Controller
             ]);
 
             // Add refer income transaction if applicable
-            if ($selectedLevelUser && $referIncomeAmount > 0) {
+            if ($selectedLevelUser) {
                 DB::table('transactions')->insert([
                     'user_id' => $selectedLevelUser->id,
+                    'type' => 'refer_income',
+                    'amount' => 50,
+                    'datetime' => now(),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+
+               // Define refer income mapping based on the level
+            $referIncomeMapping = [
+                2 => 25,
+                3 => 10,
+                4 => 5
+            ];
+
+            // Get refer income amount for this level
+            $referIncomeAmount = $referIncomeMapping[$level] ?? 0;
+
+            // Check if refer income should be added
+            if ($referIncomeAmount > 0) {
+                // Add refer income transaction for the session user
+                DB::table('transactions')->insert([
+                    'user_id' => $sessionUser->id,
                     'type' => 'refer_income',
                     'amount' => $referIncomeAmount,
                     'datetime' => now(),
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
-            }
-    
-            if ($addLevelIncome) {
-                DB::table('transactions')->insert([
-                    'user_id' => $sessionUser->id,
-                    'type' => 'level_income',
-                    'amount' => 20,
-                    'datetime' => now(),
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+
+                // Update session user's refer_income balance
+                $sessionUser->refer_income += $referIncomeAmount;
+                $sessionUser->save();
             }
     
             DB::commit();

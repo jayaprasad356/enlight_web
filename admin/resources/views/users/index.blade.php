@@ -55,8 +55,6 @@
                                 <th>{{ __('Level 3 refer') }}</th>
                                 <th>{{ __('Level 1 refer4') }}</th>
                                 <th>{{ __('Refer Bonus') }}</th>
-                                <th>{{ __('Level Income') }}</th>
-                                <th>{{ __('Level Income Wallet') }}</th>
                                 <th>{{ __('Purchase Wallet') }}</th>
                                 <th>{{ __('Registered DateTime') }}</th>
                                 <th>{{ __('Status') }}</th>
@@ -98,8 +96,6 @@
                                     <td>{{ $user->level_3_refer }}</td>
                                     <td>{{ $user->level_4_refer }}</td>
                                     <td>{{ $user->refer_income }}</td>
-                                    <td>{{ $user->level_income }}</td>
-                                    <td>{{ $user->level_income_wallet }}</td>
                                     <td>{{ $user->purchase_wallet }}</td>
                                     <td>{{ $user->registered_datetime }}</td>
                                     <td>
