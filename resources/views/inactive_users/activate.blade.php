@@ -41,11 +41,11 @@
                         <div class="mt-4" id="userDropdownContainer">
                             <select class="form-select" id="userDropdown" style="width: 50%;"> 
                                 @if(request()->query('level') == 2)
-                                    <option value="">{{ __('Choose Your Level 2 Customers') }}</option>
+                                    <option value="">{{ __('Choose Your Level 1 Customers') }}</option>
                                 @elseif(request()->query('level') == 3)
-                                    <option value="">{{ __('Choose Your Level 3 Customers') }}</option>
+                                    <option value="">{{ __('Choose Your Level 2 Customers') }}</option>
                                 @elseif(request()->query('level') == 4)
-                                    <option value="">{{ __('Choose Your Level 4 Customers') }}</option>
+                                    <option value="">{{ __('Choose Your Level 3 Customers') }}</option>
                                 @endif
                             </select>
                         </div>

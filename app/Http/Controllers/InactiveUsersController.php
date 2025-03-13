@@ -334,7 +334,7 @@ class InactiveUsersController extends Controller
     
         // Call the API to fetch the users based on the user_id and level
         try {
-            $response = Http::post('http://localhost/enlight_web/api/level', [
+            $response = Http::post('https://enlightapp.in/api/level', [
                 'user_id' => $userId,
                 'level' => $mappedLevel  // Use mapped level
             ]);
