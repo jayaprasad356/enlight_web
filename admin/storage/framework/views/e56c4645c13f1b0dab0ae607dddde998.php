@@ -64,8 +64,8 @@
                                         </span>
                                     </td>
                                     <td><?php echo e(ucfirst($payment_screenshot->id)); ?></td>
-                                    <td><?php echo e($payment_screenshot->users->name); ?></td>
-                                    <td><?php echo e($payment_screenshot->users->mobile); ?></td>
+                                    <td><?php echo e(optional($payment_screenshot->users)->name ?? 'N/A'); ?></td>
+                                    <td><?php echo e(optional($payment_screenshot->users)->mobile ?? 'N/A'); ?></td>
                                     <td>
                                     <?php if($payment_screenshot->screenshots): ?>
                                             <a href="<?php echo e(('https://enlightapp.in/storage/app/public/' . $payment_screenshot->screenshots)); ?>" data-lightbox="image-<?php echo e($payment_screenshot->id); ?>">

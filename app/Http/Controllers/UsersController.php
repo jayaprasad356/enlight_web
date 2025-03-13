@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -126,4 +127,41 @@ class UsersController extends Controller
         ]);
     }
     
+    public function getUserReferrals(Request $request)
+{
+    $user_id = $request->input('user_id');
+
+    if (!$user_id) {
+        return response()->json([
+            'success' => false,
+            'message' => 'User ID is required',
+        ], 400);
+    }
+
+    // Get user's refer_code
+    $user = DB::table('users')->where('id', $user_id)->select('refer_code')->first();
+    if (!$user) {
+        return response()->json([
+            'success' => false,
+            'message' => 'User not found',
+        ], 404);
+    }
+
+    $refer_code = $user->refer_code;
+
+    // Count referrals for each level
+    $level_1_count = DB::table('users')->where('level_1_refer', $refer_code)->count();
+    $level_2_count = DB::table('users')->where('level_2_refer', $refer_code)->count();
+    $level_3_count = DB::table('users')->where('level_3_refer', $refer_code)->count();
+    $level_4_count = DB::table('users')->where('level_4_refer', $refer_code)->count();
+
+    return response()->json([
+        'success' => true,
+        'level_1_count' => $level_1_count,
+        'level_2_count' => $level_2_count,
+        'level_3_count' => $level_3_count,
+        'level_4_count' => $level_4_count,
+    ]);
+}
+
 }

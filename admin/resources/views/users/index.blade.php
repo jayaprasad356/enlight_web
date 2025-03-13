@@ -71,16 +71,14 @@
                                             </a>
                                         </div>
                                         <div class="action-btn bg-danger ms-2">
-                                            <form method="POST" action="{{ route('users.destroy', $user->id) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm align-items-center bs-pass-para" 
-                                                        data-bs-toggle="tooltip" title="{{ __('Delete') }}"
-                                                        onclick="return confirm('Are you sure you want to delete this user?');">
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'id' => 'delete-form-' . $user->id]) !!}
+                                                <a href="#" class="btn btn-sm align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{ __('Delete') }}"
+                                                onclick="confirmDelete(event, '{{ $user->id }}')">
                                                     <i class="ti ti-trash text-white"></i>
-                                                </button>
-                                            </form>
-                                        </div>
+                                                </a>
+                                            {!! Form::close() !!}
+
+                                            </div>
                                     </td>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ ucfirst($user->name) }}</td>

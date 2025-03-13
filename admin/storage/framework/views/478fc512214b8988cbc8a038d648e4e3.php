@@ -55,7 +55,7 @@
                                 <th><?php echo e(__('Level 1 refer')); ?></th>
                                 <th><?php echo e(__('Level 2 refer')); ?></th>
                                 <th><?php echo e(__('Level 3 refer')); ?></th>
-                                <th><?php echo e(__('Level 1 refer4')); ?></th>
+                                <th><?php echo e(__('Level 4 refer')); ?></th>
                                 <th><?php echo e(__('Refer Bonus')); ?></th>
                                 <th><?php echo e(__('Purchase Wallet')); ?></th>
                                 <th><?php echo e(__('Registered DateTime')); ?></th>
@@ -73,16 +73,16 @@
                                             </a>
                                         </div>
                                         <div class="action-btn bg-danger ms-2">
-                                            <form method="POST" action="<?php echo e(route('users.destroy', $user->id)); ?>">
-                                                <?php echo csrf_field(); ?>
-                                                <?php echo method_field('DELETE'); ?>
-                                                <button type="submit" class="btn btn-sm align-items-center bs-pass-para" 
-                                                        data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>"
-                                                        onclick="return confirm('Are you sure you want to delete this user?');">
+                                            <?php echo Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'id' => 'delete-form-' . $user->id]); ?>
+
+                                                <a href="#" class="btn btn-sm align-items-center bs-pass-para" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>"
+                                                onclick="confirmDelete(event, '<?php echo e($user->id); ?>')">
                                                     <i class="ti ti-trash text-white"></i>
-                                                </button>
-                                            </form>
-                                        </div>
+                                                </a>
+                                            <?php echo Form::close(); ?>
+
+
+                                            </div>
                                     </td>
                                     <td><?php echo e($user->id); ?></td>
                                     <td><?php echo e(ucfirst($user->name)); ?></td>

@@ -127,10 +127,6 @@
                         <th><?php echo e(__('Customer Name')); ?></th>
                         <th><?php echo e(__('Mobile')); ?></th>
                         <th><?php echo e(__('DateTime')); ?></th>
-                        <th><?php echo e(__('Level 1 Refer')); ?></th>
-                        <th><?php echo e(__('Level 2 Refer')); ?></th>
-                        <th><?php echo e(__('Level 3 Refer')); ?></th>
-                        <th><?php echo e(__('Level 4 Refer')); ?></th>
                         <th><?php echo e(__('Action')); ?></th>
                     </tr>
                 </thead>
@@ -146,22 +142,7 @@
                                 <td><?php echo e($customer['name'] ?? 'N/A'); ?></td>
                                 <td><?php echo e($customer['mobile'] ?? 'N/A'); ?></td>
                                 <td><?php echo e($customer['registered_datetime'] ?? 'N/A'); ?></td>
-                                <td><?php echo e($customer['level_1_name'] ?? ''); ?></td>
-                                <td><?php echo e($customer['level_2_name'] ?? ''); ?></td>
-                                <td><?php echo e($customer['level_3_name'] ?? ''); ?></td>
-                                <td><?php echo e($customer['level_4_name'] ?? ''); ?></td>
                                 <td>
-                                <button type="button" class="btn btn-info btn-sm view-customer-btn"
-                                    data-name="<?php echo e($customer['name'] ?? 'N/A'); ?>"
-                                    data-mobile="<?php echo e($customer['mobile'] ?? 'N/A'); ?>"
-                                    data-level1-count="<?php echo e($customer['level_1_count'] ?? 0); ?>"
-                                    data-level2-count="<?php echo e($customer['level_2_count'] ?? 0); ?>"
-                                    data-level3-count="<?php echo e($customer['level_3_count'] ?? 0); ?>"
-                                    data-level4-count="<?php echo e($customer['level_4_count'] ?? 0); ?>"
-                                    data-bs-toggle="modal" data-bs-target="#customerDetailsModal">
-                                    <?php echo e(__('View')); ?>
-
-                                </button>
 
                                     <?php if(isset($customer['status']) && $customer['status'] == 0): ?>
                                         <button type="button" class="btn btn-success btn-sm activate-user-btn" 
@@ -201,6 +182,9 @@
                 <p><strong><?php echo e(__('Customer Name:')); ?></strong> <span id="modalCustomerName"></span></p>
                 <p><strong><?php echo e(__('Mobile:')); ?></strong> <span id="modalCustomerMobile"></span></p>
                 <p><strong><?php echo e(__('Level 1 Refer:')); ?></strong> <span id="modalLevel1Refer"></span> (Count: <span id="modalLevel1Count"></span>)</p>
+                <p><strong><?php echo e(__('Level 2 Refer:')); ?></strong> <span id="modalLevel2Refer"></span> (Count: <span id="modalLevel2Count"></span>)</p>
+                <p><strong><?php echo e(__('Level 3 Refer:')); ?></strong> <span id="modalLevel3Refer"></span> (Count: <span id="modalLevel3Count"></span>)</p>
+                <p><strong><?php echo e(__('Level 4 Refer:')); ?></strong> <span id="modalLevel4Refer"></span> (Count: <span id="modalLevel4Count"></span>)</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo e(__('Close')); ?></button>
@@ -264,6 +248,7 @@
             $("#level1Btn, #level2Btn, #level3Btn, #level4Btn").prop("disabled", false);
         } else if (buttonText === "Click To Enable") {
             $("#level1Btn").prop("disabled", false);
+            $("#level2Btn, #level3Btn, #level4Btn").prop("disabled", true);
         }
 
         // Open the modal
@@ -321,30 +306,7 @@ $(document).ready(function () {
     });
 });
 </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Select all "View" buttons
-        document.querySelectorAll('.view-customer-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Get data attributes
-                let name = this.getAttribute('data-name');
-                let mobile = this.getAttribute('data-mobile');
-                let level1Count = this.getAttribute('data-level1-count');
-                let level2Count = this.getAttribute('data-level2-count');
-                let level3Count = this.getAttribute('data-level3-count');
-                let level4Count = this.getAttribute('data-level4-count');
 
-                // Set values inside modal
-                document.getElementById('modalCustomerName').textContent = name;
-                document.getElementById('modalCustomerMobile').textContent = mobile;
-                document.getElementById('modalLevel1Count').textContent = level1Count;
-                document.getElementById('modalLevel2Count').textContent = level2Count;
-                document.getElementById('modalLevel3Count').textContent = level3Count;
-                document.getElementById('modalLevel4Count').textContent = level4Count;
-            });
-        });
-    });
-</script>
 
 
 

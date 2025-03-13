@@ -18,14 +18,16 @@
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
                         <table class="table" id="pc-dt-simple">
-                        <div class="alert" style="position: absolute; top: 10px; right: 10px; font-size: 16px; background-color:#6fd943; color:white; padding: 5px 10px; border-radius: 5px;">
-                                <strong><?php echo e(__('Maximum 81 Members You Can Add In Level 4')); ?></strong>
-                            </div>  
+                       
                             <thead>
                                 <tr>
-                                    <th><?php echo e(__('ID')); ?></th>
+                                <th><?php echo e(__('ID')); ?></th>
                                     <th><?php echo e(__('Customer Name')); ?></th>
                                     <th><?php echo e(__('Mobile')); ?></th>
+                                    <th><?php echo e(__('Level 1 Refer')); ?></th>
+                                    <th><?php echo e(__('Level 2 Refer')); ?></th>
+                                    <th><?php echo e(__('Level 3 Refer')); ?></th>
+                                    <th><?php echo e(__('Level 4 Refer')); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,6 +36,10 @@
                                         <td><?php echo e($user['id']); ?></td>
                                         <td><?php echo e($user['name'] ?? 'N/A'); ?></td>
                                         <td><?php echo e($user['mobile'] ?? 'N/A'); ?></td>
+                                        <td><?php echo e($user['level_1_referrer_name'] ?? 'N/A'); ?></td>
+                                        <td><?php echo e($user['level_2_referrer_name'] ?? 'N/A'); ?></td>
+                                        <td><?php echo e($user['level_3_referrer_name'] ?? 'N/A'); ?></td>
+                                        <td><?php echo e($user['level_4_referrer_name'] ?? 'N/A'); ?></td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>

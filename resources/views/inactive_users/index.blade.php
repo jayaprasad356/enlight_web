@@ -123,10 +123,6 @@
                         <th>{{ __('Customer Name') }}</th>
                         <th>{{ __('Mobile') }}</th>
                         <th>{{ __('DateTime') }}</th>
-                        <th>{{ __('Level 1 Refer') }}</th>
-                        <th>{{ __('Level 2 Refer') }}</th>
-                        <th>{{ __('Level 3 Refer') }}</th>
-                        <th>{{ __('Level 4 Refer') }}</th>
                         <th>{{ __('Action') }}</th>
                     </tr>
                 </thead>
@@ -142,21 +138,7 @@
                                 <td>{{ $customer['name'] ?? 'N/A' }}</td>
                                 <td>{{ $customer['mobile'] ?? 'N/A' }}</td>
                                 <td>{{ $customer['registered_datetime'] ?? 'N/A' }}</td>
-                                <td>{{ $customer['level_1_name'] ?? '' }}</td>
-                                <td>{{ $customer['level_2_name'] ?? '' }}</td>
-                                <td>{{ $customer['level_3_name'] ?? '' }}</td>
-                                <td>{{ $customer['level_4_name'] ?? '' }}</td>
                                 <td>
-                                <button type="button" class="btn btn-info btn-sm view-customer-btn"
-                                    data-name="{{ $customer['name'] ?? 'N/A' }}"
-                                    data-mobile="{{ $customer['mobile'] ?? 'N/A' }}"
-                                    data-level1-count="{{ $customer['level_1_count'] ?? 0 }}"
-                                    data-level2-count="{{ $customer['level_2_count'] ?? 0 }}"
-                                    data-level3-count="{{ $customer['level_3_count'] ?? 0 }}"
-                                    data-level4-count="{{ $customer['level_4_count'] ?? 0 }}"
-                                    data-bs-toggle="modal" data-bs-target="#customerDetailsModal">
-                                    {{ __('View') }}
-                                </button>
 
                                     @if(isset($customer['status']) && $customer['status'] == 0)
                                         <button type="button" class="btn btn-success btn-sm activate-user-btn" 
@@ -319,29 +301,6 @@ $(document).ready(function () {
     });
 });
 </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Select all "View" buttons
-        document.querySelectorAll('.view-customer-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Get data attributes
-                let name = this.getAttribute('data-name');
-                let mobile = this.getAttribute('data-mobile');
-                let level1Count = this.getAttribute('data-level1-count');
-                let level2Count = this.getAttribute('data-level2-count');
-                let level3Count = this.getAttribute('data-level3-count');
-                let level4Count = this.getAttribute('data-level4-count');
 
-                // Set values inside modal
-                document.getElementById('modalCustomerName').textContent = name;
-                document.getElementById('modalCustomerMobile').textContent = mobile;
-                document.getElementById('modalLevel1Count').textContent = level1Count;
-                document.getElementById('modalLevel2Count').textContent = level2Count;
-                document.getElementById('modalLevel3Count').textContent = level3Count;
-                document.getElementById('modalLevel4Count').textContent = level4Count;
-            });
-        });
-    });
-</script>
 
 

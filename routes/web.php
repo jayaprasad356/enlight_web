@@ -91,6 +91,7 @@ Route::post('/inactive_users/enable', [InactiveUsersController::class, 'enableUs
 Route::post('/update-refer', [UserController::class, 'updateRefer'])->name('inactive_users.update_refer');
 // Route to display the registration form (GET)
 Route::get('/inactive-users/create', [InactiveUsersController::class, 'showCreateForm'])->name('inactive_users.create');
+Route::get('/get-user-referrals', [UsersController::class, 'getUserReferrals'])->name('getUserReferrals');
 
 // Route to handle form submission (POST)
 Route::post('/inactive-users/store', [InactiveUsersController::class, 'create'])->name('inactive_users.store');

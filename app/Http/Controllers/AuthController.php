@@ -80,11 +80,23 @@ class AuthController extends Controller
         }
     
         // Fetch referred users with status 0
-        $users = DB::table('users')
-        ->where($column, $refer_code)
-        ->where('status', 1)
-        ->orderBy('registered_datetime', 'desc') // Order by registered_datetime in descending order
-        ->select('*', DB::raw("DATE(registered_datetime) AS registered_date"), DB::raw("CONCAT(SUBSTRING(mobile, 1, 2), '******', SUBSTRING(mobile, LENGTH(mobile)-1, 2)) AS mobile"))
+        $users = DB::table('users as u1')
+        ->leftJoin('users as l1', 'u1.level_1_refer', '=', 'l1.refer_code') // Level 1 Referrer
+        ->leftJoin('users as l2', 'u1.level_2_refer', '=', 'l2.refer_code') // Level 2 Referrer
+        ->leftJoin('users as l3', 'u1.level_3_refer', '=', 'l3.refer_code') // Level 3 Referrer
+        ->leftJoin('users as l4', 'u1.level_4_refer', '=', 'l4.refer_code') // Level 4 Referrer
+        ->where('u1.' . $column, $refer_code)
+        ->where('u1.status', 1)
+        ->orderBy('u1.registered_datetime', 'desc')
+        ->select(
+            'u1.id',
+            'u1.name',
+            'u1.mobile',
+            'l1.name as level_1_referrer_name',
+            'l2.name as level_2_referrer_name',
+            'l3.name as level_3_referrer_name',
+            'l4.name as level_4_referrer_name'
+        )
         ->get();
     
     
