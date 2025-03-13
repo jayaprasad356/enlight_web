@@ -190,7 +190,8 @@ class InactiveUsersController extends Controller
                     ], 400);
                 }
     
-                $selectedUser->level_2_refer = $selectedLevelUser->refer_code;
+                $selectedUser->level_1_refer = $selectedLevelUser->refer_code;
+                $selectedUser->level_2_refer = $selectedLevelUser->level_1_refer;
                 $selectedUser->level_3_refer = $sessionUser->refer_code;
                 $selectedUser->save();
     
@@ -220,7 +221,9 @@ class InactiveUsersController extends Controller
                     ], 400);
                 }
     
-                $selectedUser->level_3_refer = $selectedLevelUser->refer_code;
+                $selectedUser->level_1_refer = $selectedLevelUser->refer_code;
+                $selectedUser->level_2_refer = $selectedLevelUser->level_1_refer;
+                $selectedUser->level_3_refer = $selectedLevelUser->level_2_refer;
                 $selectedUser->level_4_refer = $sessionUser->refer_code;
                 $selectedUser->save();
     
@@ -331,7 +334,7 @@ class InactiveUsersController extends Controller
     
         // Call the API to fetch the users based on the user_id and level
         try {
-            $response = Http::post('https://enlightapp.in/api/level', [
+            $response = Http::post('http://localhost/enlight_web/api/level', [
                 'user_id' => $userId,
                 'level' => $mappedLevel  // Use mapped level
             ]);
