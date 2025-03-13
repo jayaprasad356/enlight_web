@@ -87,7 +87,7 @@ class ExtraBonusController extends Controller
         DB::beginTransaction();
         try {
             // Add bonus to level income wallet
-            $user->level_income_wallet += $bonusAmount;
+            $user->balance += $bonusAmount;
             $user->save();
     
             // Insert transaction record

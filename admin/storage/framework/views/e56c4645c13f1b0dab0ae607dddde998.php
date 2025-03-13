@@ -67,10 +67,10 @@
                                     <td><?php echo e($payment_screenshot->users->name); ?></td>
                                     <td><?php echo e($payment_screenshot->users->mobile); ?></td>
                                     <td>
-                                        <?php if($payment_screenshot->screenshots): ?>
-                                            <a href="<?php echo e(('http://localhost/enlight_web/storage/app/public/' . $payment_screenshot->screenshots)); ?>" data-lightbox="image-<?php echo e($payment_screenshot->id); ?>">
+                                    <?php if($payment_screenshot->screenshots): ?>
+                                            <a href="<?php echo e(('https://enlightapp.in/storage/app/public/' . $payment_screenshot->screenshots)); ?>" data-lightbox="image-<?php echo e($payment_screenshot->id); ?>">
                                                 <img class="user-img img-thumbnail img-fluid" 
-                                                    src="<?php echo e(('http://localhost/enlight_web/storage/app/public/' . $payment_screenshot->screenshots)); ?>" 
+                                                    src="<?php echo e(('https://enlightapp.in/storage/app/public/' . $payment_screenshot->screenshots)); ?>" 
                                                     alt="Image" 
                                                     style="max-width: 100px; max-height: 100px;">
                                             </a>

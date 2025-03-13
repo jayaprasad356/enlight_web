@@ -63,8 +63,8 @@
                                         </span>
                                     </td>
                                     <td>{{ ucfirst($payment_screenshot->id) }}</td>
-                                    <td>{{ $payment_screenshot->users->name }}</td>
-                                    <td>{{ $payment_screenshot->users->mobile }}</td>
+                                    <td>{{ optional($payment_screenshot->users)->name ?? 'N/A' }}</td>
+                                    <td>{{ optional($payment_screenshot->users)->mobile ?? 'N/A' }}</td>
                                     <td>
                                     @if($payment_screenshot->screenshots)
                                             <a href="{{ ('https://enlightapp.in/storage/app/public/' . $payment_screenshot->screenshots) }}" data-lightbox="image-{{ $payment_screenshot->id }}">

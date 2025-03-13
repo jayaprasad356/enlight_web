@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\payment_screenshots;
-use App\Models\PaymentScreenshots;
 use App\Models\Users;
 use App\Models\Transactions;
 use Illuminate\Http\Request;
 
-class PaymentScreenshotsControllers extends Controller
+class PaymentScreenshotsController extends Controller
 {
     // List all payment screenshots with optional filtering
     public function index(Request $request)
@@ -32,38 +31,38 @@ class PaymentScreenshotsControllers extends Controller
         return view('payment_screenshots.edit', compact('payment_screenshot'));
     }
 
+    // Update payment screenshot status
     public function update(Request $request, $id)
     {
         $payment_screenshot = payment_screenshots::findOrFail($id);
-    
+
         $request->validate([
             'status' => 'required|integer|in:0,1,2',
-            'recharge' => 'nullable|numeric', // Allow positive and negative values
+            'recharge' => 'nullable|numeric',
         ]);
-    
+
         $payment_screenshot->status = $request->status;
         $payment_screenshot->save();
-    
+
         if ($request->status == 1 && $request->has('recharge')) {
             $user = $payment_screenshot->users;
-            $rechargeAmount = $request->recharge; // Can be positive or negative
-    
-            if ($user) {
-                // Deduct or Add the recharge amount
+
+            if ($user) { // Ensure user exists before updating
+                $rechargeAmount = $request->recharge; 
+
                 $user->recharge += $rechargeAmount;
                 $user->save();
-    
+
                 // Create a transaction record
                 Transactions::create([
                     'user_id' => $user->id,
-                    'type' => 'recharge', // Log type based on amount
+                    'type' => 'recharge',
                     'amount' => $rechargeAmount,
                     'datetime' => now(),
                 ]);
             }
         }
-    
+
         return redirect()->route('payment_screenshots.index')->with('success', 'Payment Screenshot updated successfully.');
     }
-    
 }
