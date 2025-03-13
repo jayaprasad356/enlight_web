@@ -147,7 +147,7 @@
                                 <td>{{ $customer['level_3_name'] ?? 'N/A' }}</td>
                                 <td>{{ $customer['level_4_name'] ?? 'N/A' }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info btn-sm view-customer-btn"
+                                    <!-- <button type="button" class="btn btn-info btn-sm view-customer-btn"
                                         data-name="{{ $customer['name'] ?? 'N/A' }}"
                                         data-mobile="{{ $customer['mobile'] ?? 'N/A' }}"
                                         data-level1="{{ $customer['level_1_name'] ?? 'N/A' }}"
@@ -160,7 +160,7 @@
                                         data-level4-count="{{ $level_4_count }}"
                                         data-bs-toggle="modal" data-bs-target="#customerDetailsModal">
                                         {{ __('View') }}
-                                    </button>
+                                    </button> -->
                                     @if(isset($customer['status']) && $customer['status'] == 0)
                                         <button type="button" class="btn btn-success btn-sm activate-user-btn" 
                                             data-id="{{ $customer['id'] }}" 
