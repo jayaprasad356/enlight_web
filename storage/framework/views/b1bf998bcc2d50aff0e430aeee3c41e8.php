@@ -26,8 +26,8 @@
                     <!-- Customer Details (Left Side on Desktop, Below Recharge on Mobile) -->
                     <p class="customer-details order-2 order-md-1 mt-2 mt-md-0 text-md-start text-start text-break"
                         style="font-size: 13px; white-space: normal; word-wrap: break-word;">
-                        <strong><?php echo e(__('Customer ID:')); ?></strong> <?php echo e($id); ?> <br> 
-                        <strong><?php echo e(__('Name:')); ?></strong> <?php echo e($userName); ?> <br> 
+                        <strong><?php echo e(__('Customer ID:')); ?></strong> <?php echo e($id); ?> 
+                        <strong><?php echo e(__('Name:')); ?></strong> <?php echo e($userName); ?> 
                         <strong><?php echo e(__('Mobile:')); ?></strong> <?php echo e($userMobile); ?>
 
                     </p>
@@ -43,11 +43,11 @@
                         <div class="mt-4" id="userDropdownContainer">
                             <select class="form-select" id="userDropdown" style="width: 50%;"> 
                                 <?php if(request()->query('level') == 2): ?>
-                                    <option value=""><?php echo e(__('Choose Your Level 1 Customers')); ?></option>
-                                <?php elseif(request()->query('level') == 3): ?>
                                     <option value=""><?php echo e(__('Choose Your Level 2 Customers')); ?></option>
-                                <?php elseif(request()->query('level') == 4): ?>
+                                <?php elseif(request()->query('level') == 3): ?>
                                     <option value=""><?php echo e(__('Choose Your Level 3 Customers')); ?></option>
+                                <?php elseif(request()->query('level') == 4): ?>
+                                    <option value=""><?php echo e(__('Choose Your Level 4 Customers')); ?></option>
                                 <?php endif; ?>
                             </select>
                         </div>
@@ -71,43 +71,37 @@
 $(document).ready(function() {
     var userId = "<?php echo e(Session::get('user_id')); ?>"; // Get user_id from the session
     var level = "<?php echo e($level); ?>"; // Get the level from the Blade variable
-    var droplevel = Number(level) - 1;
+    var droplevel = level; // Ensure correct mapping of levels
+
     // Hide the dropdown for level 1 and show custom message instead
     if (level == 1) {
         $('#userDropdownContainer').hide(); // Hide the dropdown
         $('#activateLevelBtn').prop('disabled', true); // Disable the button since no activation can happen for level 1
     }
 
-    function fetchUsersForLevel() {
-    if (level > 1) {
-        $.ajax({
-            url: "<?php echo e(route('inactive_users.getLevelUsers')); ?>",
-            type: 'GET',
-            data: {
-                user_id: userId,
-                level: droplevel
-            },
-            success: function(response) {
-                if (response.data) {
-                    var userDropdown = $('#userDropdown');
-                    userDropdown.empty();
-                    
-                    $.each(response.data, function(index, user) {
-                        userDropdown.append('<option value="' + user.id + '" data-name="' + user.name + '" data-mobile="' + user.mobile + '">' + user.id + ' - ' + user.name + ' - ' + user.mobile + '</option>');
-                    });
-                } else {
-                    alert('No Customers found for the selected level.');
-                }
-                },
-                error: function(xhr, status, error) {
-                    alert('No Customers found for the selected level.');
-                }
+    $.ajax({
+    url: "<?php echo e(route('inactive_users.getLevelUsers')); ?>",
+    type: 'GET',
+    data: {
+        user_id: userId,
+        level: droplevel  // Use the correct level directly
+    },
+    success: function(response) {
+        if (response.data) {
+            var userDropdown = $('#userDropdown');
+            userDropdown.empty();
+            
+            $.each(response.data, function(index, user) {
+                userDropdown.append('<option value="' + user.id + '" data-name="' + user.name + '" data-mobile="' + user.mobile + '">' + user.id + ' - ' + user.name + ' - ' + user.mobile + '</option>');
             });
+        } else {
+            alert('No Customers found for the selected level.');
         }
+    },
+    error: function(xhr, status, error) {
+        alert('No Customers found for the selected level.');
     }
-    if (level > 1) {
-        fetchUsersForLevel();
-    }
+});
 
 });
 </script>

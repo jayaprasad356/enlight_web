@@ -41,11 +41,11 @@
                         <div class="mt-4" id="userDropdownContainer">
                             <select class="form-select" id="userDropdown" style="width: 50%;"> 
                                 @if(request()->query('level') == 2)
-                                    <option value="">{{ __('Choose Your Level 1 Customers') }}</option>
-                                @elseif(request()->query('level') == 3)
                                     <option value="">{{ __('Choose Your Level 2 Customers') }}</option>
-                                @elseif(request()->query('level') == 4)
+                                @elseif(request()->query('level') == 3)
                                     <option value="">{{ __('Choose Your Level 3 Customers') }}</option>
+                                @elseif(request()->query('level') == 4)
+                                    <option value="">{{ __('Choose Your Level 4 Customers') }}</option>
                                 @endif
                             </select>
                         </div>
@@ -69,43 +69,37 @@
 $(document).ready(function() {
     var userId = "{{ Session::get('user_id') }}"; // Get user_id from the session
     var level = "{{ $level }}"; // Get the level from the Blade variable
-    var droplevel = Number(level) - 1;
+    var droplevel = level; // Ensure correct mapping of levels
+
     // Hide the dropdown for level 1 and show custom message instead
     if (level == 1) {
         $('#userDropdownContainer').hide(); // Hide the dropdown
         $('#activateLevelBtn').prop('disabled', true); // Disable the button since no activation can happen for level 1
     }
 
-    function fetchUsersForLevel() {
-    if (level > 1) {
-        $.ajax({
-            url: "{{ route('inactive_users.getLevelUsers') }}",
-            type: 'GET',
-            data: {
-                user_id: userId,
-                level: droplevel
-            },
-            success: function(response) {
-                if (response.data) {
-                    var userDropdown = $('#userDropdown');
-                    userDropdown.empty();
-                    
-                    $.each(response.data, function(index, user) {
-                        userDropdown.append('<option value="' + user.id + '" data-name="' + user.name + '" data-mobile="' + user.mobile + '">' + user.id + ' - ' + user.name + ' - ' + user.mobile + '</option>');
-                    });
-                } else {
-                    alert('No Customers found for the selected level.');
-                }
-                },
-                error: function(xhr, status, error) {
-                    alert('No Customers found for the selected level.');
-                }
+    $.ajax({
+    url: "{{ route('inactive_users.getLevelUsers') }}",
+    type: 'GET',
+    data: {
+        user_id: userId,
+        level: droplevel  // Use the correct level directly
+    },
+    success: function(response) {
+        if (response.data) {
+            var userDropdown = $('#userDropdown');
+            userDropdown.empty();
+            
+            $.each(response.data, function(index, user) {
+                userDropdown.append('<option value="' + user.id + '" data-name="' + user.name + '" data-mobile="' + user.mobile + '">' + user.id + ' - ' + user.name + ' - ' + user.mobile + '</option>');
             });
+        } else {
+            alert('No Customers found for the selected level.');
         }
+    },
+    error: function(xhr, status, error) {
+        alert('No Customers found for the selected level.');
     }
-    if (level > 1) {
-        fetchUsersForLevel();
-    }
+});
 
 });
 </script>
