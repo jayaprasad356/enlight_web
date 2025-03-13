@@ -89,6 +89,11 @@ Route::resource('withdrawals', WithdrawalsController::class);
 Route::resource('my_products', ProductsController::class);
 Route::post('/inactive_users/enable', [InactiveUsersController::class, 'enableUser'])->name('inactive_users.enable');
 Route::post('/update-refer', [UserController::class, 'updateRefer'])->name('inactive_users.update_refer');
+// Route to display the registration form (GET)
+Route::get('/inactive-users/create', [InactiveUsersController::class, 'showCreateForm'])->name('inactive_users.create');
+
+// Route to handle form submission (POST)
+Route::post('/inactive-users/store', [InactiveUsersController::class, 'create'])->name('inactive_users.store');
 
 Route::get('/extra_bonus', [ExtraBonusController::class, 'index'])->name('extra_bonus.index');
 Route::post('/bonus/claim/{level}', [ExtraBonusController::class, 'claim'])->name('bonus.claim');

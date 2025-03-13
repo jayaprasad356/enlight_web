@@ -39,7 +39,9 @@
                         <strong><?php echo e(__('Membership Activation Balance: Rs')); ?> <?php echo e($recharge); ?></strong>
                     </div>
                 </div>
-
+                <div class="text-end">
+                    <a href="<?php echo e(route('inactive_users.create')); ?>" class="btn btn-primary"><?php echo e(__('New Customer')); ?></a>
+                </div>
                 <br>
                 <div class="table-responsive">
                     <table class="table" id="pc-dt-simple">
@@ -119,45 +121,68 @@
                     <br>
                 <div class="table-responsive">
                 <table class="table" id="customers-table">
-                    <thead>
+                <thead>
+                    <tr>
+                        <th><?php echo e(__('ID')); ?></th>
+                        <th><?php echo e(__('Customer Name')); ?></th>
+                        <th><?php echo e(__('Mobile')); ?></th>
+                        <th><?php echo e(__('DateTime')); ?></th>
+                        <th><?php echo e(__('Level 1 Refer')); ?></th>
+                        <th><?php echo e(__('Level 2 Refer')); ?></th>
+                        <th><?php echo e(__('Level 3 Refer')); ?></th>
+                        <th><?php echo e(__('Level 4 Refer')); ?></th>
+                        <th><?php echo e(__('Action')); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if($customers->isEmpty()): ?>
                         <tr>
-                            <th><?php echo e(__('ID')); ?></th>
-                            <th><?php echo e(__('Customer Name')); ?></th>
-                            <th><?php echo e(__('Mobile')); ?></th>
-                            <th><?php echo e(__('DateTime')); ?></th>
-                            <th><?php echo e(__('Action')); ?></th>
+                            <td colspan="9" class="text-center">No customers found.</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php if($customers->isEmpty()): ?>
+                    <?php else: ?>
+                        <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td colspan="5" class="text-center">No customers found.</td>
-                            </tr>
-                        <?php else: ?>
-                            <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <tr>
-                                    <td><?php echo e($customer['id']); ?></td>
-                                    <td><?php echo e($customer['name'] ?? 'N/A'); ?></td>
-                                    <td><?php echo e($customer['mobile'] ?? 'N/A'); ?></td>
-                                    <td><?php echo e($customer['registered_datetime'] ?? 'N/A'); ?></td>
-                                    <td>
-                                        <?php if(isset($customer['status']) && $customer['status'] == 0): ?>
-                                            <!-- Show "Click To Activate" button only if status is 0 -->
-                                            <button type="button" class="btn btn-success btn-sm activate-user-btn" 
-                                                data-id="<?php echo e($customer['id']); ?>" 
-                                                data-name="<?php echo e($customer['name'] ?? 'N/A'); ?>" 
-                                                data-mobile="<?php echo e($customer['mobile'] ?? 'N/A'); ?>">
-                                                <?php echo e(__('Click To enable')); ?>
+                                <td><?php echo e($customer['id']); ?></td>
+                                <td><?php echo e($customer['name'] ?? 'N/A'); ?></td>
+                                <td><?php echo e($customer['mobile'] ?? 'N/A'); ?></td>
+                                <td><?php echo e($customer['registered_datetime'] ?? 'N/A'); ?></td>
+                                <td><?php echo e($customer['level_1_name'] ?? 'N/A'); ?></td>
+                                <td><?php echo e($customer['level_2_name'] ?? 'N/A'); ?></td>
+                                <td><?php echo e($customer['level_3_name'] ?? 'N/A'); ?></td>
+                                <td><?php echo e($customer['level_4_name'] ?? 'N/A'); ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-info btn-sm view-customer-btn"
+                                        data-name="<?php echo e($customer['name'] ?? 'N/A'); ?>"
+                                        data-mobile="<?php echo e($customer['mobile'] ?? 'N/A'); ?>"
+                                        data-level1="<?php echo e($customer['level_1_name'] ?? 'N/A'); ?>"
+                                        data-level2="<?php echo e($customer['level_2_name'] ?? 'N/A'); ?>"
+                                        data-level3="<?php echo e($customer['level_3_name'] ?? 'N/A'); ?>"
+                                        data-level4="<?php echo e($customer['level_4_name'] ?? 'N/A'); ?>"
+                                        data-level1-count="<?php echo e($level_1_count); ?>"
+                                        data-level2-count="<?php echo e($level_2_count); ?>"
+                                        data-level3-count="<?php echo e($level_3_count); ?>"
+                                        data-level4-count="<?php echo e($level_4_count); ?>"
+                                        data-bs-toggle="modal" data-bs-target="#customerDetailsModal">
+                                        <?php echo e(__('View')); ?>
 
-                                            </button>
-                                        <?php else: ?>
-                                            <span class="badge bg-secondary"><?php echo e(__('Already Activated')); ?></span>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
-                    </tbody>
+                                    </button>
+                                    <?php if(isset($customer['status']) && $customer['status'] == 0): ?>
+                                        <button type="button" class="btn btn-success btn-sm activate-user-btn" 
+                                            data-id="<?php echo e($customer['id']); ?>" 
+                                            data-name="<?php echo e($customer['name'] ?? 'N/A'); ?>" 
+                                            data-mobile="<?php echo e($customer['mobile'] ?? 'N/A'); ?>">
+                                            <?php echo e(__('Click To Enable')); ?>
+
+                                        </button>
+                                    <?php else: ?>
+                                        <span class="badge bg-secondary"><?php echo e(__('Already Activated')); ?></span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
+                </tbody>
+
                 </table>
 
                 </div>
@@ -167,6 +192,28 @@
     </div>
 </div>
 
+<!-- Customer Details Modal -->
+<div class="modal fade" id="customerDetailsModal" tabindex="-1" aria-labelledby="customerDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="customerDetailsModalLabel"><?php echo e(__('Customer Details')); ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong><?php echo e(__('Customer Name:')); ?></strong> <span id="modalCustomerName"></span></p>
+                <p><strong><?php echo e(__('Mobile:')); ?></strong> <span id="modalCustomerMobile"></span></p>
+                <p><strong><?php echo e(__('Level 1 Refer:')); ?></strong> <span id="modalLevel1Refer"></span> (Count: <span id="modalLevel1Count"></span>)</p>
+                <p><strong><?php echo e(__('Level 2 Refer:')); ?></strong> <span id="modalLevel2Refer"></span> (Count: <span id="modalLevel2Count"></span>)</p>
+                <p><strong><?php echo e(__('Level 3 Refer:')); ?></strong> <span id="modalLevel3Refer"></span> (Count: <span id="modalLevel3Count"></span>)</p>
+                <p><strong><?php echo e(__('Level 4 Refer:')); ?></strong> <span id="modalLevel4Refer"></span> (Count: <span id="modalLevel4Count"></span>)</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo e(__('Close')); ?></button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -284,5 +331,39 @@ $(document).ready(function () {
     });
 });
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select all "View" buttons
+        document.querySelectorAll('.view-customer-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Get data attributes
+                let name = this.getAttribute('data-name');
+                let mobile = this.getAttribute('data-mobile');
+                let level1 = this.getAttribute('data-level1');
+                let level2 = this.getAttribute('data-level2');
+                let level3 = this.getAttribute('data-level3');
+                let level4 = this.getAttribute('data-level4');
+                let level1Count = this.getAttribute('data-level1-count');
+                let level2Count = this.getAttribute('data-level2-count');
+                let level3Count = this.getAttribute('data-level3-count');
+                let level4Count = this.getAttribute('data-level4-count');
+
+                // Set values inside modal
+                document.getElementById('modalCustomerName').textContent = name;
+                document.getElementById('modalCustomerMobile').textContent = mobile;
+                document.getElementById('modalLevel1Refer').textContent = level1;
+                document.getElementById('modalLevel2Refer').textContent = level2;
+                document.getElementById('modalLevel3Refer').textContent = level3;
+                document.getElementById('modalLevel4Refer').textContent = level4;
+                document.getElementById('modalLevel1Count').textContent = level1Count;
+                document.getElementById('modalLevel2Count').textContent = level2Count;
+                document.getElementById('modalLevel3Count').textContent = level3Count;
+                document.getElementById('modalLevel4Count').textContent = level4Count;
+            });
+        });
+    });
+</script>
+
+
 
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\enlight_web\resources\views/inactive_users/index.blade.php ENDPATH**/ ?>

@@ -14,40 +14,59 @@ use Illuminate\Support\Facades\DB;
 class InactiveUsersController extends Controller
 {
     public function index(Request $request)
-    {
-        $news = News::latest()->first(); // Fetch latest news
-        
-        // Get user_id from session
-        $user_id = Session::get('user_id');
-    
-        // Fetch the user from the database
-        $user = Users::find($user_id);
-    
-        // If user is not found, logout and redirect to login
-        if (!$user) {
-            Auth::logout();
-            Session::flush(); // Clear session data
-            return redirect()->route('mobile.login')->with('error', 'Session expired. Please log in again.');
-        }
-    
-        // Get user balance
-        $recharge = $user->recharge ?? 0;
-        $refer_code = $user->refer_code ?? 0;
-    
-        // Fetch inactive users with status 0 and matching refer_code
-        $users = Users::where('status', 0)
-                      ->where('level_1_refer', $user->refer_code)
-                      ->get();
+{
+    $news = News::latest()->first(); // Fetch latest news
 
-                      $customers = collect(); // Initialize as an empty collection
+    // Get user_id from session
+    $user_id = Session::get('user_id');
 
-                      if ($request->has('mobile') && !empty($request->mobile)) {
-                          $customers = Users::where('mobile', $request->mobile)->get();
-                      }
-    
-        // Return the view with users and balance
-        return view('inactive_users.index', compact('users', 'recharge', 'news','customers','refer_code'));
+    // Fetch the user from the database
+    $user = Users::find($user_id);
+
+    // If user is not found, logout and redirect to login
+    if (!$user) {
+        Auth::logout();
+        Session::flush();
+        return redirect()->route('mobile.login')->with('error', 'Session expired. Please log in again.');
     }
+
+    // Get user balance
+    $recharge = $user->recharge ?? 0;
+    $refer_code = $user->refer_code ?? 0;
+
+    // Fetch inactive users with status 0 and matching refer_code
+    $users = Users::where('status', 0)
+                  ->where('level_1_refer', $user->refer_code)
+                  ->get();
+
+    // Initialize as an empty collection
+    $customers = collect();
+
+    if ($request->has('mobile') && !empty($request->mobile)) {
+        $customers = Users::where('users.mobile', $request->mobile)
+            ->leftJoin('users as ref1', 'users.level_1_refer', '=', 'ref1.refer_code')
+            ->leftJoin('users as ref2', 'users.level_2_refer', '=', 'ref2.refer_code')
+            ->leftJoin('users as ref3', 'users.level_3_refer', '=', 'ref3.refer_code')
+            ->leftJoin('users as ref4', 'users.level_4_refer', '=', 'ref4.refer_code')
+            ->select(
+                'users.*',
+                'ref1.name as level_1_name',
+                'ref2.name as level_2_name',
+                'ref3.name as level_3_name',
+                'ref4.name as level_4_name'
+            )
+            ->get();
+    }
+
+    // Fetch counts of users referring to the logged-in user
+    $level_1_count = Users::where('level_1_refer', $user->refer_code)->count();
+    $level_2_count = Users::where('level_2_refer', $user->refer_code)->count();
+    $level_3_count = Users::where('level_3_refer', $user->refer_code)->count();
+    $level_4_count = Users::where('level_4_refer', $user->refer_code)->count();
+
+    // Return the view with users, counts, and balance
+    return view('inactive_users.index', compact('users', 'recharge', 'news', 'customers', 'refer_code', 'level_1_count', 'level_2_count', 'level_3_count', 'level_4_count'));
+}
 
   
     public function activate(Request $request)
@@ -358,6 +377,74 @@ class InactiveUsersController extends Controller
         ]);
     }
 
+    public function create(Request $request)
+    {
+        // Validate the incoming request data
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'mobile' => 'required|string|max:15',
+            'password' => 'required|string|min:8',
+            'pincode' => 'required|string|min:6|max:6',
+            'age' => 'required|integer|min:18', // Assuming age should be an integer and at least 18
+            'gender' => 'required|string|max:255',
+        ]);
+    
+        // Get the logged-in user's information from session
+        $user_id = Session::get('user_id');
+        
+        // Fetch the user's refer_code from the database using the user_id from session
+        $user = Users::find($user_id);  // Assuming you have a User model and the user exists in the database
+    
+        if (!$user) {
+            return redirect()->route('inactive_users.create')->with('error', 'User not found.');
+        }
+    
+        $refer_code = $user->refer_code;  // Assuming 'refer_code' is a column in the 'users' table
+    
+        // API endpoint to register the user
+        $apiUrl = 'https://enlightapp.in/api/register';  // Replace with your actual registration API URL
+    
+        // Prepare the data to send to the API
+        $apiData = [
+            'name' => $validated['name'],
+            'mobile' => $validated['mobile'],
+            'password' => $validated['password'],  // Encrypt the password
+            'pincode' => $validated['pincode'],
+            'age' => $validated['age'],
+            'gender' => $validated['gender'],
+            'level_1_refer' => $refer_code, // Automatically use the logged-in user's refer_code from session
+        ];
+    
+        // Make the API request (you can also use other libraries like Guzzle if needed)
+        $response = Http::post($apiUrl, $apiData);
+    
+        // Check if the registration was successful
+        $responseData = $response->json(); // Decode the JSON response
+
+        if ($response->successful() && isset($responseData['success']) && $responseData['success'] === true) {
+            return redirect()->route('inactive_users.index')->with('success', $responseData['message'] ?? 'User registered successfully.');
+        } else {
+            return redirect()->route('inactive_users.create')->with('error', $responseData['message'] ?? 'Registration failed. Please try again.');
+        }
+        
+    }
+
+    public function showCreateForm()
+{
+    // Get logged-in user refer_code
+    $user_id = Session::get('user_id');
+    $user = Users::find($user_id);
+    
+    if (!$user) {
+        return redirect()->route('inactive_users.index')->with('error', 'User not found.');
+    }
+
+    $refer_code = $user->refer_code;
+
+    return view('inactive_users.create', compact('refer_code'));
+}
+
+    
 
 
 }
