@@ -245,34 +245,32 @@
 
 <script>
   $(document).ready(function () {
-    // When "Activate User" button is clicked
-    $(".activate-user-btn").on("click", function () {
+    // Use event delegation for dynamically loaded elements
+    $(document).on("click", ".activate-user-btn", function () {
         let userId = $(this).data("id");
         let userName = $(this).data("name");
         let userMobile = $(this).data("mobile");
         let buttonText = $(this).text().trim();
 
-        // Update modal content with the selected user's info
+        // Update modal content
         $("#modalUserId").text(userId);
         $("#modalUserName").text(userName);
         $("#modalUserMobile").text(userMobile);
 
-        // Set data attributes for level-specific buttons
-        $("#level1Btn, #level2Btn, #level3Btn, #level4Btn").each(function (index, btn) {
-            $(btn).data("userId", userId)
-                .data("userName", userName)
-                .data("userMobile", userMobile)
-                .data("level", index + 1);
+        // Set data attributes for level buttons
+        $("#level1Btn, #level2Btn, #level3Btn, #level4Btn").each(function (index) {
+            $(this).attr("data-user-id", userId)
+                   .attr("data-user-name", userName)
+                   .attr("data-user-mobile", userMobile)
+                   .attr("data-level", index + 1);
         });
 
-        // Enable all level buttons if "Click To Activate" is clicked
+        // Enable/disable buttons based on buttonText
         if (buttonText === "Click To Activate") {
             $("#level1Btn, #level2Btn, #level3Btn, #level4Btn").prop("disabled", false);
-        }
-        // Disable Level 2, 3, and 4 if "Click To Enable" is clicked
-        else if (buttonText === "Click To enable") {
-            $("#level2Btn, #level3Btn, #level4Btn").prop("disabled", true);
+        } else if (buttonText === "Click To Enable") {
             $("#level1Btn").prop("disabled", false);
+            $("#level2Btn, #level3Btn, #level4Btn").prop("disabled", true);
         }
 
         // Open the modal
@@ -280,23 +278,22 @@
     });
 
     // Handle level-specific activation buttons
-    $("#level1Btn, #level2Btn, #level3Btn, #level4Btn").on("click", function () {
-        let userId = $(this).data("userId");
-        let userName = $(this).data("userName");
-        let userMobile = $(this).data("userMobile");
-        let level = $(this).data("level");
+    $(document).on("click", "#level1Btn, #level2Btn, #level3Btn, #level4Btn", function () {
+        let userId = $(this).attr("data-user-id");
+        let userName = $(this).attr("data-user-name");
+        let userMobile = $(this).attr("data-user-mobile");
+        let level = $(this).attr("data-level");
 
         // Redirect to activation route
         window.location.href = "<?php echo e(route('inactive_users.activate')); ?>" +
-            "?id=" + userId +
-            "&name=" + userName +
-            "&mobile=" + userMobile +
-            "&level=" + level;
+            "?id=" + encodeURIComponent(userId) +
+            "&name=" + encodeURIComponent(userName) +
+            "&mobile=" + encodeURIComponent(userMobile) +
+            "&level=" + encodeURIComponent(level);
     });
-});
-
-
+  });
 </script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 
