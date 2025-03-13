@@ -56,16 +56,19 @@ class InactiveUsersController extends Controller
                 'ref4.name as level_4_name'
             )
             ->get();
+    
+        // Loop through each customer and fetch their referral counts
+        foreach ($customers as &$customer) {
+            $customer['level_1_count'] = Users::where('level_1_refer', $customer->refer_code)->count();
+            $customer['level_2_count'] = Users::where('level_2_refer', $customer->refer_code)->count();
+            $customer['level_3_count'] = Users::where('level_3_refer', $customer->refer_code)->count();
+            $customer['level_4_count'] = Users::where('level_4_refer', $customer->refer_code)->count();
+        }
     }
-
-    // Fetch counts of users referring to the logged-in user
-    $level_1_count = Users::where('level_1_refer', $user->refer_code)->count();
-    $level_2_count = Users::where('level_2_refer', $user->refer_code)->count();
-    $level_3_count = Users::where('level_3_refer', $user->refer_code)->count();
-    $level_4_count = Users::where('level_4_refer', $user->refer_code)->count();
+    
 
     // Return the view with users, counts, and balance
-    return view('inactive_users.index', compact('users', 'recharge', 'news', 'customers', 'refer_code', 'level_1_count', 'level_2_count', 'level_3_count', 'level_4_count'));
+    return view('inactive_users.index', compact('users', 'recharge', 'news', 'customers', 'refer_code'));
 }
 
   

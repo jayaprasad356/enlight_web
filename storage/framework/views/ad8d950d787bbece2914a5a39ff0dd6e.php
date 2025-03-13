@@ -146,26 +146,23 @@
                                 <td><?php echo e($customer['name'] ?? 'N/A'); ?></td>
                                 <td><?php echo e($customer['mobile'] ?? 'N/A'); ?></td>
                                 <td><?php echo e($customer['registered_datetime'] ?? 'N/A'); ?></td>
-                                <td><?php echo e($customer['level_1_name'] ?? 'N/A'); ?></td>
-                                <td><?php echo e($customer['level_2_name'] ?? 'N/A'); ?></td>
-                                <td><?php echo e($customer['level_3_name'] ?? 'N/A'); ?></td>
-                                <td><?php echo e($customer['level_4_name'] ?? 'N/A'); ?></td>
+                                <td><?php echo e($customer['level_1_name'] ?? ''); ?></td>
+                                <td><?php echo e($customer['level_2_name'] ?? ''); ?></td>
+                                <td><?php echo e($customer['level_3_name'] ?? ''); ?></td>
+                                <td><?php echo e($customer['level_4_name'] ?? ''); ?></td>
                                 <td>
-                                    <button type="button" class="btn btn-info btn-sm view-customer-btn"
-                                        data-name="<?php echo e($customer['name'] ?? 'N/A'); ?>"
-                                        data-mobile="<?php echo e($customer['mobile'] ?? 'N/A'); ?>"
-                                        data-level1="<?php echo e($customer['level_1_name'] ?? 'N/A'); ?>"
-                                        data-level2="<?php echo e($customer['level_2_name'] ?? 'N/A'); ?>"
-                                        data-level3="<?php echo e($customer['level_3_name'] ?? 'N/A'); ?>"
-                                        data-level4="<?php echo e($customer['level_4_name'] ?? 'N/A'); ?>"
-                                        data-level1-count="<?php echo e($level_1_count); ?>"
-                                        data-level2-count="<?php echo e($level_2_count); ?>"
-                                        data-level3-count="<?php echo e($level_3_count); ?>"
-                                        data-level4-count="<?php echo e($level_4_count); ?>"
-                                        data-bs-toggle="modal" data-bs-target="#customerDetailsModal">
-                                        <?php echo e(__('View')); ?>
+                                <button type="button" class="btn btn-info btn-sm view-customer-btn"
+                                    data-name="<?php echo e($customer['name'] ?? 'N/A'); ?>"
+                                    data-mobile="<?php echo e($customer['mobile'] ?? 'N/A'); ?>"
+                                    data-level1-count="<?php echo e($customer['level_1_count'] ?? 0); ?>"
+                                    data-level2-count="<?php echo e($customer['level_2_count'] ?? 0); ?>"
+                                    data-level3-count="<?php echo e($customer['level_3_count'] ?? 0); ?>"
+                                    data-level4-count="<?php echo e($customer['level_4_count'] ?? 0); ?>"
+                                    data-bs-toggle="modal" data-bs-target="#customerDetailsModal">
+                                    <?php echo e(__('View')); ?>
 
-                                    </button>
+                                </button>
+
                                     <?php if(isset($customer['status']) && $customer['status'] == 0): ?>
                                         <button type="button" class="btn btn-success btn-sm activate-user-btn" 
                                             data-id="<?php echo e($customer['id']); ?>" 
@@ -204,9 +201,6 @@
                 <p><strong><?php echo e(__('Customer Name:')); ?></strong> <span id="modalCustomerName"></span></p>
                 <p><strong><?php echo e(__('Mobile:')); ?></strong> <span id="modalCustomerMobile"></span></p>
                 <p><strong><?php echo e(__('Level 1 Refer:')); ?></strong> <span id="modalLevel1Refer"></span> (Count: <span id="modalLevel1Count"></span>)</p>
-                <p><strong><?php echo e(__('Level 2 Refer:')); ?></strong> <span id="modalLevel2Refer"></span> (Count: <span id="modalLevel2Count"></span>)</p>
-                <p><strong><?php echo e(__('Level 3 Refer:')); ?></strong> <span id="modalLevel3Refer"></span> (Count: <span id="modalLevel3Count"></span>)</p>
-                <p><strong><?php echo e(__('Level 4 Refer:')); ?></strong> <span id="modalLevel4Refer"></span> (Count: <span id="modalLevel4Count"></span>)</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo e(__('Close')); ?></button>
@@ -270,7 +264,6 @@
             $("#level1Btn, #level2Btn, #level3Btn, #level4Btn").prop("disabled", false);
         } else if (buttonText === "Click To Enable") {
             $("#level1Btn").prop("disabled", false);
-            $("#level2Btn, #level3Btn, #level4Btn").prop("disabled", true);
         }
 
         // Open the modal
@@ -336,10 +329,6 @@ $(document).ready(function () {
                 // Get data attributes
                 let name = this.getAttribute('data-name');
                 let mobile = this.getAttribute('data-mobile');
-                let level1 = this.getAttribute('data-level1');
-                let level2 = this.getAttribute('data-level2');
-                let level3 = this.getAttribute('data-level3');
-                let level4 = this.getAttribute('data-level4');
                 let level1Count = this.getAttribute('data-level1-count');
                 let level2Count = this.getAttribute('data-level2-count');
                 let level3Count = this.getAttribute('data-level3-count');
@@ -348,10 +337,6 @@ $(document).ready(function () {
                 // Set values inside modal
                 document.getElementById('modalCustomerName').textContent = name;
                 document.getElementById('modalCustomerMobile').textContent = mobile;
-                document.getElementById('modalLevel1Refer').textContent = level1;
-                document.getElementById('modalLevel2Refer').textContent = level2;
-                document.getElementById('modalLevel3Refer').textContent = level3;
-                document.getElementById('modalLevel4Refer').textContent = level4;
                 document.getElementById('modalLevel1Count').textContent = level1Count;
                 document.getElementById('modalLevel2Count').textContent = level2Count;
                 document.getElementById('modalLevel3Count').textContent = level3Count;
