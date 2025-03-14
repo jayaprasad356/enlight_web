@@ -11,6 +11,7 @@ use App\Models\LandingPageSection;
 use App\Models\Meeting;
 use App\Models\Job;
 use App\Models\Order;
+use Illuminate\Support\Facades\DB;
 use App\Models\Payees;
 use App\Models\Avatars;
 use App\Models\Users;
@@ -63,6 +64,7 @@ class HomeController extends Controller
     
         return view('dashboard.dashboard', compact('monthly_salary', 'level_income', 'whatsapp_status_income','refer_income', 'news','payment_wallet'));
     }
+  
     public function addToBalance(Request $request)
     {
         $userId = session('user_id'); // Get user ID from session
@@ -84,11 +86,33 @@ class HomeController extends Controller
             return response()->json(['success' => false, 'message' => 'No Balance Available']);
         }
     
-        // Check if enough funds exist before subtracting
-        if ($type === 'monthly_salary') {
-            if ($user->completed_levels < 4) {
-                return response()->json(['success' => false, 'message' => 'Complete 4 Levels to withdraw monthly salary']);
+        // Check if the user has enough active referrals for each level
+        $requiredReferrals = [
+            1 => 3,   // Level 1 - 3 active referrals
+            2 => 9,   // Level 2 - 9 active referrals
+            3 => 27,  // Level 3 - 27 active referrals
+            4 => 81,  // Level 4 - 81 active referrals
+        ];
+    
+        foreach ($requiredReferrals as $level => $requiredCount) {
+            $activeReferrals = Users::where("level_{$level}_refer", $user->refer_code)
+                ->where('status', 1) // Only count active referrals
+                ->count();
+    
+            if ($activeReferrals < $requiredCount) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "You need at least $requiredCount active referrals for Level $level."
+                ]);
             }
+        }
+    
+        // Process the deduction based on income type
+        if ($type === 'monthly_salary') {
+            if ($user->monthly_salary < $amount) {
+                return response()->json(['success' => false, 'message' => 'Insufficient Monthly Salary']);
+            }
+            $user->monthly_salary -= $amount;
         } elseif ($type === 'level_income') {
             if ($user->level_income < $amount) {
                 return response()->json(['success' => false, 'message' => 'Insufficient Level Income']);
@@ -112,11 +136,17 @@ class HomeController extends Controller
         $user->balance += $amount;
         $user->save();
     
+        // Insert transaction record
+        DB::table('transactions')->insert([
+            'user_id' => $userId,
+            'type' => $type,
+            'amount' => $amount,
+            'datetime' => now(), // Current timestamp
+        ]);
+    
         return response()->json(['success' => true, 'message' => 'Amount added to your balance successfully']);
     }
     
-    
-
 }
 
     

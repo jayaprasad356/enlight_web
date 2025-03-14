@@ -28,10 +28,10 @@ class ExtraBonusController extends Controller
 
         // Count referrals for each level
         $referralCounts = [
-            1 => Users::where('level_1_refer', $refer_code)->count(),
-            2 => Users::where('level_2_refer', $refer_code)->count(),
-            3 => Users::where('level_3_refer', $refer_code)->count(),
-            4 => Users::where('level_4_refer', $refer_code)->count(),
+            1 => Users::where('level_1_refer', $refer_code)->where('status', 1)->count(),
+            2 => Users::where('level_2_refer', $refer_code)->where('status', 1)->count(),
+            3 => Users::where('level_3_refer', $refer_code)->where('status', 1)->count(),
+            4 => Users::where('level_4_refer', $refer_code)->where('status', 1)->count(),
         ];
 
         return view('extra_bonus.index', compact('user_id', 'referralCounts'));
@@ -66,8 +66,9 @@ class ExtraBonusController extends Controller
         $bonusAmount = $levels[$level]['bonus'];
         $claimType = $levels[$level]['type'];
     
-        // Count user's referrals for the given level
-        $referralCount = Users::where("level_{$level}_refer", $user->refer_code)->count();
+        $referralCount = Users::where("level_{$level}_refer", $user->refer_code)
+        ->where('status', 1) // Only count active referrals
+        ->count();
     
         // Check if user has enough referrals
         if ($referralCount < $requiredRefers) {

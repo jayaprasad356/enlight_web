@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="ms-2">
                                             <small class="text-muted">{{ __('Monthly') }}</small>
-                                            <h6 class="m-0">{{ __('Salary') }}</h6>
+                                            <h6 class="m-0">{{ __('Salery') }}</h6>
                                         </div>
                                     </div>
                                 </div>
