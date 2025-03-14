@@ -62,7 +62,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="userDetailModalLabel">User Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -79,9 +79,9 @@
 </div>
 @endsection
 
-@section('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Ensure jQuery is loaded -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap JS -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
 
 <script>
     $(document).ready(function() {
@@ -120,12 +120,12 @@
             });
         });
 
-        // Close modal when clicking the close (×) button
-        $('.close').on('click', function() {
+        // Fix: Close modal when clicking the close button (❌)
+        $('#closeModal').on('click', function() {
             $('#userDetailModal').modal('hide');
         });
 
-        // Close modal when clicking outside of it
+        // Fix: Close modal when clicking outside of it
         $(document).on('click', function(event) {
             if ($(event.target).closest('.modal-content').length === 0) {
                 $('#userDetailModal').modal('hide');
@@ -133,4 +133,3 @@
         });
     });
 </script>
-@endsection

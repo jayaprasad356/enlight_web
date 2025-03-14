@@ -179,7 +179,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto text-end">
-                                    <h4 class="m-0 text-secondary">{{ $unpaid_withdrawals }}</h4>
+                                    <h4 class="m-0 text-secondary">{{ number_format($unpaid_withdrawals, 0) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +209,46 @@
                     </div>
                 </div>
 
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-auto mb-3 mb-sm-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="theme-avtar bg-danger">
+                                        <i class="ti ti-cash"></i>
+                                        </div>
+                                        <div class="ms-3">
+                                            <small class="text-muted">{{ __('Today Recharge') }}</small>
+                                            <h6 class="m-0">{{ __('Amount') }}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto text-end">
+                                    <h4 class="m-0 text-secondary">{{ number_format($today_recharge_amount, 0) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 @endsection
+
+<script>
+    let logoutTimer;
+
+    function resetTimer() {
+        clearTimeout(logoutTimer);
+        logoutTimer = setTimeout(() => {
+            window.location.href = "{{ route('login') }}";
+        }, 300000); // 5 minutes
+    }
+
+    document.onload = resetTimer();
+    document.onmousemove = resetTimer;
+    document.onkeypress = resetTimer;
+</script>
+

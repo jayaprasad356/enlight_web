@@ -40,8 +40,8 @@ class CustomLoginController extends Controller
                 Session::put('user_id', $user->id);
                 Session::put('user_name', $user->name);
                 Session::put('refer_code', $user->refer_code); // Store refer_code in session
+                Session::put('avatar', $user->avatar ?? 'avatar.png');
 
-    
                 // Redirect to password change page ONLY if they have level_1_refer AND haven't updated their password before
                 if (!empty($user->level_1_refer) && !$user->password_updated) {
                     return redirect()->route('force.change.password')->with('message', 'You need to change your password before proceeding.');
@@ -105,9 +105,10 @@ public function updateProfile(Request $request)
         'pincode' => 'sometimes|required|string|max:10',
         'gender' => 'sometimes|required|in:male,female',
         'password' => 'nullable|min:6',
+        'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file
     ]);
 
-    // Update only the fields that are provided
+    // Update fields
     if ($request->has('name')) {
         $user->name = $request->name;
     }
@@ -123,14 +124,27 @@ public function updateProfile(Request $request)
     if ($request->has('gender')) {
         $user->gender = $request->gender;
     }
-    if ($request->has('password')) {
+    if ($request->filled('password')) {
         $user->password = $request->password;
+    }
+
+    // Handle avatar upload
+    if ($request->hasFile('avatar')) {
+        // Delete old avatar if exists
+        if ($user->avatar && file_exists(storage_path('app/public/uploads/avatar/' . $user->avatar))) {
+            unlink(storage_path('app/public/uploads/avatar/' . $user->avatar));
+        }
+
+        // Store new image
+        $avatarPath = $request->file('avatar')->store('avatar', 'public');
+        $user->avatar = basename($avatarPath);
     }
 
     $user->save();
 
     return back()->with('success', 'Profile updated successfully.');
 }
+
 
 public function showRegistrationForm($refer_code = null)
 {

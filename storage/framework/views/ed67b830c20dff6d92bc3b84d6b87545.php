@@ -15,12 +15,29 @@
         <div class="col-md-8">
             <div class="card shadow-lg border-0 rounded-lg">
                 <div class="card-body text-center">
-                    <div class="profile-avatar mb-3">
-                        <img src="<?php echo e(asset('storage/uploads/avatar/avatar.png')); ?>" 
+                <div class="profile-avatar mb-3">
+                    <label for="avatarUpload" style="cursor: pointer;">
+                        <img src="<?php echo e(asset('storage/app/public/avatar/' . ($user->avatar ?? 'avatar.png'))); ?>" 
                             class="rounded-circle border border-3 shadow-sm"
-                            style="width: 120px; height: 120px;" 
-                            alt="User Avatar">
+                            style="width: 120px; height: 120px;"
+                            alt="User Avatar"
+                            data-bs-toggle="modal" data-bs-target="#avatarModal">
+                    </label>
+                </div>
+
+                <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body text-center">
+                                <img src="<?php echo e(asset('storage/app/public/avatar/' . ($user->avatar ?? 'avatar.png'))); ?>" 
+                                    class="img-fluid rounded shadow"
+                                    alt="Full-Size Avatar">
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+
                     <h3 class="mb-1"><?php echo e($user->name); ?></h3>
                     <p class="text-muted"><?php echo e(__('User Profile Details')); ?></p>
                     
@@ -78,11 +95,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="<?php echo e(route('profile.update')); ?>" method="POST">
+                <form action="<?php echo e(route('profile.update')); ?>" method="POST" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
                     <?php echo method_field('PUT'); ?>
-
                     <div class="modal-body">
+                    <div class="form-group mb-2">
+                        <?php echo e(Form::label('user', __('avatar'), ['class' => 'form-label'])); ?>
+
+                        <div class="mb-2">
+                            <img src="<?php echo e(asset('storage/app/public/avatar/' . $user->avatar)); ?>" class="img-thumbnail" width="100" alt="Gift Icon">
+                        </div>
+                        <input type="file" name="avatar" class="form-control">
+                    </div>
+
                         <div class="form-group mb-2">
                             <label><?php echo e(__('Name')); ?></label>
                             <input type="text" class="form-control" name="name" value="<?php echo e($user->name); ?>" required>
@@ -137,7 +162,8 @@
     <!-- Include FontAwesome & Bootstrap JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.querySelector('.toggle-password').addEventListener('click', function() {
             let passwordField = document.getElementById("password");

@@ -12,12 +12,19 @@ class WorksController extends Controller
     // Show Works List Page
     public function index()
     {
-        $works = Works::all(); // Fetch works data
-        $works = Works::with('user')->get();
+        // Get user_id from session instead of auth()
+        $userId = session('user_id');
+
+        if (!$userId) {
+            return redirect('/login')->with('error', 'User session expired. Please log in again.');
+        }
+
+        // Fetch only the works of the session user
+        $works = Works::where('user_id', $userId)->with('user')->get();
         $news = News::latest()->first(); // Fetch the latest news record
+
         return view('works.index', compact('works', 'news'));
     }
-
     // Handle Image Upload
     public function uploadImage(Request $request)
     {

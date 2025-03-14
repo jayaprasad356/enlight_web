@@ -211,9 +211,48 @@
                     </div>
                 </div>
 
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-auto mb-3 mb-sm-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="theme-avtar bg-danger">
+                                        <i class="ti ti-cash"></i>
+                                        </div>
+                                        <div class="ms-3">
+                                            <small class="text-muted"><?php echo e(__('Today Recharge')); ?></small>
+                                            <h6 class="m-0"><?php echo e(__('Amount')); ?></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto text-end">
+                                    <h4 class="m-0 text-secondary"><?php echo e($today_recharge_amount); ?></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 <?php $__env->stopSection(); ?>
+
+<script>
+    let logoutTimer;
+
+    function resetTimer() {
+        clearTimeout(logoutTimer);
+        logoutTimer = setTimeout(() => {
+            window.location.href = "<?php echo e(route('login')); ?>";
+        }, 300000); // 5 minutes
+    }
+
+    document.onload = resetTimer();
+    document.onmousemove = resetTimer;
+    document.onkeypress = resetTimer;
+</script>
+
 
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\enlight_web\admin\resources\views/dashboard/dashboard.blade.php ENDPATH**/ ?>

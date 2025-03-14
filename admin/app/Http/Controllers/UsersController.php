@@ -112,7 +112,7 @@ class UsersController extends Controller
                 // Create a new transaction record
                 Transactions::create([
                     'user_id' => $user->id,
-                    'type' => 'recharge',
+                    'type' => 'recharge_amount',
                     'amount' => $request->input('recharge'),
                     'datetime' => now(),
                 ]);

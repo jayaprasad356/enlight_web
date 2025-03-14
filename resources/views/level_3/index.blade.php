@@ -14,44 +14,42 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <div class="card-body table-border-style">
-                    <div class="table-responsive">
-                        <table class="table" id="pc-dt-simple">
-                            <thead>
+                <div class="table-responsive">
+                    <table class="table" id="pc-dt-simple">
+                        <thead>
+                            <tr>
+                                <th>{{ __('ID') }}</th>
+                                <th>{{ __('Customer Name') }}</th>
+                                <th>{{ __('Mobile') }}</th>
+                                <th>{{ __('Level 1 Refer') }}</th>
+                                <th>{{ __('Level 2 Refer') }}</th>
+                                <th>{{ __('Level 3 Refer') }}</th>
+                                <th>{{ __('Level 4 Refer') }}</th>
+                                <th>{{ __('Actions') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($users as $user)
                                 <tr>
-                                    <th>{{ __('ID') }}</th>
-                                    <th>{{ __('Customer Name') }}</th>
-                                    <th>{{ __('Mobile') }}</th>
-                                    <th>{{ __('Level 1 Refer') }}</th>
-                                    <th>{{ __('Level 2 Refer') }}</th>
-                                    <th>{{ __('Level 3 Refer') }}</th>
-                                    <th>{{ __('Level 4 Refer') }}</th>
-                                    <th>{{ __('Actions') }}</th>
+                                    <td>{{ $user['id'] }}</td>
+                                    <td>{{ $user['name'] ?? 'N/A' }}</td>
+                                    <td>{{ $user['mobile'] ?? 'N/A' }}</td>
+                                    <td>{{ $user['level_1_referrer_name'] ?? 'N/A' }}</td>
+                                    <td>{{ $user['level_2_referrer_name'] ?? 'N/A' }}</td>
+                                    <td>{{ $user['level_3_referrer_name'] ?? 'N/A' }}</td>
+                                    <td>{{ $user['level_4_referrer_name'] ?? 'N/A' }}</td>
+                                    <td>
+                                        <button class="btn btn-primary view-details" 
+                                            data-id="{{ $user['id'] }}" 
+                                            data-name="{{ $user['name'] }}" 
+                                            data-mobile="{{ $user['mobile'] }}">
+                                            View
+                                        </button>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($users as $user)
-                                    <tr>
-                                        <td>{{ $user['id'] }}</td>
-                                        <td>{{ $user['name'] ?? 'N/A' }}</td>
-                                        <td>{{ $user['mobile'] ?? 'N/A' }}</td>
-                                        <td>{{ $user['level_1_referrer_name'] ?? 'N/A' }}</td>
-                                        <td>{{ $user['level_2_referrer_name'] ?? 'N/A' }}</td>
-                                        <td>{{ $user['level_3_referrer_name'] ?? 'N/A' }}</td>
-                                        <td>{{ $user['level_4_referrer_name'] ?? 'N/A' }}</td>
-                                        <td>
-                                            <button class="btn btn-primary view-details" 
-                                                data-id="{{ $user['id'] }}" 
-                                                data-name="{{ $user['name'] }}" 
-                                                data-mobile="{{ $user['mobile'] }}">
-                                                View
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -64,7 +62,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="userDetailModalLabel">User Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -81,9 +79,9 @@
 </div>
 @endsection
 
-<!-- jQuery & Bootstrap Scripts (Ensure these are included in the layout) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
 
 <script>
     $(document).ready(function() {
@@ -121,6 +119,17 @@
                 }
             });
         });
+
+        // Fix: Close modal when clicking the close button (❌)
+        $('#closeModal').on('click', function() {
+            $('#userDetailModal').modal('hide');
+        });
+
+        // Fix: Close modal when clicking outside of it
+        $(document).on('click', function(event) {
+            if ($(event.target).closest('.modal-content').length === 0) {
+                $('#userDetailModal').modal('hide');
+            }
+        });
     });
 </script>
-

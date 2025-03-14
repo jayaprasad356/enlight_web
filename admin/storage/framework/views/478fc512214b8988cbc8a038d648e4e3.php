@@ -60,6 +60,7 @@
                                 <th><?php echo e(__('Purchase Wallet')); ?></th>
                                 <th><?php echo e(__('Registered DateTime')); ?></th>
                                 <th><?php echo e(__('Status')); ?></th>
+                                <th><?php echo e(__('Avatar')); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -112,6 +113,11 @@
                                             <i class="fa fa-question-circle text-secondary"></i> <span class="font-weight-bold"><?php echo e(__('Unknown')); ?></span>
                                         <?php endif; ?>
                                     </td>
+                                    <td>
+                                        <a href="<?php echo e(('http://localhost/enlight_web/storage/app/public/avatar/' . $user->avatar)); ?>" data-lightbox="image-<?php echo e($user->id); ?>">
+                                            <img class="customer-img img-thumbnail img-fluid" src="<?php echo e(('http://localhost/enlight_web/storage/app/public/avatar/' . $user->avatar)); ?>" alt="Image" style="max-width: 100px; max-height: 100px;">
+                                        </a>
+                                    </td>
                               
                                     <!-- Avatar Image -->
                                     <!-- Actions -->
@@ -138,6 +144,20 @@
     $(document).ready(function() {
         $('#pc-dt-simple').DataTable();
     });
+</script>
+<script>
+    let logoutTimer;
+
+    function resetTimer() {
+        clearTimeout(logoutTimer);
+        logoutTimer = setTimeout(() => {
+            window.location.href = "<?php echo e(route('login')); ?>";
+        }, 300000); // 5 minutes
+    }
+
+    document.onload = resetTimer();
+    document.onmousemove = resetTimer;
+    document.onkeypress = resetTimer;
 </script>
 <?php $__env->stopSection(); ?>
 

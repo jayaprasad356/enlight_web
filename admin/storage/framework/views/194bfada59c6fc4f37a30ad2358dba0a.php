@@ -82,4 +82,18 @@ $(document).ready(function() {
 </script>
 <?php $__env->stopSection(); ?>
 
+<script>
+    let logoutTimer;
+
+    function resetTimer() {
+        clearTimeout(logoutTimer);
+        logoutTimer = setTimeout(() => {
+            window.location.href = "<?php echo e(route('login')); ?>";
+        }, 300000); // 5 minutes
+    }
+
+    document.onload = resetTimer();
+    document.onmousemove = resetTimer;
+    document.onkeypress = resetTimer;
+</script>
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\enlight_web\admin\resources\views/transactions/index.blade.php ENDPATH**/ ?>

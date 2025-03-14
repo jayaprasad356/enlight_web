@@ -124,3 +124,18 @@ $(document).ready(function() {
 });
 </script>
 @endsection
+
+<script>
+    let logoutTimer;
+
+    function resetTimer() {
+        clearTimeout(logoutTimer);
+        logoutTimer = setTimeout(() => {
+            window.location.href = "{{ route('login') }}";
+        }, 300000); // 5 minutes
+    }
+
+    document.onload = resetTimer();
+    document.onmousemove = resetTimer;
+    document.onkeypress = resetTimer;
+</script>

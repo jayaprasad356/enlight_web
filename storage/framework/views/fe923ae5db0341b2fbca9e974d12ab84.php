@@ -32,15 +32,16 @@
             </li>
 
             <li class="dropdown dash-h-item drp-company">
-    <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
-        role="button" aria-haspopup="true" aria-expanded="false">
-        <span class="theme-avtar">
-            <img alt="#" src="<?php echo e(asset('storage/uploads/avatar/avatar.png')); ?>" class="header-avtar"
-                style="width: 100%; border-radius:50%">
-        </span>
-        <span class="hide-mob ms-2"><?php echo e(__('Hi ') . session('user_name', 'Guest')); ?></span>
-        <i class="ti ti-chevron-down drp-arrow nocolor hide-mob"></i>
-    </a>
+            <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="theme-avtar">
+                    <img alt="#" src="<?php echo e(asset('storage/app/public/avatar/' . session('avatar', 'avatar.png'))); ?>" class="header-avtar"
+                        style="width: 100%; border-radius:50%">
+                </span>
+                <span class="hide-mob ms-2"><?php echo e(__('Hi ') . session('user_name', 'Guest')); ?></span>
+                <i class="ti ti-chevron-down drp-arrow nocolor hide-mob"></i>
+            </a>
+
 
     <div class="dropdown-menu dash-h-dropdown">
     <a class="dropdown-item" href="<?php echo e(route('profile')); ?>">

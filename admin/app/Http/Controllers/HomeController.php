@@ -27,12 +27,12 @@ class HomeController extends Controller
         $today_level_2 = Transactions::where('type', 'level_2_activation')->whereDate('datetime', $today)->count();
         $today_level_3 = Transactions::where('type', 'level_3_activation')->whereDate('datetime', $today)->count();
         $today_level_4 = Transactions::where('type', 'level_4_activation')->whereDate('datetime', $today)->count();
-
+        $today_recharge_amount = Transactions::where('type', 'recharge')->whereDate('datetime', $today)->sum('amount'); // Assuming 'amount' column exists
         // Fetch today's registrations count from Users table
         $today_registration = Users::whereDate('created_at', $today)->count();
 
         // Fetch unpaid withdrawals count from Withdrawals table (status = 0)
-        $unpaid_withdrawals = Withdrawals::where('status', 0)->count();
+        $unpaid_withdrawals = Withdrawals::where('status', 0)->sum('amount'); // Assuming 'amount' column exists
 
         $pending_recharge = payment_screenshots::where('status', 0)->count();
 
@@ -44,7 +44,8 @@ class HomeController extends Controller
             'today_level_4',
             'today_registration',
             'unpaid_withdrawals',
-            'pending_recharge'
+            'pending_recharge',
+            'today_recharge_amount'
         ));
     }
 }
