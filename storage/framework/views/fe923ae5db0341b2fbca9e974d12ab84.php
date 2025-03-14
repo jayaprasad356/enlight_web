@@ -35,18 +35,12 @@
     <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
         role="button" aria-haspopup="true" aria-expanded="false">
         <span class="theme-avtar">
-        <?php if(session('avatar')): ?>
-            <!-- Show user avatar if available -->
-            <img alt="User Avatar" src="<?php echo e(asset('storage/app/public/avatar/' . session('avatar'))); ?>" 
+            <img src="<?php echo e(session('avatar') && session('avatar') !== 'default_avatar.png' 
+                        ? asset('storage/app/public/avatar/' . session('avatar')) 
+                        : 'https://enlightapp.in/storage/uploads/avatar/avatar.png'); ?>"  
                 class="header-avtar"
-                style="width: 100%; border-radius:50%">
-        <?php else: ?>
-            <!-- Show default avatar if no avatar exists -->
-            <img alt="Default Avatar" src="<?php echo e(asset('storage/uploads/avatar/avatar.png')); ?>" 
-                class="header-avtar"
-                style="width: 100%; border-radius:50%">
-        <?php endif; ?>
-    </span>
+                style="width: 100%; border-radius: 50%;">
+        </span>
         <span class="hide-mob ms-2"><?php echo e(__('Hi ') . session('user_name', 'Guest')); ?></span>
         <i class="ti ti-chevron-down drp-arrow nocolor hide-mob"></i>
     </a>

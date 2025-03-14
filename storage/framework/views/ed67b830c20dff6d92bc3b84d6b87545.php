@@ -15,15 +15,15 @@
         <div class="col-md-8">
             <div class="card shadow-lg border-0 rounded-lg">
                 <div class="card-body text-center">
-                <div class="profile-avatar mb-3">
-                    <label for="avatarUpload" style="cursor: pointer;">
-                        <img src="<?php echo e(asset('storage/app/public/avatar/' . ($user->avatar ?? 'avatar.png'))); ?>" 
-                            class="rounded-circle border border-3 shadow-sm"
-                            style="width: 120px; height: 120px;"
-                            alt="User Avatar"
-                            data-bs-toggle="modal" data-bs-target="#avatarModal">
-                    </label>
-                </div>
+                    <div class="profile-avatar mb-3">
+                        <label for="avatarUpload" style="cursor: pointer;">
+                            <img src="<?php echo e($user->avatar ? asset('storage/app/public/avatar/' . $user->avatar) : 'https://enlightapp.in/storage/uploads/avatar/avatar.png'); ?>" 
+                                class="rounded-circle border border-3 shadow-sm"
+                                style="width: 120px; height: 120px;"
+                                data-bs-toggle="modal" data-bs-target="#avatarModal">
+                        </label>
+                    </div>
+
 
                 <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -115,7 +115,7 @@
 
                         <div class="form-group mb-2">
                             <label><?php echo e(__('Mobile')); ?></label>
-                            <input type="text" class="form-control" name="mobile" value="<?php echo e($user->mobile); ?>" required>
+                            <input type="text" class="form-control" name="mobile" value="<?php echo e($user->mobile); ?>" disabled>
                         </div>
 
                         <div class="form-group mb-2">

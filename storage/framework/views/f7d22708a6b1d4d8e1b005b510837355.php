@@ -81,7 +81,7 @@
                                         </div>
                                         <div class="ms-2">
                                             <small class="text-muted"><?php echo e(__('Monthly')); ?></small>
-                                            <h6 class="m-0"><?php echo e(__('Salary')); ?></h6>
+                                            <h6 class="m-0"><?php echo e(__('Salery')); ?></h6>
                                         </div>
                                     </div>
                                 </div>

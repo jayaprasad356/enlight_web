@@ -19,7 +19,6 @@
                             <img src="{{ $user->avatar ? asset('storage/app/public/avatar/' . $user->avatar) : 'https://enlightapp.in/storage/uploads/avatar/avatar.png' }}" 
                                 class="rounded-circle border border-3 shadow-sm"
                                 style="width: 120px; height: 120px;"
-                                alt="User Avatar"
                                 data-bs-toggle="modal" data-bs-target="#avatarModal">
                         </label>
                     </div>
@@ -112,7 +111,7 @@
 
                         <div class="form-group mb-2">
                             <label>{{ __('Mobile') }}</label>
-                            <input type="text" class="form-control" name="mobile" value="{{ $user->mobile }}" required>
+                            <input type="text" class="form-control" name="mobile" value="{{ $user->mobile }}" disabled>
                         </div>
 
                         <div class="form-group mb-2">

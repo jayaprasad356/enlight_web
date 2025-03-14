@@ -40,7 +40,7 @@ class CustomLoginController extends Controller
                 Session::put('user_id', $user->id);
                 Session::put('user_name', $user->name);
                 Session::put('refer_code', $user->refer_code); // Store refer_code in session
-                Session::put('avatar', $user->avatar ?? 'avatar.png');
+                Session::put('avatar', !empty($user->avatar) ? $user->avatar : 'default_avatar.png');
 
                 // Redirect to password change page ONLY if they have level_1_refer AND haven't updated their password before
                 if (!empty($user->level_1_refer) && !$user->password_updated) {
@@ -138,6 +138,8 @@ public function updateProfile(Request $request)
         // Store new image
         $avatarPath = $request->file('avatar')->store('avatar', 'public');
         $user->avatar = basename($avatarPath);
+
+        Session::put('avatar', $user->avatar);
     }
 
     $user->save();
