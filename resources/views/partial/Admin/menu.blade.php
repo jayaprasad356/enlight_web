@@ -32,14 +32,15 @@
 
             <!-- dashboard-->
             <li class="dash-item">
+                    <a href="{{ route('dashboard') }}" class="dash-link"><span class="dash-micon"><i
+                                class="ti ti-home"></i></span><span class="dash-mtext">{{ __('Dashboard') }}</span></a>
+                </li>
+                
+            <li class="dash-item">
                     <a href="{{ route('my_products.index') }}" class="dash-link">
                         <span class="dash-micon"><i class="ti ti-package"></i></span> 
                         <span class="dash-mtext">{{ __('Products') }}</span>
                     </a>
-                </li>
-                <li class="dash-item">
-                    <a href="{{ route('dashboard') }}" class="dash-link"><span class="dash-micon"><i
-                                class="ti ti-home"></i></span><span class="dash-mtext">{{ __('Dashboard') }}</span></a>
                 </li>
 
                 <li class="dash-item">

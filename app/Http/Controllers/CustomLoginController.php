@@ -47,7 +47,7 @@ class CustomLoginController extends Controller
                     return redirect()->route('force.change.password')->with('message', 'You need to change your password before proceeding.');
                 }
     
-                return redirect()->route('my_products.index')->with('success', 'Login successful');
+                return redirect()->route('dashboard')->with('success', 'Login successful');
             }
         }
     

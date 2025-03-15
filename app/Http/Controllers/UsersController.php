@@ -150,10 +150,10 @@ class UsersController extends Controller
     $refer_code = $user->refer_code;
 
     // Count referrals for each level
-    $level_1_count = DB::table('users')->where('level_1_refer', $refer_code)->count();
-    $level_2_count = DB::table('users')->where('level_2_refer', $refer_code)->count();
-    $level_3_count = DB::table('users')->where('level_3_refer', $refer_code)->count();
-    $level_4_count = DB::table('users')->where('level_4_refer', $refer_code)->count();
+    $level_1_count = DB::table('users')->where('level_1_refer', $refer_code)->where('status', 1)->count();
+    $level_2_count = DB::table('users')->where('level_2_refer', $refer_code)->where('status', 1)->count();
+    $level_3_count = DB::table('users')->where('level_3_refer', $refer_code)->where('status', 1)->count();
+    $level_4_count = DB::table('users')->where('level_4_refer', $refer_code)->where('status', 1)->count();
 
     return response()->json([
         'success' => true,

@@ -32,14 +32,15 @@
 
             <!-- dashboard-->
             <li class="dash-item">
+                    <a href="<?php echo e(route('dashboard')); ?>" class="dash-link"><span class="dash-micon"><i
+                                class="ti ti-home"></i></span><span class="dash-mtext"><?php echo e(__('Dashboard')); ?></span></a>
+                </li>
+                
+            <li class="dash-item">
                     <a href="<?php echo e(route('my_products.index')); ?>" class="dash-link">
                         <span class="dash-micon"><i class="ti ti-package"></i></span> 
                         <span class="dash-mtext"><?php echo e(__('Products')); ?></span>
                     </a>
-                </li>
-                <li class="dash-item">
-                    <a href="<?php echo e(route('dashboard')); ?>" class="dash-link"><span class="dash-micon"><i
-                                class="ti ti-home"></i></span><span class="dash-mtext"><?php echo e(__('Dashboard')); ?></span></a>
                 </li>
 
                 <li class="dash-item">
