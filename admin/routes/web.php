@@ -57,6 +57,7 @@ use App\Http\Controllers\TransferController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\WarningController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\PayeesController;
 use App\Http\Controllers\PayerController;
 use App\Http\Controllers\DepositController;
@@ -311,6 +312,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('withdrawals', WithdrawalsController::class);
     Route::resource('gifts', GiftsController::class);
     Route::resource('products', ProductsController::class);
+    Route::resource('orders', OrdersController::class);
     Route::resource('payment_screenshots', ScreenshotsControllers::class);
    
    

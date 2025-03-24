@@ -181,7 +181,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto text-end">
-                                    <h4 class="m-0 text-secondary"><?php echo e($unpaid_withdrawals); ?></h4>
+                                    <h4 class="m-0 text-secondary"><?php echo e(number_format($unpaid_withdrawals, 0)); ?></h4>
                                 </div>
                             </div>
                         </div>
@@ -227,7 +227,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto text-end">
-                                    <h4 class="m-0 text-secondary"><?php echo e($today_recharge_amount); ?></h4>
+                                    <h4 class="m-0 text-secondary"><?php echo e(number_format($today_recharge_amount, 0)); ?></h4>
                                 </div>
                             </div>
                         </div>

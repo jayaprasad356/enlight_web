@@ -18,4 +18,9 @@ class Products extends Model
     {
         return $this->belongsTo(Users::class, 'user_id');
     }
+       // Relationship to Orders
+       public function orders()
+       {
+           return $this->hasMany(Orders::class, 'product_id');
+       }
 }

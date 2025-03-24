@@ -48,6 +48,10 @@ class Users extends Authenticatable implements JWTSubject
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+    public function orders()
+    {
+        return $this->hasMany(Orders::class, 'user_id');
+    }
 
     public function getAvatar()
     {

@@ -37,7 +37,7 @@
                 </li>
                 
             <li class="dash-item">
-                    <a href="{{ route('my_products.index') }}" class="dash-link">
+                    <a href="{{ route('products.index') }}" class="dash-link">
                         <span class="dash-micon"><i class="ti ti-package"></i></span> 
                         <span class="dash-mtext">{{ __('Products') }}</span>
                     </a>
@@ -113,6 +113,14 @@
                         <span class="dash-mtext">{{ __('Help & Support') }}</span>
                     </a>
                 </li>
+
+                <li class="dash-item">
+                    <a href="{{ route('orders.index') }}" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-shopping-cart"></i></span> 
+                        <span class="dash-mtext">{{ __('Orders') }}</span>
+                    </a>
+                </li>
+                
 
                 <li class="dash-item">
                 <a href="{{ route('bankdetails.update') }}" class="dash-link">

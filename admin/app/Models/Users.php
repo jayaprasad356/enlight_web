@@ -32,7 +32,10 @@ class Users extends Authenticatable implements JWTSubject
         return $this->belongsTo(Avatars::class, 'avatar_id');
     }
 
-  
+    public function orders()
+    {
+        return $this->hasMany(Orders::class, 'user_id');
+    }
     public $timestamps = true;
 
     // protected $hidden = [

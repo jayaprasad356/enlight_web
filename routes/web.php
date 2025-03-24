@@ -26,6 +26,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ExtraBonusController;
 use App\Http\Controllers\EarningsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\OTPResetsController;
 
 
@@ -86,7 +87,9 @@ Route::get('/transactions', [TransactionsController::class, 'index'])->name('tra
 Route::get('/works', [WorksController::class, 'index'])->name('works.index');
 Route::get('/withdrawals', [WithdrawalsController::class, 'index'])->name('withdrawals.index');
 Route::resource('withdrawals', WithdrawalsController::class);
-Route::resource('my_products', ProductsController::class);
+Route::resource('products', ProductsController::class);
+Route::resource('orders', OrdersController::class);
+Route::post('/products/purchase', [ProductsController::class, 'purchase'])->name('products.purchase');
 Route::post('/inactive_users/enable', [InactiveUsersController::class, 'enableUser'])->name('inactive_users.enable');
 Route::post('/update-refer', [UserController::class, 'updateRefer'])->name('inactive_users.update_refer');
 // Route to display the registration form (GET)

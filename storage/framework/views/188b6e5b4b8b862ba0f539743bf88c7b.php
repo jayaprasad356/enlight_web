@@ -37,7 +37,7 @@
                 </li>
                 
             <li class="dash-item">
-                    <a href="<?php echo e(route('my_products.index')); ?>" class="dash-link">
+                    <a href="<?php echo e(route('products.index')); ?>" class="dash-link">
                         <span class="dash-micon"><i class="ti ti-package"></i></span> 
                         <span class="dash-mtext"><?php echo e(__('Products')); ?></span>
                     </a>
@@ -113,6 +113,14 @@
                         <span class="dash-mtext"><?php echo e(__('Help & Support')); ?></span>
                     </a>
                 </li>
+
+                <li class="dash-item">
+                    <a href="<?php echo e(route('orders.index')); ?>" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-shopping-cart"></i></span> 
+                        <span class="dash-mtext"><?php echo e(__('Orders')); ?></span>
+                    </a>
+                </li>
+                
 
                 <li class="dash-item">
                 <a href="<?php echo e(route('bankdetails.update')); ?>" class="dash-link">

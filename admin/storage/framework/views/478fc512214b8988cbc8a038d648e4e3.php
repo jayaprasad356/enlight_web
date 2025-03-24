@@ -114,8 +114,8 @@
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <a href="<?php echo e(('http://localhost/enlight_web/storage/app/public/avatar/' . $user->avatar)); ?>" data-lightbox="image-<?php echo e($user->id); ?>">
-                                            <img class="customer-img img-thumbnail img-fluid" src="<?php echo e(('http://localhost/enlight_web/storage/app/public/avatar/' . $user->avatar)); ?>" alt="Image" style="max-width: 100px; max-height: 100px;">
+                                        <a href="<?php echo e(('https://enlightapp.in/storage/app/public/avatar/' . $user->avatar)); ?>" data-lightbox="image-<?php echo e($user->id); ?>">
+                                            <img class="customer-img img-thumbnail img-fluid" src="<?php echo e(('https://enlightapp.in/storage/app/public/avatar/' . $user->avatar)); ?>" alt="Image" style="max-width: 100px; max-height: 100px;">
                                         </a>
                                     </td>
                               

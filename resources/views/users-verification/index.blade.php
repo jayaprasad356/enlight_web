@@ -71,6 +71,7 @@
                                         <th>{{ __('Name') }}</th>
                                         <th>{{ __('Mobile') }}</th>
                                         <th>{{ __('Language') }}</th> <!-- New Column -->
+                                        <th>{{ __('Age') }}</th>
                                         <th>{{ __('Voice') }}</th>
                                         <th>{{ __('Status') }}</th>
                                     </tr>
@@ -83,6 +84,7 @@
                                             <td>{{ ucfirst($user->name) }}</td>
                                             <td>{{ $user->mobile }}</td>
                                             <td>{{ $user->language }}</td> <!-- Display Language -->
+                                            <td>{{ $user->age }}</td>
                                             <td>
                                                 @if($user->voice && $user->voice)
                                                     <a href="{{ asset('storage/app/public/voices/' . $user->voice) }}" target="_blank">Play Voice</a>
