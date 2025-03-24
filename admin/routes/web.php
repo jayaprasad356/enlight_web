@@ -325,7 +325,9 @@ Route::put('withdrawals/{id}', [WithdrawalsController::class, 'update'])->name('
     Route::get('users/{id}/add-coins', [UsersController::class, 'showAddCoinsForm'])->name('users.addCoinsForm');
     Route::get('users/{id}/add-balance', [UsersController::class, 'showAddBalanceForm'])->name('users.addBalanceForm');
     Route::post('/usercalls/update-user', [UserCallsController::class, 'updateuser'])->name('usercalls.updateuser');
-
+    Route::get('/orders', [OrdersController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}/edit', [OrdersController::class, 'edit'])->name('orders.edit');
+    Route::put('/orders/{id}', [OrdersController::class, 'update'])->name('orders.update');
     // Route to handle the "Add Coins" form submission
     Route::post('users/{id}/add-recharge', [UsersController::class, 'addRecharge'])->name('users.addRecharge');  
     Route::post('users/{id}/add-balance', [UsersController::class, 'addBalance'])->name('users.addBalance');

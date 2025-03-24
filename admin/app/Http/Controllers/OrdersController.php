@@ -10,20 +10,43 @@ use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
-    // Show all orders
     public function index()
     {
-        // Ensure the user is authenticated
         if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'Please log in first.');
         }
 
         $user = Auth::user();
-
-        // Fetch all orders with related users and products
         $products = Products::all();
-        $orders = Orders::with('user', 'product')->get();
+        $orders = Orders::with(['user', 'product'])->paginate(10); 
 
         return view('orders.index', compact('user', 'products', 'orders'));
+    }
+
+    public function edit($id)
+    {
+        $order = Orders::with('user', 'product')->findOrFail($id);
+        $products = Products::all();
+        $users = Users::all();  // Fetch all users
+    
+        return view('orders.edit', compact('order', 'products', 'users'));
+    }
+    
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|integer|in:0,1,2,3',
+            'live_tracking' => 'nullable|string|max:255',
+        ]);
+
+        $orders = Orders::findOrFail($id);
+
+        $orders->update([
+            'status' => $request->status,
+            'live_tracking' => $request->live_tracking,
+        ]);
+
+        return redirect()->route('orders.index')->with('success', 'Order updated successfully.');
     }
 }

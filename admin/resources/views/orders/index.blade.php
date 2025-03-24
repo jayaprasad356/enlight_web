@@ -21,6 +21,7 @@
                     <table class="table" id="pc-dt-simple">
                         <thead>
                             <tr>
+                            <th>{{ __('Actions') }}</th> 
                                 <th>{{ __('ID') }}</th>
                                 <th>{{ __('Product Image') }}</th>
                                 <th>{{ __('Product Name') }}</th>
@@ -28,12 +29,20 @@
                                 <th>{{ __('User Name') }}</th>
                                 <th>{{ __('User Mobile') }}</th>
                                 <th>{{ __('Address') }}</th>
+                                <th>{{ __('Status') }}</th>
+                                <th>{{ __('Live Tracking') }}</th>
                                 <th>{{ __('Datetime') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
+                                <td>
+                                            <a href="#" data-url="{{ route('orders.edit', $order->id) }}" data-ajax-popup="true" data-title="{{ __('Edit Orders') }}"
+                                               class="btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{ __('Edit') }}">
+                                                <i class="ti ti-pencil text-black"></i>
+                                            </a>
+                                        </td>
                                     <td>{{ $order->id }}</td>
 
                                     {{-- Handle product image with null check --}}
@@ -56,6 +65,20 @@
                                     <td>{{ ucfirst(optional($order->user)->name ?? 'N/A') }}</td>
                                     <td>{{ optional($order->user)->mobile ?? 'N/A' }}</td>
                                     <td>{{ ucfirst($order->address ?? 'N/A') }}</td>
+                                    <td>
+                                        @if($order->status == 0)
+                                            <i class="fa fa-hourglass-start text-warning"></i> <span class="font-weight-bold">{{ __('Ordered') }}</span>
+                                        @elseif($order->status == 1)
+                                            <i class="fa fa-truck text-primary"></i> <span class="font-weight-bold">{{ __('Dispatched') }}</span>
+                                        @elseif($order->status == 2)
+                                            <i class="fa fa-box text-success"></i> <span class="font-weight-bold">{{ __('Delivered') }}</span>
+                                        @elseif($order->status == 3)
+                                            <i class="fa fa-ban text-danger"></i> <span class="font-weight-bold">{{ __('Cancelled') }}</span>
+                                        @else
+                                            <i class="fa fa-question-circle text-secondary"></i> <span class="font-weight-bold">{{ __('Unknown') }}</span>
+                                        @endif
+                                    </td>
+                                        <td>{{ ucfirst($order->live_tracking) }}</td>
                                     <td>{{ $order->datetime ?? 'N/A' }}</td>
                                 </tr>
                             @endforeach

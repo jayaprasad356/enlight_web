@@ -29,7 +29,7 @@ class OrdersController extends Controller
         if ($user) {
             return view('orders.index', compact('user', 'products', 'orders'));
         } else {
-            return redirect()->route('login')->with('error', 'User not found');
+            return redirect()->route('mobile.login')->with('error', 'User not found');
         }
     }
 }

@@ -22,6 +22,7 @@
                     <table class="table" id="pc-dt-simple">
                         <thead>
                             <tr>
+                            <th><?php echo e(__('Actions')); ?></th> 
                                 <th><?php echo e(__('ID')); ?></th>
                                 <th><?php echo e(__('Product Image')); ?></th>
                                 <th><?php echo e(__('Product Name')); ?></th>
@@ -29,12 +30,20 @@
                                 <th><?php echo e(__('User Name')); ?></th>
                                 <th><?php echo e(__('User Mobile')); ?></th>
                                 <th><?php echo e(__('Address')); ?></th>
+                                <th><?php echo e(__('Status')); ?></th>
+                                <th><?php echo e(__('Live Tracking')); ?></th>
                                 <th><?php echo e(__('Datetime')); ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
+                                <td>
+                                            <a href="#" data-url="<?php echo e(route('orders.edit', $order->id)); ?>" data-ajax-popup="true" data-title="<?php echo e(__('Edit Orders')); ?>"
+                                               class="btn btn-sm align-items-center" data-bs-toggle="tooltip" title="<?php echo e(__('Edit')); ?>">
+                                                <i class="ti ti-pencil text-black"></i>
+                                            </a>
+                                        </td>
                                     <td><?php echo e($order->id); ?></td>
 
                                     
@@ -57,6 +66,20 @@
                                     <td><?php echo e(ucfirst(optional($order->user)->name ?? 'N/A')); ?></td>
                                     <td><?php echo e(optional($order->user)->mobile ?? 'N/A'); ?></td>
                                     <td><?php echo e(ucfirst($order->address ?? 'N/A')); ?></td>
+                                    <td>
+                                        <?php if($order->status == 0): ?>
+                                            <i class="fa fa-hourglass-start text-warning"></i> <span class="font-weight-bold"><?php echo e(__('Ordered')); ?></span>
+                                        <?php elseif($order->status == 1): ?>
+                                            <i class="fa fa-truck text-primary"></i> <span class="font-weight-bold"><?php echo e(__('Dispatched')); ?></span>
+                                        <?php elseif($order->status == 2): ?>
+                                            <i class="fa fa-box text-success"></i> <span class="font-weight-bold"><?php echo e(__('Delivered')); ?></span>
+                                        <?php elseif($order->status == 3): ?>
+                                            <i class="fa fa-ban text-danger"></i> <span class="font-weight-bold"><?php echo e(__('Cancelled')); ?></span>
+                                        <?php else: ?>
+                                            <i class="fa fa-question-circle text-secondary"></i> <span class="font-weight-bold"><?php echo e(__('Unknown')); ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                        <td><?php echo e(ucfirst($order->live_tracking)); ?></td>
                                     <td><?php echo e($order->datetime ?? 'N/A'); ?></td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

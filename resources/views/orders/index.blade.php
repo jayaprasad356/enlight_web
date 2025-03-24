@@ -28,6 +28,8 @@
                                 <th>{{ __('User Name') }}</th>
                                 <th>{{ __('User Mobile') }}</th>
                                 <th>{{ __('Address') }}</th>
+                                <th>{{ __('Status') }}</th>
+                                <th>{{ __('Live Tracking') }}</th>
                                 <th>{{ __('Datetime') }}</th>
                             </tr>
                         </thead>
@@ -45,6 +47,22 @@
                                    <td>{{ ucfirst($order->users->name ?? '') }}</td>
                                    <td>{{ ucfirst($order->users->mobile ?? '') }}</td>
                                         <td>{{ ucfirst($order->address) }}</td>
+                                        <td>
+                                        @if($order->status == 0)
+                                            <i class="fa fa-hourglass-start text-warning"></i> <span class="font-weight-bold">{{ __('Ordered') }}</span>
+                                        @elseif($order->status == 1)
+                                            <i class="fa fa-truck text-primary"></i> <span class="font-weight-bold">{{ __('Dispatched') }}</span>
+                                        @elseif($order->status == 2)
+                                            <i class="fa fa-box text-success"></i> <span class="font-weight-bold">{{ __('Delivered') }}</span>
+                                        @elseif($order->status == 3)
+                                            <i class="fa fa-ban text-danger"></i> <span class="font-weight-bold">{{ __('Cancelled') }}</span>
+                                        @else
+                                            <i class="fa fa-question-circle text-secondary"></i> <span class="font-weight-bold">{{ __('Unknown') }}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $order->live_tracking ? ucfirst($order->live_tracking) : __('Dispatch Pending') }}
+                                   </td>
                                         <td>{{ ucfirst($order->datetime) }}</td>
                                 </tr>
                             @endforeach

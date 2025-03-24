@@ -29,6 +29,8 @@
                                 <th><?php echo e(__('User Name')); ?></th>
                                 <th><?php echo e(__('User Mobile')); ?></th>
                                 <th><?php echo e(__('Address')); ?></th>
+                                <th><?php echo e(__('Status')); ?></th>
+                                <th><?php echo e(__('Live Tracking')); ?></th>
                                 <th><?php echo e(__('Datetime')); ?></th>
                             </tr>
                         </thead>
@@ -46,6 +48,23 @@
                                    <td><?php echo e(ucfirst($order->users->name ?? '')); ?></td>
                                    <td><?php echo e(ucfirst($order->users->mobile ?? '')); ?></td>
                                         <td><?php echo e(ucfirst($order->address)); ?></td>
+                                        <td>
+                                        <?php if($order->status == 0): ?>
+                                            <i class="fa fa-hourglass-start text-warning"></i> <span class="font-weight-bold"><?php echo e(__('Ordered')); ?></span>
+                                        <?php elseif($order->status == 1): ?>
+                                            <i class="fa fa-truck text-primary"></i> <span class="font-weight-bold"><?php echo e(__('Dispatched')); ?></span>
+                                        <?php elseif($order->status == 2): ?>
+                                            <i class="fa fa-box text-success"></i> <span class="font-weight-bold"><?php echo e(__('Delivered')); ?></span>
+                                        <?php elseif($order->status == 3): ?>
+                                            <i class="fa fa-ban text-danger"></i> <span class="font-weight-bold"><?php echo e(__('Cancelled')); ?></span>
+                                        <?php else: ?>
+                                            <i class="fa fa-question-circle text-secondary"></i> <span class="font-weight-bold"><?php echo e(__('Unknown')); ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo e($order->live_tracking ? ucfirst($order->live_tracking) : __('Dispatch Pending')); ?>
+
+                                   </td>
                                         <td><?php echo e(ucfirst($order->datetime)); ?></td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

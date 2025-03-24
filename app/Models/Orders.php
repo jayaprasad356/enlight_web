@@ -12,6 +12,8 @@ class Orders extends Model
         'price',
         'address',
         'datetime',
+        'status',
+        'live_tracking',
     ];
 
     public function users()
