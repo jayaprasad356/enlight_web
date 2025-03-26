@@ -11,6 +11,7 @@ use App\Http\Controllers\WithdrawalsController;
 use App\Http\Controllers\RatingsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AwardController;
+use App\Http\Controllers\LendingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentScreenshotsControllers;
 use App\Http\Controllers\AppsettingsController;
@@ -117,7 +118,7 @@ Route::get('/about-us', function () {
 })->name('about.us');
 
 Route::get('/add_earnings', [EarningsController::class, 'index'])->name('add_earnings.index');
-
+Route::get('/enlight_lending', [LendingController::class, 'index'])->name('enlight_lending.index');
 
 // Handle Image Upload (POST)
 Route::post('/works/upload', [WorksController::class, 'uploadImage'])->name('works.upload');

@@ -36,62 +36,62 @@
                                 class="ti ti-home"></i></span><span class="dash-mtext"><?php echo e(__('Dashboard')); ?></span></a>
                 </li>
                 
-            <li class="dash-item">
-                    <a href="<?php echo e(route('products.index')); ?>" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-package"></i></span> 
-                        <span class="dash-mtext"><?php echo e(__('Products')); ?></span>
+                <li class="dash-item">
+    <a href="#" class="dash-link" id="enlight-health-toggle">
+        <span class="dash-micon"><i class="ti ti-heart"></i></span> 
+        <span class="dash-mtext"><?php echo e(__('Enlight Health')); ?></span>
+    </a>
+    <ul class="list-unstyled" id="enlight-health-menu" style="display: none; padding-left: 40px; list-style-type: disc;">
+        <li>
+            <a href="<?php echo e(route('products.index')); ?>" class="dash-link">
+                <span class="dash-mtext"><?php echo e(__('Products')); ?></span>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo e(route('inactive_users.index')); ?>" class="dash-link">
+                <span class="dash-mtext"><?php echo e(__('My Inactive Customers')); ?></span>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo e(route('add_earnings.index')); ?>" class="dash-link">
+                <span class="dash-mtext"><?php echo e(__('Earning Opportunities')); ?></span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="dash-link" id="levels-toggle">
+                <span class="dash-mtext"><?php echo e(__('Customer Levels')); ?></span>
+            </a>
+            <ul class="list-unstyled" id="levels-menu" style="display: none; padding-left: 60px; list-style-type: circle;">
+                <li>
+                    <a href="<?php echo e(route('level_1.index')); ?>" class="dash-link">
+                        <span class="dash-mtext"><?php echo e(__('Customer Level 1')); ?></span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?php echo e(route('level_2.index')); ?>" class="dash-link">
+                        <span class="dash-mtext"><?php echo e(__('Customer Level 2')); ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo e(route('level_3.index')); ?>" class="dash-link">
+                        <span class="dash-mtext"><?php echo e(__('Customer Level 3')); ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo e(route('level_4.index')); ?>" class="dash-link">
+                        <span class="dash-mtext"><?php echo e(__('Customer Level 4')); ?></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="<?php echo e(route('extra_bonus.index')); ?>" class="dash-link">
+                <span class="dash-mtext"><?php echo e(__('Extra Bonus')); ?></span>
+            </a>
+        </li>
+    </ul>
+</li>
 
-                <li class="dash-item">
-                    <a href="<?php echo e(route('inactive_users.index')); ?>" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-users"></i></span> <!-- User-slash icon for inactive users -->
-                        <span class="dash-mtext"><?php echo e(__('My Inactive Customers')); ?></span>
-                    </a>
-                </li>
-
-                <li class="dash-item">
-                    <a href="<?php echo e(route('add_earnings.index')); ?>" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-package"></i></span> 
-                        <span class="dash-mtext"><?php echo e(__('Earning Opportunities')); ?></span>
-                    </a>
-                </li>
-        
-                <li class="dash-item">
-                    <a href="#" class="dash-link" id="levels-toggle">
-                        <span class="dash-micon"><i class="ti ti-building"></i></span>
-                        <span class="dash-mtext"><?php echo e(__('Customer Levels')); ?></span>
-                    </a>
-                    <ul class="list-unstyled" id="levels-menu" style="display: none; padding-left: 60px; list-style-type: disc;">
-                        <li>
-                            <a href="<?php echo e(route('level_1.index')); ?>" class="dash-link">
-                                <span class="dash-mtext"><?php echo e(__('Customer Level 1')); ?></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo e(route('level_2.index')); ?>" class="dash-link">
-                                <span class="dash-mtext"><?php echo e(__('Customer Level 2')); ?></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo e(route('level_3.index')); ?>" class="dash-link">
-                                <span class="dash-mtext"><?php echo e(__('Customer Level 3')); ?></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo e(route('level_4.index')); ?>" class="dash-link">
-                                <span class="dash-mtext"><?php echo e(__('Customer Level 4')); ?></span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="dash-item">
-                    <a href="<?php echo e(route('extra_bonus.index')); ?>" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-trophy"></i></span> <!-- User-slash icon for inactive users -->
-                        <span class="dash-mtext"><?php echo e(__('Extra Bonus')); ?></span>
-                    </a>
-                </li>
 
                 <li class="dash-item">
                     <a href="<?php echo e(route('works.index')); ?>" class="dash-link">

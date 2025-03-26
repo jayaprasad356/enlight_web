@@ -36,62 +36,62 @@
                                 class="ti ti-home"></i></span><span class="dash-mtext">{{ __('Dashboard') }}</span></a>
                 </li>
                 
-            <li class="dash-item">
-                    <a href="{{ route('products.index') }}" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-package"></i></span> 
-                        <span class="dash-mtext">{{ __('Products') }}</span>
-                    </a>
-                </li>
-
                 <li class="dash-item">
-                    <a href="{{ route('inactive_users.index') }}" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-users"></i></span> <!-- User-slash icon for inactive users -->
-                        <span class="dash-mtext">{{ __('My Inactive Customers') }}</span>
+                    <a href="#" class="dash-link" id="enlight-health-toggle">
+                        <span class="dash-micon"><i class="ti ti-heart"></i></span> 
+                        <span class="dash-mtext">{{ __('Enlight Health') }}</span>
                     </a>
-                </li>
-
-                <li class="dash-item">
-                    <a href="{{ route('add_earnings.index') }}" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-package"></i></span> 
-                        <span class="dash-mtext">{{ __('Earning Opportunities') }}</span>
-                    </a>
-                </li>
-        
-                <li class="dash-item">
-                    <a href="#" class="dash-link" id="levels-toggle">
-                        <span class="dash-micon"><i class="ti ti-building"></i></span>
-                        <span class="dash-mtext">{{ __('Customer Levels') }}</span>
-                    </a>
-                    <ul class="list-unstyled" id="levels-menu" style="display: none; padding-left: 60px; list-style-type: disc;">
+                    <ul class="list-unstyled" id="enlight-health-menu" style="display: none; padding-left: 40px; list-style-type: disc;">
                         <li>
-                            <a href="{{ route('level_1.index') }}" class="dash-link">
-                                <span class="dash-mtext">{{ __('Customer Level 1') }}</span>
+                            <a href="{{ route('products.index') }}" class="dash-link">
+                                <span class="dash-mtext">{{ __('Products') }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('level_2.index') }}" class="dash-link">
-                                <span class="dash-mtext">{{ __('Customer Level 2') }}</span>
+                            <a href="{{ route('inactive_users.index') }}" class="dash-link">
+                                <span class="dash-mtext">{{ __('My Inactive Customers') }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('level_3.index') }}" class="dash-link">
-                                <span class="dash-mtext">{{ __('Customer Level 3') }}</span>
+                            <a href="{{ route('add_earnings.index') }}" class="dash-link">
+                                <span class="dash-mtext">{{ __('Earning Opportunities') }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('level_4.index') }}" class="dash-link">
-                                <span class="dash-mtext">{{ __('Customer Level 4') }}</span>
+                            <a href="#" class="dash-link" id="levels-toggle">
+                                <span class="dash-mtext">{{ __('Customer Levels') }}</span>
+                            </a>
+                            <ul class="list-unstyled" id="levels-menu" style="display: none; padding-left: 60px; list-style-type: circle;">
+                                <li>
+                                    <a href="{{ route('level_1.index') }}" class="dash-link">
+                                        <span class="dash-mtext">{{ __('Customer Level 1') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('level_2.index') }}" class="dash-link">
+                                        <span class="dash-mtext">{{ __('Customer Level 2') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('level_3.index') }}" class="dash-link">
+                                        <span class="dash-mtext">{{ __('Customer Level 3') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('level_4.index') }}" class="dash-link">
+                                        <span class="dash-mtext">{{ __('Customer Level 4') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('extra_bonus.index') }}" class="dash-link">
+                                <span class="dash-mtext">{{ __('Extra Bonus') }}</span>
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="dash-item">
-                    <a href="{{ route('extra_bonus.index') }}" class="dash-link">
-                        <span class="dash-micon"><i class="ti ti-trophy"></i></span> <!-- User-slash icon for inactive users -->
-                        <span class="dash-mtext">{{ __('Extra Bonus') }}</span>
-                    </a>
-                </li>
 
                 <li class="dash-item">
                     <a href="{{ route('works.index') }}" class="dash-link">
