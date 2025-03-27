@@ -72,6 +72,7 @@ Route::post('/password/update', [OTPResetsController::class, 'updatePassword'])-
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::get('/profile', [CustomLoginController::class, 'profile'])->name('profile');
+Route::get('/enlight', [CustomLoginController::class, 'enlight'])->name('enlight');
 Route::put('/profile/update', [CustomLoginController::class, 'updateProfile'])->name('profile.update');
 
 Route::get('/level1List', [UsersController::class, 'level1List'])->name('level_1.index');
@@ -112,7 +113,7 @@ Route::post('/withdrawals/submit', [WithdrawalsController::class, 'submitWithdra
 Route::get('/inactive-users/get-level-users', [InactiveUsersController::class, 'getLevelUsers'])->name('inactive_users.getLevelUsers');
 Route::get('/inactive-users/activateusers', [InactiveUsersController::class, 'activateusers'])->name('inactive_users.activateusers');
 Route::get('/news/download/{id}', [NewsController::class, 'downloadImage'])->name('news.download');
-
+Route::post('/lend', [LendingController::class, 'lend'])->name('lend');
 Route::get('/about-us', function () {
     return view('about-us');
 })->name('about.us');

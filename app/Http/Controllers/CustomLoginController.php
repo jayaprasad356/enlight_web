@@ -27,10 +27,6 @@ class CustomLoginController extends Controller
     
         // Check user existence and manually verify password (without hashing)
         if ($user) {
-            if ($user->status == 0) {
-                return back()->withErrors(['mobile' => 'Your account is not activated.'])->withInput();
-            }
-    
             if ($user->status == 2) {
                 return back()->withErrors(['mobile' => 'Your account has been rejected.'])->withInput();
             }
@@ -87,6 +83,17 @@ public function profile()
     }
 
     return view('profile', compact('user'));
+}
+
+public function enlight()
+{
+    $user = Users::find(Session::get('user_id'));
+
+    if (!$user) {
+        return redirect()->route('mobile.login')->withErrors(['error' => 'User not found.']);
+    }
+
+    return view('enlight', compact('user'));
 }
 
 public function updateProfile(Request $request)

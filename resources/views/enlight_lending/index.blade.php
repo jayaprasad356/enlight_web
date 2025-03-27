@@ -39,10 +39,10 @@
 
         <!-- Amount Invested -->
         <div class="mb-4">
-            <label for="amount" class="form-label">Amount Invested:</label>
-            <input type="number" class="form-control" id="amount" value="5000">
+            <label for="amount" class="form-label">Lending amount:</label>
+            <input type="number" class="form-control" id="amount" value="0" disabled>
             <div class="text-center mt-3">
-                <button class="btn btn-success px-5">Invest Now</button>
+                <button class="btn btn-success px-5">Lend Now</button>
             </div>
         </div>
 

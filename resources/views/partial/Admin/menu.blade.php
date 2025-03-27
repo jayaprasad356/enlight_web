@@ -92,6 +92,19 @@
                     </ul>
                 </li>
 
+                <li class="dash-item">
+                    <a href="{{ route('enlight_lending.index') }}" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-cash"></i></span> <!-- Briefcase icon for works -->
+                        <span class="dash-mtext">{{ __('Enlight Lending') }}</span>
+                    </a>
+                </li>
+
+                <li class="dash-item">
+                    <a href="{{ route('enlight') }}" class="dash-link">
+                        <span class="dash-micon"><i class="ti ti-briefcase"></i></span> <!-- Briefcase icon for works -->
+                        <span class="dash-mtext">{{ __('Enlight Flexiwork') }}</span>
+                    </a>
+                </li>
 
                 <li class="dash-item">
                     <a href="{{ route('works.index') }}" class="dash-link">
